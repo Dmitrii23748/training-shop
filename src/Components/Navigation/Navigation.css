@@ -1,0 +1,54 @@
+.nav {
+  padding: 5px 0;
+  background-color: #121212;
+  color: #fff;
+}
+
+.nav-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-up__place-block {
+  display: flex;
+  align-items: center;
+}
+
+.nav-up__item {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-up__img {
+  margin-right: 13px;
+}
+
+.number-phone-clock {
+  font-family: "Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 12px;
+  opacity: 0.8;
+}
+
+.local-text {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.03em;
+  opacity: 0.8;
+}
+
+.nav-up__links-block {
+  display: flex;
+  align-items: center;
+}
+
+.nav-up__item-link {
+  margin-left: 10px;
+}
