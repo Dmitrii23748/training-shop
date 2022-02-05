@@ -4,7 +4,9 @@ html {
 }
 
 /* font-family: 'Inter', sans-serif;
-font-family: 'Spartan', sans-serif; */
+font-family: 'Spartan', sans-serif;
+font-family: 'Playfair Display SC', serif;
+ */
 
 *,
 *::after,
@@ -40,6 +42,10 @@ video {
   padding: 0;
   margin: 0;
   font-size: inherit;
+}
+
+body {
+  font-family: 'Spartan', sans-serif;
 }
 
 ul[class] {
@@ -79,5 +85,6 @@ a {
 
 .container {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1130px;
+  padding: 0 10px;
 }
