@@ -1,11 +1,11 @@
 
 import './App.css';
-import Navigation from './Components/Navigation/Navigation';
+import MainPage from './Pages/MainPage';
 
 function App() {
   return (
     <div className="wrapper">
-        <Navigation/>
+        <MainPage/>
     </div>
   );
 }

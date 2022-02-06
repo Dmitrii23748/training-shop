@@ -6,6 +6,7 @@ html {
 /* font-family: 'Inter', sans-serif;
 font-family: 'Spartan', sans-serif;
 font-family: 'Playfair Display SC', serif;
+font-family: 'Montserrat', sans-serif;
  */
 
 *,
@@ -46,6 +47,7 @@ video {
 
 body {
   font-family: 'Spartan', sans-serif;
+  color: #121212;
 }
 
 ul[class] {
