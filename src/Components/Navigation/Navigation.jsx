@@ -71,42 +71,42 @@ const Navigation = () => {
           <div className="container">
             <div className="nav-down">
               <div className="nav-down__logo-links">
-                <a className="nav-down__title-link" href="#">
+                <a className="nav-down__title-link" href="#clev">
                   <h1 className="nav-down__logo">CleverShop</h1>
                 </a>
                 <ul className="nav-down__list-links">
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       About Us
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Women
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Men
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Beauty
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Accessories
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Blog
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#">
+                    <a className="nav-down__link" href="#clev">
                       Contact
                     </a>
                   </li>
