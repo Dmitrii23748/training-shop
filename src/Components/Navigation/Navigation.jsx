@@ -13,7 +13,7 @@ import user from "../../img/icon-nav/user.svg";
 import shop from "../../img/icon-nav/shop.svg";
 // ССЫЛКИ НА СОЦ СЕТИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-const Navigation = () => {
+function Navigation(){
   return (
     <>
       <section className="navigation">

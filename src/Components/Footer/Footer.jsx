@@ -16,7 +16,7 @@ import mastercart from "../../img/icon-footer/pay-mastercart.svg";
 import discover from "../../img/icon-footer/pay-discover.svg";
 import american from "../../img/icon-footer/pay-americanexpress.svg";
 
-const Footer = () => {
+function Footer() {
   return (
     <>
       <footer className="footer">
