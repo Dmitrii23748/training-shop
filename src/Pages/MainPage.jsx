@@ -5,6 +5,7 @@ import Header from "../Components/Header/Header";
 import Free from "../Components/Free/Free";
 import Womens from "../Components/Womens/Womens";
 import Mens from "../Components/Mens/Mens";
+import Collection from "../Components/Collection/Collection";
 
 
 
@@ -17,6 +18,7 @@ function MainPage(){
             <Free/>
             <Womens/>
             <Mens/>
+            <Collection/>
             <Footer/>
         </>
     )

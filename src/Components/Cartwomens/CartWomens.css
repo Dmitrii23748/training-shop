@@ -14,6 +14,7 @@
   line-height: 16px;
   opacity: 0.6;
   margin-bottom: 12px;
+  color: #121212;
 }
 
 .womens-cart__stars {
@@ -25,6 +26,7 @@
   font-size: 14px;
   line-height: 16px;
   margin-right: 5px;
+  color: #121212;
 }
 
 .womens-cart__stars-sale {
@@ -32,6 +34,7 @@
   font-size: 12px;
   line-height: 13px;
   text-decoration: line-through;
+  color: #121212;
   opacity: 0.4;
 }
 
