@@ -1,0 +1,29 @@
+.men-cart {
+  margin-bottom: 30px;
+  position: relative;
+  margin: 0 2px 30px 2px;
+}
+
+.mens-cart__img {
+  margin-bottom: 16px;
+}
+
+.mens-cart__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+.mens-cart__stars {
+  display: flex;
+  justify-content: space-between;
+}
+.mens-cart__stars-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  margin-right: 5px;
+}
+
