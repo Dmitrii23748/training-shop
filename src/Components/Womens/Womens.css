@@ -31,13 +31,14 @@
   font-size: 12px;
   line-height: 13px;
   letter-spacing: 0.06em;
-  color: #121212;
   opacity: 0.6;
+  background-color: transparent;
   transition: all 0.3s ease-in-out;
 }
 .womens-category__link:hover {
   font-weight: 500;
   opacity: 1;
+  cursor: pointer;
 }
 
 .womens-see__btn-block {

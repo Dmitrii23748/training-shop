@@ -6,6 +6,8 @@ import Free from "../Components/Free/Free";
 import Womens from "../Components/Womens/Womens";
 import Mens from "../Components/Mens/Mens";
 import Collection from "../Components/Collection/Collection";
+import Blog from "../Components/Blog/Blog";
+import Subscribe from "../Components/Subscribe/Subscribe";
 
 
 
@@ -19,6 +21,8 @@ function MainPage(){
             <Womens/>
             <Mens/>
             <Collection/>
+            <Subscribe/>
+            <Blog/>
             <Footer/>
         </>
     )

@@ -15,29 +15,29 @@ function Womens() {
             <h2 className="womens-title">WOMEN’S</h2>
             <ul className="womens-category__list">
               <li className="womens-category__item">
-                <a className="womens-category__link" href="#NEW ARRIVALS">
+                <button className="womens-category__link" type="button">
                   NEW ARRIVALS
-                </a>
+                </button>
               </li>
               <li className="womens-category__item">
-                <a className="womens-category__link" href="#SPECIALS">
+                <button className="womens-category__link" type="button">
                   SPECIALS
-                </a>
+                </button>
               </li>
               <li className="womens-category__item">
-                <a className="womens-category__link" href="#BESTSELLERS">
+                <button className="womens-category__link" type="button">
                   BESTSELLERS
-                </a>
+                </button>
               </li>
               <li className="womens-category__item">
-                <a className="womens-category__link" href="#MOST VIEWED">
+                <button className="womens-category__link" type="button">
                   MOST VIEWED
-                </a>
+                </button>
               </li>
               <li className="womens-category__item">
-                <a className="womens-category__link" href="#FEATURED PRODUCTS">
+                <button className="womens-category__link" type="button">
                   FEATURED PRODUCTS
-                </a>
+                </button>
               </li>
             </ul>
           </div>

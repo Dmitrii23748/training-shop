@@ -15,29 +15,29 @@ function Mens() {
             <h2 className="mens-title">MEN’S</h2>
             <ul className="mens-category__list">
               <li className="mens-category__item">
-                <a className="mens-category__link" href="#NEW ARRIVALS">
+                <button className="mens-category__link" type="button">
                   NEW ARRIVALS
-                </a>
+                </button>
               </li>
               <li className="mens-category__item">
-                <a className="mens-category__link" href="#SPECIALS">
+                <button className="mens-category__link" type="button">
                   SPECIALS
-                </a>
+                </button>
               </li>
               <li className="mens-category__item">
-                <a className="mens-category__link" href="#BESTSELLERS">
+                <button className="mens-category__link" type="button">
                   BESTSELLERS
-                </a>
+                </button>
               </li>
               <li className="mens-category__item">
-                <a className="mens-category__link" href="#MOST VIEWED">
+                <button className="mens-category__link" type="button">
                   MOST VIEWED
-                </a>
+                </button>
               </li>
               <li className="mens-category__item">
-                <a className="mens-category__link" href="#FEATURED PRODUCTS">
+                <button className="mens-category__link" type="button">
                   FEATURED PRODUCTS
-                </a>
+                </button>
               </li>
             </ul>
           </div>

@@ -20,7 +20,7 @@ function CartWomens({ id, title, price, sale, percent }) {
               {sale ? (
                 <span className="womens-cart__stars-sale">$ {sale}</span>
               ) : (
-                ""
+                null
               )}
             </div>
             <Stars />
@@ -30,7 +30,7 @@ function CartWomens({ id, title, price, sale, percent }) {
               <p className="womens-percent__text">-{percent}%</p>
             </div>
           ) : (
-            ""
+            null
           )}
         </a>
       </div>
