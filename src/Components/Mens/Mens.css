@@ -1,6 +1,4 @@
-.mens {
-  padding-top: 96px;
-}
+
 
 .mens-block__title {
   display: flex;
@@ -41,34 +39,11 @@
   cursor: pointer;
 }
 
-.mens-see__btn-block {
-  display: flex;
-  justify-content: center;
-}
 
-.mens-btn {
-  width: 100%;
-  background-color: #f8f8f8;
-  border: 2px solid #f8f8f8;
-  padding: 17px 0;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 15px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #121212;
-  opacity: 0.8;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.mens-btn:hover {
-  background-color: #e6e6e6;
-  border: 2px solid #e6e6e6;
-}
 
 .mens-img__block {
-  padding: 48px 0;
+  padding-top: 48px;
+  padding-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -15,6 +15,7 @@ import visa from "../../img/icon-footer/pay-visa.svg";
 import mastercart from "../../img/icon-footer/pay-mastercart.svg";
 import discover from "../../img/icon-footer/pay-discover.svg";
 import american from "../../img/icon-footer/pay-americanexpress.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -85,9 +86,9 @@ function Footer() {
                   </a>
                 </li>
                 <li className="footer-info__category-item">
-                  <a className="footer-info__category-link" href="#women">
+                  <Link className="footer-info__category-link" to="/training-shop/womens">
                     Women
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__category-item">
                   <a className="footer-info__category-link" href="#access">

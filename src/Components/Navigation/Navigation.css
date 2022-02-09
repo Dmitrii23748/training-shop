@@ -104,6 +104,11 @@
   color: #121212;
 }
 
+.nav-down__link.active {
+  font-weight: 600;
+}
+
+
 
 .nav-down__icons-list {
   display: flex;

@@ -1,74 +1,10 @@
 .womens {
-  padding-top: 96px;
-}
-
-.womens-block__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-.womens-title {
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 25px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.womens-category__list {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.womens-category__item {
-  margin-left: 32px;
-}
-
-.womens-category__link {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 13px;
-  letter-spacing: 0.06em;
-  opacity: 0.6;
-  background-color: transparent;
-  transition: all 0.3s ease-in-out;
-}
-.womens-category__link:hover {
-  font-weight: 500;
-  opacity: 1;
-  cursor: pointer;
-}
-
-.womens-see__btn-block {
-  display: flex;
-  justify-content: center;
-}
-
-.womens-btn {
-  width: 100%;
-  background-color: #f8f8f8;
-  border: 2px solid #f8f8f8;
-  padding: 17px 0;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 15px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #121212;
-  opacity: 0.8;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.womens-btn:hover {
-  background-color: #e6e6e6;
-  border: 2px solid #e6e6e6;
+  padding-top: 0;
 }
 
 .womens-img__block {
-  padding: 48px 0;
+  padding-top: 48px;
+  padding-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;

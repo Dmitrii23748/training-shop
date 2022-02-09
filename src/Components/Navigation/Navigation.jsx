@@ -11,7 +11,7 @@ import search from "../../img/icon-nav/search.svg";
 import globe from "../../img/icon-nav/globe.svg";
 import user from "../../img/icon-nav/user.svg";
 import shop from "../../img/icon-nav/shop.svg";
-// ССЫЛКИ НА СОЦ СЕТИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+import { NavLink } from "react-router-dom";
 
 function Navigation(){
   return (
@@ -71,9 +71,9 @@ function Navigation(){
           <div className="container">
             <div className="nav-down">
               <div className="nav-down__logo-links">
-                <a className="nav-down__title-link" href="#clev">
+                <NavLink className="nav-down__title-link" to="/training-shop" >
                   <h1 className="nav-down__logo">CleverShop</h1>
-                </a>
+                </NavLink>
                 <ul className="nav-down__list-links">
                   <li className="nav-down__item">
                     <a className="nav-down__link" href="#clev">
@@ -81,9 +81,9 @@ function Navigation(){
                     </a>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/womens" >
                       Women
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
                     <a className="nav-down__link" href="#clev">

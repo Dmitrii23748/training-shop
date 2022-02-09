@@ -1,6 +1,7 @@
 
 .free {
     border-bottom: 2px solid #F8F8F8;
+    margin-bottom: 95px;
 }
 .free-block {
   display: flex;
