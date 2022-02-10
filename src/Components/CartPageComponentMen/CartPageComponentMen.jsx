@@ -33,7 +33,7 @@ function CartPageComponentMen({id}) {
                   alt="headerArrow"
                 />
                 <p className="womens-cart-h__title-text womens-cart-h__women-link">
-                  Women
+                  Men
                 </p>
                 <img
                   className="womens-cart-h__title-arrow"
