@@ -419,7 +419,7 @@ function CartPageComponentWomen({ id }) {
             </div>
           </div>
 
-          <div className="womens-cart">
+          <div className="womens-cart-block">
             <div className="womens-cart">
               <a href="#womens" className="men-cart__link">
                 <img
@@ -427,7 +427,7 @@ function CartPageComponentWomen({ id }) {
                   src={require(`../../img/photo-womens/cart-img-womens-1.jpg`)}
                   alt="womens-img"
                 />
-                <p className="womens-cart__text"></p>
+                <p className="womens-cart__text">Women's tracksuit Q109</p>
                 <div className="womens-cart__stars">
                   <div className="womens-cart__price-sale">
                     <span className="womens-cart__stars-text">$ 30.00</span>
@@ -443,10 +443,11 @@ function CartPageComponentWomen({ id }) {
                   src={require(`../../img/photo-womens/cart-img-womens-2.jpg`)}
                   alt="womens-img"
                 />
-                <p className="womens-cart__text"></p>
+                <p className="womens-cart__text">Women's tracksuit Q109</p>
                 <div className="womens-cart__stars">
                   <div className="womens-cart__price-sale">
                     <span className="womens-cart__stars-text">$ 30.00</span>
+                    <span className="womens-cart__stars-text_sale">$ 60.00</span>
                   </div>
                   <Stars />
                 </div>
@@ -459,7 +460,7 @@ function CartPageComponentWomen({ id }) {
                   src={require(`../../img/photo-womens/cart-img-womens-3.jpg`)}
                   alt="womens-img"
                 />
-                <p className="womens-cart__text"></p>
+                <p className="womens-cart__text">Women's tracksuit Q109</p>
                 <div className="womens-cart__stars">
                   <div className="womens-cart__price-sale">
                     <span className="womens-cart__stars-text">$ 30.00</span>
@@ -475,7 +476,7 @@ function CartPageComponentWomen({ id }) {
                   src={require(`../../img/photo-womens/cart-img-womens-4.jpg`)}
                   alt="womens-img"
                 />
-                <p className="womens-cart__text"></p>
+                <p className="womens-cart__text">Women's tracksuit Q109</p>
                 <div className="womens-cart__stars">
                   <div className="womens-cart__price-sale">
                     <span className="womens-cart__stars-text">$ 30.00</span>
