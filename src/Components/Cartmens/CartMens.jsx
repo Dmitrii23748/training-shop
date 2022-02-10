@@ -6,7 +6,6 @@ import Stars from "../Stars/Stars";
 
 function CartMens({ id, title, price }) {
   return (
-    <>
       <div className="men-cart">
         <Link to={`/training-shop/mens/${id}`} className="men-cart__link">
           <img
@@ -23,7 +22,6 @@ function CartMens({ id, title, price }) {
           </div>
         </Link>
       </div>
-    </>
   );
 }
 
