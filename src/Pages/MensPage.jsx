@@ -1,17 +1,18 @@
 import React from "react";
 import Navigation from "../Components/Navigation/Navigation";
 import Footer from "../Components/Footer/Footer";
-import Womens from "../Components/Womens/Womens";
-import WomensFilter from "../Components/WomensFilter/WomensFilter";
+import MensFilter from '../Components/MensFilter/MensFilter';
+import Mens from '../Components/Mens/Mens';
 
 
 
-function WomensPage() {
+
+function MensPage() {
     return (
         <>
             <Navigation/>
-            <WomensFilter/>
-            <Womens/>
+            <MensFilter/>
+            <Mens/>
             <div className="square-block">
                 <div className="container">
                     <div className="square"></div>
@@ -23,4 +24,4 @@ function WomensPage() {
 }
 
 
-export default WomensPage;
+export default MensPage;

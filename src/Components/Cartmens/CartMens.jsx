@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./CartMens.css";
 import Stars from "../Stars/Stars";
 
@@ -7,7 +8,7 @@ function CartMens({ id, title, price }) {
   return (
     <>
       <div className="men-cart">
-        <a href="#men" className="men-cart__link">
+        <Link to={`/training-shop/mens/${id}`} className="men-cart__link">
           <img
             className="mens-cart__img"
             src={require(`../../img/mens/mens-${id}.jpg`)}
@@ -20,7 +21,7 @@ function CartMens({ id, title, price }) {
             </div>
             <Stars />
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

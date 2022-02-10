@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
+    margin-bottom: 48px;
   }
   .womens-title {
     font-weight: 600;

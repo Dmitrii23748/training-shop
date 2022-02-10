@@ -86,9 +86,9 @@ function Navigation(){
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/mens">
                       Men
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
                     <a className="nav-down__link" href="#clev">

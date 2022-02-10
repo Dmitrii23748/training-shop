@@ -81,9 +81,9 @@ function Footer() {
               <ul className="footer-info__item footer-info__category">
                 <h3 className="footer-info__title">Categories</h3>
                 <li className="footer-info__category-item">
-                  <a className="footer-info__category-link" href="#men">
+                  <Link className="footer-info__category-link" to="/training-shop/mens">
                     Men
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__category-item">
                   <Link className="footer-info__category-link" to="/training-shop/womens">

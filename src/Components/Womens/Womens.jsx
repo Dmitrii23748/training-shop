@@ -8,7 +8,6 @@ import {cartWomens} from "../../data/data";
 function Womens() {
   
   return (
-    <>
       <section className="womens">
         <div className="container">
           <div className="womens-img__block">
@@ -29,7 +28,6 @@ function Womens() {
           </div>
         </div>
       </section>
-    </>
   );
 }
 

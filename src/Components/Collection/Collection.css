@@ -1,5 +1,6 @@
 .collection {
-  padding: 96px 0;
+  padding-bottom: 96px;
+  padding-top: 45px;
 }
 .collection-block {
   display: flex;

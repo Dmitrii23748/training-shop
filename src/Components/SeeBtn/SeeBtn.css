@@ -1,3 +1,8 @@
+
+.btn-block {
+  padding-top: 16px;
+  padding-bottom: 48px;
+}
 .see__btn-block {
     display: flex;
     justify-content: center;

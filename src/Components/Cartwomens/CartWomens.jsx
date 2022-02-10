@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CartWomens.css";
 import Stars from "../Stars/Stars";
@@ -7,7 +8,7 @@ function CartWomens({ id, title, price, sale, percent }) {
   return (
     <>
       <div className="women-cart">
-        <a href="#womens" className="women-cart__link">
+        <Link to={`/training-shop/womens/${id}`} className="women-cart__link">
           <img
             className="womens-cart__img"
             src={require(`../../img/womens/womens-${id}.jpg`)}
@@ -32,13 +33,11 @@ function CartWomens({ id, title, price, sale, percent }) {
           ) : (
             null
           )}
-        </a>
+        </Link>
       </div>
     </>
   );
 }
-
-export default CartWomens;
 
 
 CartWomens.propTypes = {
@@ -48,4 +47,9 @@ CartWomens.propTypes = {
   sale: PropTypes.string,
   percent: PropTypes.string
 }
+
+export default CartWomens;
+
+
+
 

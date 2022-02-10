@@ -92,3 +92,17 @@ a {
   padding: 0 10px;
 }
 
+.square-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 33px;
+  padding-bottom: 95px;
+}
+
+.square {
+  width: 22px;
+  height: 22px;
+  background-color: #121212;
+  transform: rotate(45deg);
+}
