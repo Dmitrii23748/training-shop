@@ -18,7 +18,7 @@ import write from "../../img/cart/write.svg";
 
 function CartPageComponentWomen({ id }) {
   return (
-    <section className="cart-page">
+    <section className="cart-page" data-test-id={`product-page-/training-shop/womens/${id}`}>
       <div className="cart-page__navigation">
         <div className="container">
           <div className="womens-cart-h__title">

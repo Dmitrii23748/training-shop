@@ -14,7 +14,7 @@ import MensBtn from "../Components/MensBtn/MensBtn";
 
 function MainPage() {
   return (
-    <>
+    <div data-test-id='app'>
       <Navigation />
       <Header />
       <Free />
@@ -28,7 +28,7 @@ function MainPage() {
       <Subscribe />
       <Blog />
       <Footer />
-    </>
+    </div>
   );
 }
 

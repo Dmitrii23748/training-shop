@@ -6,8 +6,8 @@ import Stars from "../Stars/Stars";
 
 function CartMens({ id, title, price }) {
   return (
-      <div className="men-cart">
-        <Link to={`/training-shop/mens/${id}`} className="men-cart__link">
+      <div className="men-cart" data-test-id={`clothes-card-/training-shop/mens`}>
+        <Link to={`/training-shop/mens/${id}`} className="men-cart__link" >
           <img
             className="mens-cart__img"
             src={require(`../../img/mens/mens-${id}.jpg`)}

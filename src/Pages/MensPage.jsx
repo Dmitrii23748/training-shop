@@ -9,7 +9,7 @@ import Mens from '../Components/Mens/Mens';
 
 function MensPage() {
     return (
-        <>
+        <div data-test-id={`clothes-/training-shop/mens`}>
             <Navigation/>
             <MensFilter/>
             <Mens/>
@@ -19,7 +19,7 @@ function MensPage() {
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     )
 }
 

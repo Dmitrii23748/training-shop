@@ -10,7 +10,7 @@ import accessories from "../../img/banner/accesories.jpg";
 function Header() {
   return (
     <>
-      <header className="header">
+      <header className="header" data-test-id='header'>
         <div className="container">
           <div className="header-block">
             <div className="header-block__banner">

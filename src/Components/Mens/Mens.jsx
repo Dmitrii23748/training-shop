@@ -9,7 +9,7 @@ function Mens() {
   
   return (
     <>
-      <section className="mens">
+      <section className="mens" data-test-id={`products-page-/training-shop/mens`}>
         <div className="container">
           <div className="mens-img__block">
             {

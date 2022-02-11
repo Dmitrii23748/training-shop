@@ -11,7 +11,7 @@ import search from "../../img/icon-nav/search.svg";
 import globe from "../../img/icon-nav/globe.svg";
 import user from "../../img/icon-nav/user.svg";
 import shop from "../../img/icon-nav/shop.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function Navigation(){
   return (
@@ -69,46 +69,46 @@ function Navigation(){
 
         <div className="nav-down-block">
           <div className="container">
-            <div className="nav-down">
+            <div className="nav-down" data-test-id='menu'>
               <div className="nav-down__logo-links">
-                <NavLink className="nav-down__title-link" to="/training-shop" >
+                <Link className="nav-down__title-link" to="/training-shop" data-test-id='header-logo-link'>
                   <h1 className="nav-down__logo">CleverShop</h1>
-                </NavLink>
+                </Link>
                 <ul className="nav-down__list-links">
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/aboutUs" data-test-id={`menu-link-/training-shop/aboutUs`}>
                       About Us
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/womens" >
+                    <NavLink className="nav-down__link" to="/training-shop/womens" data-test-id={`menu-link-/training-shop/womens`}>
                       Women
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/mens">
+                    <NavLink className="nav-down__link" to="/training-shop/mens" data-test-id={`menu-link-/training-shop/mens`}>
                       Men
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/beauty" data-test-id={`menu-link-/training-shop/beauty`}>
                       Beauty
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/accessories" data-test-id={`menu-link-/training-shop/accessories`}>
                       Accessories
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <NavLink className="nav-down__link" to="/training-shop/blog" data-test-id={`menu-link-/training-shop/blog`}>
                       Blog
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <a className="nav-down__link" href="#clev">
+                    <Link className="nav-down__link" to="/training-shop/contact" data-test-id={`menu-link-/training-shop/contact`}>
                       Contact
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

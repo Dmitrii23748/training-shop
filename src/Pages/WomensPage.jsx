@@ -8,7 +8,7 @@ import WomensFilter from "../Components/WomensFilter/WomensFilter";
 
 function WomensPage() {
     return (
-        <>
+        <div data-test-id={`clothes-/training-shop/womens`}>
             <Navigation/>
             <WomensFilter/>
             <Womens/>
@@ -18,7 +18,7 @@ function WomensPage() {
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     )
 }
 

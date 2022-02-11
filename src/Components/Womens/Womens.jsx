@@ -8,7 +8,7 @@ import {cartWomens} from "../../data/data";
 function Womens() {
   
   return (
-      <section className="womens">
+      <section className="womens" data-test-id={`products-page-/training-shop/womens`}>
         <div className="container">
           <div className="womens-img__block">
             {

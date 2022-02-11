@@ -19,8 +19,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <>
-      <footer className="footer">
+      <footer className="footer" data-test-id='footer'>
         <div className="footer-contact">
           <div className="container">
             <div className="footer-contact__block">
@@ -81,45 +80,46 @@ function Footer() {
               <ul className="footer-info__item footer-info__category">
                 <h3 className="footer-info__title">Categories</h3>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/mens">
+                  <Link className="footer-info__category-link" to="/training-shop/mens" data-test-id={`footer-nav-link-/training-shop/mens`}>
                     Men
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/womens">
+                  <Link className="footer-info__category-link" to="/training-shop/womens" data-test-id={`footer-nav-link-/training-shop/womens`}>
                     Women
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <a className="footer-info__category-link" href="#access">
+                  <Link className="footer-info__category-link" to="/training-shop/accessories" data-test-id={`footer-nav-link-/training-shop/accessories`}>
                     Accessories
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <a className="footer-info__category-link" href="#beaty">
+                  <Link className="footer-info__category-link" to="/training-shop/beauty" data-test-id={`footer-nav-link-/training-shop/beauty`}>
                     Beauty
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <ul className="footer-info__item footer-info__infomation">
                 <h3 className="footer-info__title">Infomation</h3>
                 <li className="footer-info__infomation-item">
-                  <a className="footer-info__infomation-link" href="#About Us">
+                  <Link className="footer-info__infomation-link" to="/training-shop/aboutUs" data-test-id={`footer-nav-link-/training-shop/aboutUs`}>
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__infomation-item">
-                  <a
+                  <Link
                     className="footer-info__infomation-link"
-                    href="#Contact Us"
+                    to="/training-shop/contact"
+                    data-test-id={`footer-nav-link-/training-shop/contact`}
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__infomation-item">
-                  <a className="footer-info__infomation-link" href="#Blog">
+                  <Link className="footer-info__infomation-link" to="/training-shop/blog" data-test-id={`footer-nav-link-/training-shop/blog`}> 
                     Blog
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer-info__infomation-item">
                   <a className="footer-info__infomation-link" href="#FAQs">
@@ -268,7 +268,6 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </>
   );
 };
 
