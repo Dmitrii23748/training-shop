@@ -98,26 +98,28 @@ function CartPageComponentMen({id}) {
                       />
                     </button>
                   </div>
-                  <img
-                    className="cart__img-small"
-                    src={require("../../img/cart/small-1.jpg")}
-                    alt="small-1"
-                  />
-                  <img
-                    className="cart__img-small"
-                    src={require("../../img/cart/small-2.jpg")}
-                    alt="small-2"
-                  />
-                  <img
-                    className="cart__img-small"
-                    src={require("../../img/cart/small-3.jpg")}
-                    alt="small-3"
-                  />
-                  <img
-                    className="cart__img-small"
-                    src={require("../../img/cart/small-4.jpg")}
-                    alt="small-4"
-                  />
+                  <div className="cart__img-small-flex">
+                    <img
+                      className="cart__img-small"
+                      src={require("../../img/cart/small-1.jpg")}
+                      alt="small-1"
+                    />
+                    <img
+                      className="cart__img-small"
+                      src={require("../../img/cart/small-2.jpg")}
+                      alt="small-2"
+                    />
+                    <img
+                      className="cart__img-small"
+                      src={require("../../img/cart/small-3.jpg")}
+                      alt="small-3"
+                    />
+                    <img
+                      className="cart__img-small"
+                      src={require("../../img/cart/small-4.jpg")}
+                      alt="small-4"
+                    />
+                  </div>
                 </div>
 
                 <div className="cart-page__picture-img-big">
