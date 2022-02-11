@@ -18,16 +18,16 @@ function App() {
   return (
     <div className="wrapper">
       <Routes>
-        <Route path='/training-shop' element={<MainPage/>}/>
-        <Route path='/training-shop/womens' element={<WomensPage/>}/>
-        <Route path='/training-shop/womens/:id' element={<CartPageWomen/>}/>
-        <Route path='/training-shop/mens' element={<MensPage/>}/>
-        <Route path='/training-shop/mens/:id' element={<CartPageMen/>}/>
-        <Route path='/training-shop/aboutUs' element={<AboutUsPage/>}/>
-        <Route path='/training-shop/beauty' element={<BeautyPage/>}/>
-        <Route path='/training-shop/accessories' element={<AccessoriesPage/>}/>
-        <Route path='/training-shop/blog' element={<BlogPage/>}/>
-        <Route path='/training-shop/contact' element={<ContactPage/>}/>
+        <Route path='/' element={<MainPage/>}/>
+        <Route path='/womens' element={<WomensPage/>}/>
+        <Route path='/womens/:id' element={<CartPageWomen/>}/>
+        <Route path='/mens' element={<MensPage/>}/>
+        <Route path='/mens/:id' element={<CartPageMen/>}/>
+        <Route path='/aboutUs' element={<AboutUsPage/>}/>
+        <Route path='/beauty' element={<BeautyPage/>}/>
+        <Route path='/accessories' element={<AccessoriesPage/>}/>
+        <Route path='/blog' element={<BlogPage/>}/>
+        <Route path='/contact' element={<ContactPage/>}/>
       </Routes>
 
     </div>

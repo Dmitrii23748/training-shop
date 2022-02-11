@@ -8,7 +8,7 @@ function CartWomens({ id, title, price, sale, percent }) {
   return (
     <>
       <div className="women-cart" data-test-id={`clothes-card-/training-shop/womens`}>
-        <Link to={`/training-shop/womens/${id}`} className="women-cart__link">
+        <Link to={`/womens/${id}`} className="women-cart__link">
           <img
             className="womens-cart__img"
             src={require(`../../img/womens/womens-${id}.jpg`)}

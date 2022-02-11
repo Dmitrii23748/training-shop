@@ -71,42 +71,42 @@ function Navigation(){
           <div className="container">
             <div className="nav-down" data-test-id='menu'>
               <div className="nav-down__logo-links">
-                <Link className="nav-down__title-link" to="/training-shop" data-test-id='header-logo-link'>
+                <Link className="nav-down__title-link" to="/" data-test-id='header-logo-link'>
                   <h1 className="nav-down__logo">CleverShop</h1>
                 </Link>
                 <ul className="nav-down__list-links">
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/aboutUs" data-test-id={`menu-link-/training-shop/aboutUs`}>
+                    <NavLink className="nav-down__link" to="/aboutUs" data-test-id={`menu-link-/training-shop/aboutUs`}>
                       About Us
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/womens" data-test-id={`menu-link-/training-shop/womens`}>
+                    <NavLink className="nav-down__link" to="/womens" data-test-id={`menu-link-/training-shop/womens`}>
                       Women
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/mens" data-test-id={`menu-link-/training-shop/mens`}>
+                    <NavLink className="nav-down__link" to="/mens" data-test-id={`menu-link-/training-shop/mens`}>
                       Men
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/beauty" data-test-id={`menu-link-/training-shop/beauty`}>
+                    <NavLink className="nav-down__link" to="/beauty" data-test-id={`menu-link-/training-shop/beauty`}>
                       Beauty
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/accessories" data-test-id={`menu-link-/training-shop/accessories`}>
+                    <NavLink className="nav-down__link" to="/accessories" data-test-id={`menu-link-/training-shop/accessories`}>
                       Accessories
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/training-shop/blog" data-test-id={`menu-link-/training-shop/blog`}>
+                    <NavLink className="nav-down__link" to="/blog" data-test-id={`menu-link-/training-shop/blog`}>
                       Blog
                     </NavLink>
                   </li>
                   <li className="nav-down__item">
-                    <Link className="nav-down__link" to="/training-shop/contact" data-test-id={`menu-link-/training-shop/contact`}>
+                    <Link className="nav-down__link" to="/contact" data-test-id={`menu-link-/training-shop/contact`}>
                       Contact
                     </Link>
                   </li>

@@ -80,22 +80,22 @@ function Footer() {
               <ul className="footer-info__item footer-info__category">
                 <h3 className="footer-info__title">Categories</h3>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/mens" data-test-id={`footer-nav-link-/training-shop/mens`}>
+                  <Link className="footer-info__category-link" to="/mens" data-test-id={`footer-nav-link-/training-shop/mens`}>
                     Men
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/womens" data-test-id={`footer-nav-link-/training-shop/womens`}>
+                  <Link className="footer-info__category-link" to="/womens" data-test-id={`footer-nav-link-/training-shop/womens`}>
                     Women
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/accessories" data-test-id={`footer-nav-link-/training-shop/accessories`}>
+                  <Link className="footer-info__category-link" to="/accessories" data-test-id={`footer-nav-link-/training-shop/accessories`}>
                     Accessories
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/training-shop/beauty" data-test-id={`footer-nav-link-/training-shop/beauty`}>
+                  <Link className="footer-info__category-link" to="/beauty" data-test-id={`footer-nav-link-/training-shop/beauty`}>
                     Beauty
                   </Link>
                 </li>
@@ -103,21 +103,21 @@ function Footer() {
               <ul className="footer-info__item footer-info__infomation">
                 <h3 className="footer-info__title">Infomation</h3>
                 <li className="footer-info__infomation-item">
-                  <Link className="footer-info__infomation-link" to="/training-shop/aboutUs" data-test-id={`footer-nav-link-/training-shop/aboutUs`}>
+                  <Link className="footer-info__infomation-link" to="/aboutUs" data-test-id={`footer-nav-link-/training-shop/aboutUs`}>
                     About Us
                   </Link>
                 </li>
                 <li className="footer-info__infomation-item">
                   <Link
                     className="footer-info__infomation-link"
-                    to="/training-shop/contact"
+                    to="/contact"
                     data-test-id={`footer-nav-link-/training-shop/contact`}
                   >
                     Contact Us
                   </Link>
                 </li>
                 <li className="footer-info__infomation-item">
-                  <Link className="footer-info__infomation-link" to="/training-shop/blog" data-test-id={`footer-nav-link-/training-shop/blog`}> 
+                  <Link className="footer-info__infomation-link" to="/blog" data-test-id={`footer-nav-link-/training-shop/blog`}> 
                     Blog
                   </Link>
                 </li>
