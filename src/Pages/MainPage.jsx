@@ -1,6 +1,4 @@
 import React from "react";
-import Navigation from "../Components/Navigation/Navigation";
-import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Free from "../Components/Free/Free";
 import Womens from "../Components/Womens/Womens";
@@ -14,20 +12,18 @@ import MensBtn from "../Components/MensBtn/MensBtn";
 
 function MainPage() {
   return (
-    <div data-test-id='app'>
-      <Navigation />
+    <div data-test-id="app">
       <Header />
       <Free />
-      <WomensBtn/>
+      <WomensBtn />
       <Womens />
-      <SeeBtn/>
-      <MensBtn/>
+      <SeeBtn />
+      <MensBtn />
       <Mens />
-      <SeeBtn/>
+      <SeeBtn />
       <Collection />
       <Subscribe />
       <Blog />
-      <Footer />
     </div>
   );
 }

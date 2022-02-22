@@ -11,11 +11,11 @@
 
 .header-block__img-slider {
   width: 100%;
-  height: auto;
   max-width: 540px;
   object-fit: cover;
   object-position: center;
 }
+
 .header-product__women-img,
 .header-product__men-img {
   width: 100%;
@@ -34,15 +34,17 @@
 
 .header-block__banner-slider {
   position: relative;
+  max-width: 540px;
 }
 
-.header-btn__left,
-.header-btn__right {
+/* .header-btn__left,
+.header-btn__right  {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   cursor: pointer;
+  z-index: 20;
 }
 
 .header-btn__left {
@@ -51,6 +53,41 @@
 
 .header-btn__right {
   right: 32px;
+} */
+
+.mySwiper-one .swiper-button-next {
+  display: inline-block;
+  position: absolute;
+  top: 50% !important;
+  right: 20px !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer;
+  background-image: url("../../img/banner/arrow-right.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: 0 !important;
+}
+
+.mySwiper-one .swiper-button-prev {
+  display: inline-block;
+  position: absolute;
+  top: 50% !important;
+  left: 20px !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer;
+  background-image: url("../../img/banner/arrow-left.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: 0 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
 }
 
 .header-block__banner-text {
@@ -117,7 +154,7 @@
   border-radius: 4px;
 }
 .header-product__men-text {
-    padding: 13px 39px;
+  padding: 13px 39px;
 }
 .header-product__women-title,
 .header-product__men-title,
@@ -128,8 +165,34 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+/* добавил */
+@media screen and (max-width: 1130px) {
+  .header-block {
+    justify-content: center;
+  }
+  .header-block__banner-slider {
+    width: calc(540px - 130px);
+  }
+  .header-block__product {
+    width: calc(540px - 140px);
+  }
+  .header-block__banner {
+    flex: none;
+  }
+} 
 
 @media screen and (max-width: 840px) {
+  /* добавил */
+  .header-block {
+    flex-wrap: wrap;
+  }
+  .header-block__banner {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+
+
   .header-block__banner-text {
     padding: 14px 10px;
   }
@@ -160,11 +223,11 @@
 
 @media screen and (max-width: 680px) {
   .header-block__banner-p {
-      font-size: 6px;
-      margin-bottom: 7px;
+    font-size: 6px;
+    margin-bottom: 7px;
   }
   .header-block__banner-title {
-      font-size: 12px;
+    font-size: 12px;
   }
 }
 
@@ -180,24 +243,30 @@
     justify-content: center;
   }
   .header-block__product {
-      justify-content: center;
+    justify-content: center;
   }
   .header-block__banner-text {
     display: block;
   }
   .header-btn__left {
-      left: 10px;
+    left: 10px;
   }
   .header-btn__right {
-      right: 14px;
+    right: 14px;
   }
 }
 
 @media screen and (max-width: 460px) {
-    .header-btn__left {
-        left: 0px;
-    }
-    .header-btn__right {
-        right: 0px;
-    }
+  .header-btn__left {
+    left: 0px;
+  }
+  .header-btn__right {
+    right: 0px;
+  }
+}
+/* добавил */
+@media screen and (max-width: 430px) {
+  .header-block__banner-slider {
+    width: calc(540px - 200px);
+  }
 }

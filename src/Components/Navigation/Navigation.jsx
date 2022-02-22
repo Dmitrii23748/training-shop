@@ -13,7 +13,7 @@ import user from "../../img/icon-nav/user.svg";
 import shop from "../../img/icon-nav/shop.svg";
 import { NavLink, Link } from "react-router-dom";
 
-function Navigation(){
+function Navigation({ showLink, handleShowLink }) {
   return (
     <>
       <section className="navigation">
@@ -40,7 +40,7 @@ function Navigation(){
                 <ul className="nav-up__links-block">
                   <li className="nav-up__item-link">
                     <a href="https://www.facebook.com/">
-                      <img  src={facebook} alt="facebook" />
+                      <img src={facebook} alt="facebook" />
                     </a>
                   </li>
 
@@ -69,44 +69,81 @@ function Navigation(){
 
         <div className="nav-down-block">
           <div className="container">
-            <div className="nav-down" data-test-id='menu'>
+            <div className="nav-down" data-test-id="menu">
               <div className="nav-down__logo-links">
-                <Link className="nav-down__title-link" to="/" data-test-id='header-logo-link'>
+                <Link
+                  className="nav-down__title-link"
+                  to="/"
+                  data-test-id="header-logo-link"
+                >
                   <h1 className="nav-down__logo">CleverShop</h1>
                 </Link>
-                <ul className="nav-down__list-links">
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/aboutUs" data-test-id={`menu-link-/training-shop/aboutUs`}>
+                <ul
+                  className={`nav-down__list-links ${
+                    showLink ? "show-nav" : "hide-show-burger"
+                  }`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/aboutUs"
+                      data-test-id={`menu-link-/training-shop/aboutUs`}
+                    >
                       About Us
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/womens" data-test-id={`menu-link-/training-shop/womens`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/womens"
+                      data-test-id={`menu-link-/training-shop/womens`}
+                    >
                       Women
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/mens" data-test-id={`menu-link-/training-shop/mens`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/mens"
+                      data-test-id={`menu-link-/training-shop/mens`}
+                    >
                       Men
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/beauty" data-test-id={`menu-link-/training-shop/beauty`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/beauty"
+                      data-test-id={`menu-link-/training-shop/beauty`}
+                    >
                       Beauty
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/accessories" data-test-id={`menu-link-/training-shop/accessories`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/accessories"
+                      data-test-id={`menu-link-/training-shop/accessories`}
+                    >
                       Accessories
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <NavLink className="nav-down__link" to="/blog" data-test-id={`menu-link-/training-shop/blog`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <NavLink
+                      className="nav-down__link"
+                      to="/blog"
+                      data-test-id={`menu-link-/training-shop/blog`}
+                    >
                       Blog
                     </NavLink>
                   </li>
-                  <li className="nav-down__item">
-                    <Link className="nav-down__link" to="/contact" data-test-id={`menu-link-/training-shop/contact`}>
+                  <li className="nav-down__item" onClick={handleShowLink}>
+                    <Link
+                      className="nav-down__link"
+                      to="/contact"
+                      data-test-id={`menu-link-/training-shop/contact`}
+                    >
                       Contact
                     </Link>
                   </li>
@@ -129,12 +166,21 @@ function Navigation(){
                   </li>
                 </ul>
               </div>
+              <button
+                data-test-id="burger-menu-btn"
+                className={`navbar__burger  ${
+                  showLink ? "show-nav" : "hide-show-burger"
+                }`}
+                onClick={handleShowLink}
+              >
+                <span className="burger-bar"></span>
+              </button>
             </div>
           </div>
         </div>
       </section>
     </>
   );
-};
+}
 
 export default Navigation;

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CartPageComponentWomen.css";
-import { cartWomens } from "../../data/data";
+// import { cartWomens } from "../../data/data";
+import { PRODUCTS } from "../../data/products";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import Stars from "../Stars/Stars";
-import leftBtn from "../../img/banner/arrow-left.png";
-import rightBtn from "../../img/banner/arrow-right.png";
 import hanger from "../../img/cart/hanger.svg";
 import heart from "../../img/cart/heart.svg";
 import scales from "../../img/cart/scales.svg";
@@ -15,10 +14,22 @@ import mail from "../../img/cart/mail-cart.svg";
 import starbigyellow from "../../img/stars/big-star.svg";
 import starbiggrey from "../../img/stars/big-grey.svg";
 import write from "../../img/cart/write.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
 function CartPageComponentWomen({ id }) {
+  const [firstSwiper, setFirstSwiper] = useState(null);
+  const [secondSwiper, setSecondSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <section className="cart-page" data-test-id={`product-page-/training-shop/womens/${id}`}>
+    <section
+      className="cart-page"
+      // data-test-id={`product-page-/training-shop/womens/${id}`}
+    >
       <div className="cart-page__navigation">
         <div className="container">
           <div className="womens-cart-h__title">
@@ -41,7 +52,7 @@ function CartPageComponentWomen({ id }) {
                   alt="headerArrow"
                 />
                 <p className="womens-cart-h__title-text womens-cart-h__title-link_item">
-                  {cartWomens[id - 1].text}
+                  {PRODUCTS.women[id - 1].name}
                 </p>
               </div>
               <div className="womens-cart-h__title-item">
@@ -55,7 +66,7 @@ function CartPageComponentWomen({ id }) {
             </div>
             <div className="womens-cart-h__title-block">
               <h3 className="womens-cart-h__title-women">
-                {cartWomens[id - 1].text}
+                {PRODUCTS.women[id - 1].name}
               </h3>
             </div>
             <div className="womens-cart-h__star-code">
@@ -82,67 +93,135 @@ function CartPageComponentWomen({ id }) {
             <div className="cart-page__picture-img">
               <div className="cart-page__picture-img-block">
                 <div className="cart-page__picture-img-small">
-                  <div className="cart-page__picture-img-btns">
-                    <button className="btn__small-left">
-                      <img
-                        className="btn__small-left-img"
-                        src={leftBtn}
-                        alt="leftBtn"
-                      />
-                    </button>
-                    <button className="btn__small-right">
-                      <img
-                        className="btn__small-right-img"
-                        src={rightBtn}
-                        alt="rightBtn"
-                      />
-                    </button>
-                  </div>
                   <div className="cart__img-small-flex">
-                    <img
-                      className="cart__img-small"
-                      src={require("../../img/cart/small-1.jpg")}
-                      alt="small-1"
-                    />
-                    <img
-                      className="cart__img-small"
-                      src={require("../../img/cart/small-2.jpg")}
-                      alt="small-2"
-                    />
-                    <img
-                      className="cart__img-small"
-                      src={require("../../img/cart/small-3.jpg")}
-                      alt="small-3"
-                    />
-                    <img
-                      className="cart__img-small"
-                      src={require("../../img/cart/small-4.jpg")}
-                      alt="small-4"
-                    />
+                    <Swiper
+                      data-test-id="product-slider"
+                      modules={[FreeMode, Navigation, Thumbs, Controller]}
+                      className="mySwiperSmall"
+                      navigation={true}
+                      slidesPerView={4}
+                      onSwiper={setThumbsSwiper}
+                    >
+                      <SwiperSlide>
+                        <img
+                          className="cart__img-small"
+                          src={`https://training.cleverland.by/shop/${
+                            PRODUCTS.women[id - 1].images[0].url
+                          }`}
+                          // src={require("../../img/cart/small-1.jpg")}
+                          alt="img"
+                        />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <img
+                          className="cart__img-small"
+                          src={`https://training.cleverland.by/shop/${
+                            PRODUCTS.women[id - 1].images[0].url
+                          }`}
+                          // src={require("../../img/cart/small-1.jpg")}
+                          alt="img"
+                        />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <img
+                          className="cart__img-small"
+                          src={`https://training.cleverland.by/shop/${
+                            PRODUCTS.women[id - 1].images[0].url
+                          }`}
+                          // src={require("../../img/cart/small-1.jpg")}
+                          alt="img"
+                        />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <img
+                          className="cart__img-small"
+                          src={`https://training.cleverland.by/shop/${
+                            PRODUCTS.women[id - 1].images[0].url
+                          }`}
+                          // src={require("../../img/cart/small-1.jpg")}
+                          alt="img"
+                        />
+                      </SwiperSlide>
+                    </Swiper>
                   </div>
                 </div>
 
                 <div className="cart-page__picture-img-big">
-                  <img
-                    className="cart__img-big"
-                    src={require(`../../img/womens/womens-${id}.jpg`)}
-                    alt="big"
-                  />
+                  <div className="cart-page__picture-img-buttons">
+                    <Swiper
+                      modules={[FreeMode, Navigation, Thumbs, Controller]}
+                      className="mySwiperBigTwo"
+                      thumbs={{ swiper: thumbsSwiper }}
+                      slidesPerView={1}
+                      navigation={true}
+                      onSwiper={setFirstSwiper}
+                      controller={{ control: secondSwiper }}
+                    >
+                      <SwiperSlide>
+                        <div className="cart__img-big-two"></div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="cart__img-big-two"></div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="cart__img-big-two"></div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div className="cart__img-big-two"></div>
+                      </SwiperSlide>
+                    </Swiper>
+                  </div>
 
-                  <button className="btn__big-left">
-                    <img
-                      className="btn__small-big-img"
-                      src={leftBtn}
-                      alt="leftBtn"
-                    />
-                  </button>
-                  <button className="btn__big-right">
-                    <img
-                      className="btn__big-right-img"
-                      src={rightBtn}
-                      alt="rightBtn"
-                    />
-                  </button>
+                  <Swiper
+                    navigation={true}
+                    modules={[FreeMode, Navigation, Thumbs, Controller]}
+                    className="mySwiperBig"
+                    // thumbs={{ swiper: thumbsSwiper }}
+                    slidesPerView={1}
+                    onSwiper={setSecondSwiper}
+                    controller={{ control: firstSwiper }}
+                  >
+                    <SwiperSlide>
+                      <img
+                        className="cart__img-big"
+                        src={`https://training.cleverland.by/shop/${
+                          PRODUCTS.women[id - 1].images[0].url
+                        }`}
+                        // src={require(`../../img/womens/womens-${id}.jpg`)}
+                        alt="img-big"
+                      />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <img
+                        className="cart__img-big"
+                        src={`https://training.cleverland.by/shop/${
+                          PRODUCTS.women[id - 1].images[0].url
+                        }`}
+                        // src={require(`../../img/womens/womens-${id}.jpg`)}
+                        alt="img-big"
+                      />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <img
+                        className="cart__img-big"
+                        src={`https://training.cleverland.by/shop/${
+                          PRODUCTS.women[id - 1].images[0].url
+                        }`}
+                        // src={require(`../../img/womens/womens-${id}.jpg`)}
+                        alt="img-big"
+                      />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <img
+                        className="cart__img-big"
+                        src={`https://training.cleverland.by/shop/${
+                          PRODUCTS.women[id - 1].images[0].url
+                        }`}
+                        // src={require(`../../img/womens/womens-${id}.jpg`)}
+                        alt="img-big"
+                      />
+                    </SwiperSlide>
+                  </Swiper>
                 </div>
               </div>
             </div>
@@ -401,94 +480,256 @@ function CartPageComponentWomen({ id }) {
 
       <div className="cart-page__product">
         <div className="container">
-          <div className="cart-page__product-block">
-            <h3 className="cart-page__product-title">related products</h3>
-            <div className="cart-page__product-img-btns">
-              <button className="btn-product__small-left">
-                <img
-                  className="btn-product__small-left-img"
-                  src={leftBtn}
-                  alt="leftBtn"
-                />
-              </button>
-              <button className="btn-product__small-right">
-                <img
-                  className="btn-product__small-right-img"
-                  src={rightBtn}
-                  alt="rightBtn"
-                />
-              </button>
-            </div>
-          </div>
-
           <div className="womens-cart-block">
-            <div className="womens-cart">
-              <a href="#womens" className="men-cart__link">
-                <img
-                  className="womens-cart__img"
-                  src={require(`../../img/photo-womens/cart-img-womens-1.jpg`)}
-                  alt="womens-img"
-                />
-                <p className="womens-cart__text">Women's tracksuit Q109</p>
-                <div className="womens-cart__stars">
-                  <div className="womens-cart__price-sale">
-                    <span className="womens-cart__stars-text">$ 30.00</span>
-                  </div>
-                  <Stars />
-                </div>
-              </a>
+            <div className="cart-page__product-block">
+              <h3 className="cart-page__product-title">related products</h3>
+              <div className="cart-page__product-img-btns"></div>
             </div>
-            <div className="womens-cart">
-              <a href="#womens" className="men-cart__link">
-                <img
-                  className="womens-cart__img"
-                  src={require(`../../img/photo-womens/cart-img-womens-2.jpg`)}
-                  alt="womens-img"
-                />
-                <p className="womens-cart__text">Women's tracksuit Q109</p>
-                <div className="womens-cart__stars">
-                  <div className="womens-cart__price-sale">
-                    <span className="womens-cart__stars-text">$ 30.00</span>
-                    <span className="womens-cart__stars-text_sale">
-                      $ 60.00
-                    </span>
-                  </div>
-                  <Stars />
+            <Swiper
+              data-test-id="related-slider"
+              className="mySwiper-two"
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                },
+                560: {
+                  slidesPerView: 2,
+                },
+                858: {
+                  slidesPerView: 3,
+                },
+                1280: {
+                  slidesPerView: 4,
+                },
+              }}
+              navigation={true}
+              modules={[Navigation]}
+            >
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-1.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-            <div className="womens-cart">
-              <a href="#womens" className="men-cart__link">
-                <img
-                  className="womens-cart__img"
-                  src={require(`../../img/photo-womens/cart-img-womens-3.jpg`)}
-                  alt="womens-img"
-                />
-                <p className="womens-cart__text">Women's tracksuit Q109</p>
-                <div className="womens-cart__stars">
-                  <div className="womens-cart__price-sale">
-                    <span className="womens-cart__stars-text">$ 30.00</span>
-                  </div>
-                  <Stars />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-1.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-            <div className="womens-cart">
-              <a href="#womens" className="men-cart__link">
-                <img
-                  className="womens-cart__img"
-                  src={require(`../../img/photo-womens/cart-img-womens-4.jpg`)}
-                  alt="womens-img"
-                />
-                <p className="womens-cart__text">Women's tracksuit Q109</p>
-                <div className="womens-cart__stars">
-                  <div className="womens-cart__price-sale">
-                    <span className="womens-cart__stars-text">$ 30.00</span>
-                  </div>
-                  <Stars />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-2.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  className="womens-cart womens-cart-slider"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <a href="#womens" className="men-cart__link">
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-3.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-4.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-1.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-2.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-3.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="womens-cart womens-cart-slider">
+                  <a
+                    href="#womens"
+                    className="men-cart__link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <img
+                      className="womens-cart__img"
+                      src={`https://training.cleverland.by/shop/${
+                        PRODUCTS.women[id - 1].images[0].url
+                      }`}
+                      // src={require(`../../img/photo-womens/cart-img-womens-4.jpg`)}
+                      alt="womens-img"
+                    />
+                    <p className="womens-cart__text">Women's tracksuit Q109</p>
+                    <div className="womens-cart__stars">
+                      <div className="womens-cart__price-sale">
+                        <span className="womens-cart__stars-text">$ 30.00</span>
+                      </div>
+                      <Stars />
+                    </div>
+                  </a>
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </div>

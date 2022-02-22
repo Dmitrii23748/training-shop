@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import "./CartMens.css";
 import Stars from "../Stars/Stars";
 
-function CartMens({ id, title, price }) {
+function CartMens({ id, name, price, img }) {
   return (
       <div className="men-cart" data-test-id={`clothes-card-/training-shop/mens`}>
         <Link to={`/mens/${id}`} className="men-cart__link" >
           <img
             className="mens-cart__img"
-            src={require(`../../img/mens/mens-${id}.jpg`)}
+            src={`https://training.cleverland.by/shop/${img}`}
+            // src={require(`../../img/mens/mens-${id}.jpg`)}
             alt="men-img"
           />
-          <p className="mens-cart__text">{title}</p>
+          <p className="mens-cart__text">{name}</p>
           <div className="mens-cart__stars">
             <div className="mens-cart__price-sale">
               <span className="mens-cart__stars-text">$ {price}</span>
@@ -31,6 +32,6 @@ export default CartMens;
 
 CartMens.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired
 }

@@ -6,6 +6,10 @@
 
 .mens-cart__img {
   margin-bottom: 16px;
+  width: 255px;
+  height: 318px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .mens-cart__text {
