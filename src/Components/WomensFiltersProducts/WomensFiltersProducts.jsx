@@ -1,20 +1,18 @@
 import React from "react";
-import "./Womens.css";
+import "./WomensFiltersProducts.css";
 import CartWomens from "../Cartwomens/CartWomens";
-import { PRODUCTS } from "../../data/products";
 
-function Womens() {
 
-  const womensMainPageProducts = PRODUCTS.women.slice(0, 8);
-  
+function WomensFiltersProducts({productsWomens}) {
+
   return (
     <section
-      className="womens"
+      className="womens-filter__prod"
       data-test-id={`products-page-/training-shop/womens`}
     >
       <div className="container">
-        <div className="womens-img__block">
-          {womensMainPageProducts.map((cart, index) => {
+        <div className="womens-img__block-prod">
+          {productsWomens.map((cart, index) => {
             return (
               <CartWomens
                 key={cart.id}
@@ -33,4 +31,4 @@ function Womens() {
   );
 }
 
-export default Womens;
+export default WomensFiltersProducts;

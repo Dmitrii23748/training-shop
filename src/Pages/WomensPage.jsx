@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
 import Filter from "../Components/Filter/Filter";
-import Womens from "../Components/Womens/Womens";
+import WomensFiltersProducts from "../Components/WomensFiltersProducts/WomensFiltersProducts";
 import WomensFilter from "../Components/WomensFilter/WomensFilter";
-import { PRODUCTS } from "../data/products";
+import { womensMainPageProducts } from "../data/root";
 
 
 
-
-const womensArrayProducts = PRODUCTS.women.slice(0, 8);
 
 function WomensPage() {
 
@@ -16,7 +14,8 @@ function WomensPage() {
     color: [],
     size: [],
   };
-  const [productsWomens, setProductsWomens] = useState(womensArrayProducts);
+  const [productsWomens, setProductsWomens] = useState(womensMainPageProducts);
+
 
   const [filter, setFilter] = useState(initFilter);
 
@@ -49,7 +48,7 @@ function WomensPage() {
   };
 
   const updateProducts = useCallback(() => {
-    let temp = womensArrayProducts;
+    let temp = womensMainPageProducts;
     if (filter.color.length > 0) {
       temp = temp.filter((item) => {
         const colorsWomensProducts = item.images.map((item) => {
@@ -66,7 +65,7 @@ function WomensPage() {
       });
     }
     setProductsWomens(temp);
-  }, [filter, womensArrayProducts]);
+  }, [filter, womensMainPageProducts]);
 
   useEffect(() => {
     updateProducts();
@@ -76,7 +75,7 @@ function WomensPage() {
     <div data-test-id={`clothes-/training-shop/womens`}>
       <WomensFilter />
       <Filter filterSelect={filterSelect} />
-      <Womens productsWomens={productsWomens} />
+      <WomensFiltersProducts productsWomens={productsWomens} />
       <div className="square-block">
         <div className="container">
           <div className="square"></div>
