@@ -1,0 +1,12 @@
+.filters-block {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filter-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

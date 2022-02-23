@@ -848,8 +848,9 @@ export const PRODUCTS = {
       material: 'Полиэстер - 100%',
       rating: 4,
       price: 99.99,
-      sizes: ['L INT', 'XS INT', 'XXS INT', 'S INT', 'M INT'],
+      sizes: ['L', 'XS', 'XXS', 'S', 'M', 'XL'],
       discount: '-58%',
+      colors: ['grey', 'green', 'blue', 'pink'],
       reviews: [
         {
           name: 'Anna',
@@ -893,8 +894,10 @@ export const PRODUCTS = {
       material: 'Полиэстер - 92%, Эластан - 8%',
       rating: 4,
       price: 105.99,
-      sizes: ['36/32 GER', '38/32 GER', '40/32 GET'],
+      // sizes: ['36/32 GER', '38/32 GER', '40/32 GET'],
+      sizes: ['L', 'XS', 'XXS'],
       discount: '-15%',
+      colors: ['grey', 'green'],
       reviews: [
         {
           name: 'BettyTyan',
@@ -943,9 +946,11 @@ export const PRODUCTS = {
       material: 'Полиэстер - 100%',
       rating: 5,
       price: 289,
-      sizes: ['XS INT', 'S INT', 'M INT'],
+      // sizes: ['XS INT', 'S INT', 'M INT'],
+      sizes: ['L', 'M'],
       discount: null,
       reviews: [],
+      colors: ['grey', 'green', 'pink'],
       images: [
         {
           color: 'Multicolor',
@@ -969,8 +974,10 @@ export const PRODUCTS = {
       material: 'Полиамид - 82%, Эластан - 18%',
       rating: 5,
       price: 159,
-      sizes: ['40 RUS', '42 RUS', '48 RUS'],
+      // sizes: ['40 RUS', '42 RUS', '48 RUS'],
+      sizes: ['L', 'XS'],
       discount: '-15%',
+      colors: ['blue', 'pink'],
       reviews: [
         {
           name: 'omarovs Almira',
@@ -1013,8 +1020,10 @@ export const PRODUCTS = {
       material: 'Полиэстер - 100%',
       rating: 4,
       price: 80.3,
-      sizes: ['L INT', 'XS INT', 'S INT'],
+      // sizes: ['L INT', 'XS INT', 'S INT'],
+      sizes: ['M'],
       discount: '-60%',
+      colors: ['cyan'],
       reviews: [
         {
           name: 'Gaukhar',
@@ -1105,8 +1114,10 @@ export const PRODUCTS = {
       material: 'Полиэстер - 100%',
       rating: 3,
       price: 143.3,
-      sizes: ['L INT', 'XS INT', 'S INT', 'M INT'],
+      // sizes: ['L INT', 'XS INT', 'S INT', 'M INT'],
+      sizes: ['XXS','M'],
       discount: '-40%',
+      colors: ['green'],
       reviews: [
         {
           name: 'Galina',
@@ -1163,8 +1174,10 @@ export const PRODUCTS = {
       material: 'Полиэстер - 100%',
       rating: 4,
       price: 214,
-      sizes: ['XS INT', 'S INT', 'M INT'],
+      // sizes: ['XS INT', 'S INT', 'M INT'],
+      sizes: ['XS', 'XXS', 'S', 'M'],
       discount: null,
+      colors: ['pink'],
       reviews: [
         {
           name: 'Alexandra',
@@ -1218,8 +1231,10 @@ export const PRODUCTS = {
       material: 'Хлопок - 90%, Переработанный полиэстер - 10%',
       rating: 5,
       price: 139.99,
-      sizes: ['32 EUR', '34 EUR', '36 EUR'],
+      // sizes: ['32 EUR', '34 EUR', '36 EUR'],
+      sizes: ['L', 'XS'],
       discount: null,
+      colors: ['pink'],
       reviews: [
         {
           name: 'Ekaterina',

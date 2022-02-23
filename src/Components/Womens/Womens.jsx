@@ -1,19 +1,16 @@
 import React from "react";
 import "./Womens.css";
 import CartWomens from "../Cartwomens/CartWomens";
-// import {cartWomens} from "../../data/data";
-import { PRODUCTS } from "../../data/products";
 
 
 
-function Womens() {
-  const firstEightWomensProducts = PRODUCTS.women.slice(0, 8);
+function Womens({productsWomens}) {
   return (
       <section className="womens" data-test-id={`products-page-/training-shop/womens`}>
         <div className="container">
           <div className="womens-img__block">
             {
-                firstEightWomensProducts.map((cart, index) => {
+                productsWomens.map((cart, index) => {
                    return (
                     <CartWomens
                         key={cart.id}

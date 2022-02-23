@@ -35,8 +35,9 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
+        <Footer />
       </div>
-      <Footer />
+      
     </>
   );
 }

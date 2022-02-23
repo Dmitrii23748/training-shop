@@ -28,6 +28,8 @@ function CartMens({ id, name, price, img }) {
 
 
 
+
+
 export default CartMens;
 
 CartMens.propTypes = {

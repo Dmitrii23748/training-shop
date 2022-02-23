@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navigation.css";
+import PropTypes from "prop-types";
 import phone from "../../img/icon-nav/phone.svg";
 import local from "../../img/icon-nav/local.svg";
 import clock from "../../img/icon-nav/clock.svg";
@@ -184,3 +185,9 @@ function Navigation({ showLink, handleShowLink }) {
 }
 
 export default Navigation;
+
+
+Navigation.propTypes = {
+  showLink: PropTypes.bool.isRequired,
+  handleShowLink: PropTypes.func.isRequired
+};
