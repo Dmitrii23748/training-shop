@@ -9,6 +9,7 @@
 .filters-block-mens {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   background-color: #f8f8f8;
   padding: 24px 0;
   margin-bottom: 32px;
