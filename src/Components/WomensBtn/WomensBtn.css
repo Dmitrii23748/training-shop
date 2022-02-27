@@ -31,9 +31,15 @@
     opacity: 0.6;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
   }
   .womens-category__link:hover {
     font-weight: 500;
     opacity: 1;
     cursor: pointer;
+  }
+
+  .womens-category__link.active {
+    font-weight: 500;
+    opacity: 1;
   }

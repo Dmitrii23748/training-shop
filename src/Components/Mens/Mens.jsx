@@ -1,13 +1,10 @@
 import React from "react";
 import "./Mens.css";
 import CartMens from "../Cartmens/CartMens";
-// import {cartMens} from "../../data/data";
-import { PRODUCTS } from "../../data/products";
 
 
 
-function Mens() {
-  const firstEightMensProducts = PRODUCTS.men.slice(0, 8);
+function Mens({categoryMensMain}) {
   
   return (
     <>
@@ -15,7 +12,7 @@ function Mens() {
         <div className="container">
           <div className="mens-img__block">
             {
-               firstEightMensProducts.map((cart, index) => {
+               categoryMensMain.map((cart, index) => {
                    return (
                     <CartMens
                     key={cart.id}

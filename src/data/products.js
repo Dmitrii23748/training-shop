@@ -999,7 +999,7 @@ export const PRODUCTS = {
           id: '6205155b77fffe0cd128c9b6',
         },
         {
-          color: 'Black',
+          color: 'Cyan',
           url: '/media/620126dda5293589353a9c77/RTLAAO630501_14895083_1_v1_2x.webp',
           id: '6205157277fffe0cd128c9b9',
         },

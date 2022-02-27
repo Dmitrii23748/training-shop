@@ -1,21 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import "./Womens.css";
-import CartWomens from "../Cartwomens/CartWomens";
+import "./MensFiltersProducts.css";
+import CartMens from '../Cartmens/CartMens'
 
 
-function Womens({categoryWomensMain}) {
+function MensFiltersProducts({productsMens}) {
 
   return (
     <section
-      className="womens"
+      className="mens-filter__prod"
       data-test-id={`products-page-/training-shop/womens`}
     >
       <div className="container">
-        <div className="womens-img__block">
-          {categoryWomensMain.map((cart, index) => {
+        <div className="mens-img__block-prod">
+          {productsMens.map((cart, index) => {
             return (
-              <CartWomens
+              <CartMens
                 key={cart.id}
                 id={index + 1}
                 name={cart.name}
@@ -32,4 +31,4 @@ function Womens({categoryWomensMain}) {
   );
 }
 
-export default Womens;
+export default MensFiltersProducts;

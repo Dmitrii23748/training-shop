@@ -10,14 +10,16 @@ function CheckBox(props) {
       }
   } 
   return (
-    <label className="custom-checkbox">
+    <label className="custom-checkbox-label real-label" htmlFor={props.label}>
       <input
+        className="real-checkbox"
         type="checkbox"
         ref={inputRef}
         onChange={handleChange}
         checked={props.checked}
+        id={props.label}
       />
-      <span className="custom-checkbox__checkmark"></span>
+      <span className="custom-checkbox__checkmark custom-checkbox"></span>
       {props.label}
     </label>
   );

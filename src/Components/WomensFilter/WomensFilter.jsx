@@ -3,10 +3,12 @@ import "./WomensFilter.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import filter from "../../img/filter-icons/filter.svg";
+import closeFilter from "../../img/filter-icons/close-filter.svg";
 import burgerFilter from "../../img/filter-icons/burger-filter.svg";
 import squaresFilter from "../../img/filter-icons/squares-filter.svg";
 
-function WomensFilter() {
+
+function WomensFilter({closeOpenFilterWomens, handleCloseOpenFilterWomens}) {
   return (
     <section className="womens-header">
       <div className="womens-header__title-div">
@@ -45,8 +47,11 @@ function WomensFilter() {
         <div className="container">
           <div className="womens-header__filters">
             <div className="womens-header__filters-item">
-              <img className="womens-header__filters-filter"  src={filter} alt="filter" />
-              <p className="womens-header__filters-text">Filter</p>
+              <img className="womens-header__filters-filter"
+                src={closeOpenFilterWomens ? closeFilter : filter } alt="filter"
+                onClick={handleCloseOpenFilterWomens}
+                />
+              <p className="womens-header__filters-text" onClick={handleCloseOpenFilterWomens}>Filter</p>
             </div>
             <div className="womens-header__filters-item">
               <img className="womens-header__filters-burgerFilter" src={burgerFilter} alt="burgerFilter" />

@@ -3,10 +3,11 @@ import "./MensFilter.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import filter from "../../img/filter-icons/filter.svg";
+import closeFilter from '../../img/filter-icons/close-filter.svg';
 import burgerFilter from "../../img/filter-icons/burger-filter.svg";
 import squaresFilter from "../../img/filter-icons/squares-filter.svg";
 
-function MensFilter() {
+function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
   return (
     <section className="mens-header">
       <div className="mens-header__title-div">
@@ -45,8 +46,11 @@ function MensFilter() {
         <div className="container">
           <div className="mens-header__filters">
             <div className="mens-header__filters-item">
-              <img className="mens-header__filters-filter"  src={filter} alt="filter" />
-              <p className="mens-header__filters-text">Filter</p>
+              <img className="mens-header__filters-filter"
+                src={closeOpenFilterMen ? closeFilter : filter} alt="filter"
+                onClick={handleCloseOpenFilterMen}
+                />
+              <p className="mens-header__filters-text" onClick={handleCloseOpenFilterMen}>Filter</p>
             </div>
             <div className="mens-header__filters-item">
               <img className="mens-header__filters-burgerFilter" src={burgerFilter} alt="burgerFilter" />
