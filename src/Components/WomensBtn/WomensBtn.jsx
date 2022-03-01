@@ -7,16 +7,21 @@ function WomensBtn({filtersWomensMainPage}) {
 
   const [activeBtn, setActiveBtn ] = useState(0)
 
+  const clickButtonCategoryWomens = (statusBtn, indexBtn) => {
+    filtersWomensMainPage(statusBtn);
+    setActiveBtn(indexBtn)
+  }
+
   useEffect(() => {
     filtersWomensMainPage('isNewArrivals')
   }, [])
 
   const buttons = [
-    { name:'isNewArrivals', label: 'NEW ARRIVALS', func: 'isNewArrivals', id: 1},
-    { name:'isSpecial', label: 'SPECIALS', func: 'isSpecial', id: 2},
-    { name:'isBestseller', label: 'BESTSELLERS', func: 'isBestseller', id: 3},
-    { name:'isMostViewed', label: 'MOST VIEWED', func: 'isMostViewed', id: 4},
-    { name:'isFeatured', label: 'FEATURED PRODUCTS', func: 'isFeatured', id: 5}
+    { name:'isNewArrivals', label: 'NEW ARRIVALS', func: 'isNewArrivals'},
+    { name:'isSpecial', label: 'SPECIALS', func: 'isSpecial'},
+    { name:'isBestseller', label: 'BESTSELLERS', func: 'isBestseller'},
+    { name:'isMostViewed', label: 'MOST VIEWED', func: 'isMostViewed'},
+    { name:'isFeatured', label: 'FEATURED PRODUCTS', func: 'isFeatured'}
   ]
 
   return (
@@ -28,11 +33,11 @@ function WomensBtn({filtersWomensMainPage}) {
             {
               buttons.map((item, index) => {
                 return (
-                  <li className="womens-category__item" key={item.name} onClick={() => setActiveBtn(index) }>
+                  <li className="womens-category__item" key={item.name} >
                     <button                 
                       className={ activeBtn === index ? 'womens-category__link active' : 'womens-category__link'}
                       type="button"
-                      onClick={() => filtersWomensMainPage(`${item.func}`)}>
+                      onClick={() => clickButtonCategoryWomens(`${item.func}`, index)}>
                       {item.label}
                     </button>
                 </li>

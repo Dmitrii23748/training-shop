@@ -21,6 +21,7 @@ function Mens({categoryMensMain}) {
                     price={cart.price}
                     sale={cart.sale}
                     discount={cart.discount}
+                    rating={cart.rating}
                     img={cart.images[0].url}
                     />
                    )

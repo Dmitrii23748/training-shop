@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./CartWomens.css";
 import Stars from "../Stars/Stars";
 
-function CartWomens({ id, name, price, sale, discount, img }) {
+function CartWomens({ id, name, price, sale, discount, img, rating }) {
   return (
     <>
       <div className="women-cart" data-test-id={`clothes-card-/training-shop/womens`}>
@@ -25,7 +25,7 @@ function CartWomens({ id, name, price, sale, discount, img }) {
                 null
               )}
             </div>
-            <Stars />
+            <Stars rating={rating} />
           </div>
           {discount ? (
             <div className="womens-percent">

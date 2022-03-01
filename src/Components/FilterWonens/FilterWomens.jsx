@@ -1,21 +1,28 @@
 import React from "react";
 import "./FilterWomens.css";
+import PropTypes from "prop-types";
 import { NEWPRODUCTS } from "../../data/newProducts";
 import CheckBox from "../CheckBox/CheckBox";
 import {
   createUniqueSizesArray,
   createUniqueColorsArray,
   createUniqueBrandsArray,
-  priceCheckBoxWomens
+  priceCheckBoxWomens,
 } from "../../data/root";
 
 function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
+
+
   const sizeCategory = createUniqueSizesArray(NEWPRODUCTS.women);
   const colorCategory = createUniqueColorsArray(NEWPRODUCTS.women);
   const brandCategory = createUniqueBrandsArray(NEWPRODUCTS.women);
 
   return (
-    <section className={closeOpenFilterWomens ? "filters-category" : "filters-category hide"}>
+    <section
+      className={
+        closeOpenFilterWomens ? "filters-category" : "filters-category hide"
+      }
+    >
       <div className="container">
         <div className="filters-block-womens">
           <div className="filters-womens">
@@ -87,9 +94,16 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
             </ul>
           </div>
         </div>
+
       </div>
     </section>
   );
 }
 
 export default FilterWomens;
+
+
+FilterWomens.propTypes = {
+  filterSelect: PropTypes.func.isRequired,
+  closeOpenFilterWomens: PropTypes.bool.isRequired,
+}

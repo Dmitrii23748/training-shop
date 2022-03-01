@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./CartMens.css";
 import Stars from "../Stars/Stars";
 
-function CartMens({ id, name, price, img }) {
+function CartMens({ id, name, price, img, rating, discount }) {
   return (
       <div className="men-cart" data-test-id={`clothes-card-/training-shop/mens`}>
         <Link to={`/mens/${id}`} className="men-cart__link" >
@@ -19,8 +19,15 @@ function CartMens({ id, name, price, img }) {
             <div className="mens-cart__price-sale">
               <span className="mens-cart__stars-text">$ {price}</span>
             </div>
-            <Stars />
+            <Stars rating={rating} />
           </div>
+          {discount ? (
+            <div className="mens-percent">
+              <p className="mens-percent__text">{discount}</p>
+            </div>
+          ) : (
+            null
+          )}
         </Link>
       </div>
   );

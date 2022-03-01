@@ -4,7 +4,12 @@ import "./MensBtn.css";
 
 function MensBtn({filtersMensMainPage}) {
 
-  const [activeBtn, setActiveBtn ] = useState(0)
+  const [activeBtn, setActiveBtn ] = useState(0);
+
+  const clickButtonCategoryMens = (statusBtn, indexBtn) => {
+    filtersMensMainPage(statusBtn);
+    setActiveBtn(indexBtn)
+  }
 
   useEffect(() => {
     filtersMensMainPage('isNewArrivals')
@@ -26,11 +31,11 @@ function MensBtn({filtersMensMainPage}) {
           {
               buttons.map((item, index) => {
                 return (
-                  <li className="womens-category__item" key={item.name} onClick={() => setActiveBtn(index) }>
+                  <li className="womens-category__item" key={item.name}>
                     <button
                       className={ activeBtn === index ? 'womens-category__link active' : 'womens-category__link'}
                       type="button"
-                      onClick={() => filtersMensMainPage(`${item.func}`)}>
+                      onClick={() => clickButtonCategoryMens(`${item.func}`, index)}>
                       {item.label}
                     </button>
                 </li>

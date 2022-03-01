@@ -4,6 +4,7 @@ import FilterWomens from "../Components/FilterWonens/FilterWomens";
 import WomensFiltersProducts from "../Components/WomensFiltersProducts/WomensFiltersProducts";
 import WomensFilter from "../Components/WomensFilter/WomensFilter";
 import { womensMainPageProducts} from "../data/root";
+import WomensCountFilters from "../Components/WomensCountFilters/WomensCountFilters";
 // import { NEWPRODUCTS } from "../data/newProducts";
 
 function WomensPage() {
@@ -70,7 +71,6 @@ function WomensPage() {
           const newPrice = filter.price.filter((priceItem) => {
               return priceItem !== itemZero && priceItem !== itemOne && priceItem !== itemTwo;
           })
-          console.log(newPrice);
           setFilter({...filter, price: newPrice})
           break;
         default:
@@ -138,7 +138,17 @@ function WomensPage() {
         closeOpenFilterWomens={closeOpenFilterWomens}
         handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
         />
-      <FilterWomens filterSelect={filterSelect} closeOpenFilterWomens={closeOpenFilterWomens}/>
+      <FilterWomens
+        filterSelect={filterSelect} 
+        closeOpenFilterWomens={closeOpenFilterWomens}
+        />
+        <WomensCountFilters
+          productsWomens={productsWomens}
+          filterColor={filter.color}
+          filterSize={filter.size}
+          filterBrand={filter.brand}
+          filterPrice={filter.price}
+        />
       <WomensFiltersProducts productsWomens={productsWomens} />
       <div className="square-block">
         <div className="container">

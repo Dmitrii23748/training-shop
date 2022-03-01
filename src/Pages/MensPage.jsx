@@ -4,6 +4,7 @@ import MensFilter from "../Components/MensFilter/MensFilter";
 import FilterMens from "../Components/FilterMen/FilterMen";
 import MensFiltersProducts from "../Components/MensFiltersProducts/MensFiltersProducts";
 import { mensMainPageProducts } from "../data/root";
+import MensCountFilters from "../Components/MensCountFilters/MensCountFilters";
 
 function MensPage() {
   const initFilter = {
@@ -70,7 +71,6 @@ function MensPage() {
           const newPrice = filter.price.filter((priceItem) => {
               return priceItem !== itemZero && priceItem !== itemOne && priceItem !== itemTwo && priceItem !== itemThree && priceItem !== itemFour
           })
-          console.log(newPrice);
           setFilter({...filter, price: newPrice})
           break;
         default:
@@ -133,7 +133,14 @@ function MensPage() {
   return (
     <div data-test-id={`clothes-/training-shop/mens`}>
       <MensFilter closeOpenFilterMen={closeOpenFilterMen} handleCloseOpenFilterMen={handleCloseOpenFilterMen} />
-      <FilterMens filterSelect={filterSelect} closeOpenFilterMen={closeOpenFilterMen} /> 
+      <FilterMens filterSelect={filterSelect} closeOpenFilterMen={closeOpenFilterMen} />
+      <MensCountFilters
+        productsMens={productsMens}
+        filterColor={filter.color}
+        filterSize={filter.size}
+        filterBrand={filter.brand}
+        filterPrice={filter.price}
+      />
       <MensFiltersProducts productsMens={productsMens}/>
       <div className="square-block">
         <div className="container">

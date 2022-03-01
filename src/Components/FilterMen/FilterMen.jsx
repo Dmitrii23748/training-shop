@@ -1,5 +1,6 @@
 import React from "react";
 import "./FilterMen.css";
+import PropTypes from "prop-types";
 import { NEWPRODUCTS } from "../../data/newProducts";
 import CheckBox from "../CheckBox/CheckBox";
 import {
@@ -93,3 +94,8 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
 }
 
 export default FilterMens;
+
+FilterMens.propTypes = {
+  filterSelect: PropTypes.func.isRequired,
+  closeOpenFilterMen: PropTypes.bool.isRequired,
+}
