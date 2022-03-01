@@ -46,11 +46,10 @@ export const priceCheckBoxWomens = [
     { title: "49 - 60", priceCheck: [49.4, 54.8, 59.4] },
     { title: "64 - 79.7", priceCheck: [64.5, 74.8, 79.7] },
     { title: "80 - 94", priceCheck: [80.4, 84.8, 93.8] },
-    { title: "108 - 150", priceCheck: [108, 108, 134, 134, 148.8,] },
+    { title: "108 - 150", priceCheck: [108, 134, 148.8, ] },
     { title: "179 - 192", priceCheck: [179.99, 184.8, 191.2] },
     { title: "200 - 262", priceCheck: [200.8, 203.4, 261.2] },
   ];
-
 
 
 
