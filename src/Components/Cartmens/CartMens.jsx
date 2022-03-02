@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import "./CartMens.css";
 import Stars from "../Stars/Stars";
 
-function CartMens({ id, name, price, img, rating, discount }) {
+function CartMens({routeId, id, name, price, img, rating, discount }) {
   return (
       <div className="men-cart" data-test-id={`clothes-card-/training-shop/mens`}>
-        <Link to={`/mens/${id}`} className="men-cart__link" >
+        <Link to={`/mens/${routeId}`} className="men-cart__link" >
           <img
             className="mens-cart__img"
             src={`https://training.cleverland.by/shop/${img}`}
-            // src={require(`../../img/mens/mens-${id}.jpg`)}
             alt="men-img"
           />
           <p className="mens-cart__text">{name}</p>

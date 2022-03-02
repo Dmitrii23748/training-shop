@@ -17,6 +17,7 @@ function MensFiltersProducts({productsMens}) {
               <CartMens
                 key={cart.id}
                 id={index + 1}
+                routeId={cart.id}
                 name={cart.name}
                 price={cart.price}
                 sale={cart.sale}

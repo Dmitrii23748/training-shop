@@ -3,8 +3,8 @@ import CartPageComponentWomen from "../Components/CartPageComponentWomen/CartPag
 import { useParams } from "react-router-dom";
 
 function CartPageWomen() {
-  const { id } = useParams();
-  return <CartPageComponentWomen id={id} />;
+  const { routeId } = useParams();
+  return <CartPageComponentWomen routeId={routeId} />;
 }
 
 export default CartPageWomen;

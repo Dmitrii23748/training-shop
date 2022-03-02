@@ -26,9 +26,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/womens" element={<WomensPage />} />
-          <Route path="/womens/:id" element={<CartPageWomen />} />
+          <Route path="/womens/:routeId" element={<CartPageWomen />} />
           <Route path="/mens" element={<MensPage />} />
-          <Route path="/mens/:id" element={<CartPageMen />} />
+          <Route path="/mens/:routeId" element={<CartPageMen />} />
           <Route path="/aboutUs" element={<AboutUsPage />} />
           <Route path="/beauty" element={<BeautyPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
