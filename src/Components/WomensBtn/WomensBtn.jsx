@@ -33,11 +33,12 @@ function WomensBtn({filtersWomensMainPage}) {
             {
               buttons.map((item, index) => {
                 return (
-                  <li className="womens-category__item" key={item.name} data-test-id={`clothes-women-${item.name}`}>
+                  <li className="womens-category__item" key={item.name}>
                     <button                 
                       className={ activeBtn === index ? 'womens-category__link active' : 'womens-category__link'}
                       type="button"
                       onClick={() => clickButtonCategoryWomens(`${item.func}`, index)}
+                      data-test-id={`clothes-women-${item.name}`}
                       >
                       {item.label}
                     </button>
