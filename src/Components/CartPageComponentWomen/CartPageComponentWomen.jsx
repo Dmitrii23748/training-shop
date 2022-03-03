@@ -63,7 +63,7 @@ function CartPageComponentWomen({ routeId }) {
   return (
     <section
       className="cart-page"
-      // data-test-id={`product-page-/training-shop/womens/${id}`}
+      data-test-id={`product-page-women`}
     >
       <div className="cart-page__navigation">
         <div className="container">

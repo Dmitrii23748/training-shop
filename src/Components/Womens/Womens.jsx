@@ -9,10 +9,10 @@ function Womens({categoryWomensMain}) {
   return (
     <section
       className="womens"
-      data-test-id={`clothes-women`}
+     
     >
       <div className="container">
-        <div className="womens-img__block">
+        <div className="womens-img__block" data-test-id={`clothes-women`}>
           {categoryWomensMain.map((cart, index) => {
             return (
               <CartWomens

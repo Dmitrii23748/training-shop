@@ -7,10 +7,10 @@ function Mens({ categoryMensMain }) {
     <>
       <section
         className="mens"
-        data-test-id={`clothes-men`}
+        
       >
         <div className="container">
-          <div className="mens-img__block">
+          <div className="mens-img__block" data-test-id={`clothes-men`}>
             {categoryMensMain.map((cart, index) => {
               return (
                 <CartMens

@@ -11,7 +11,7 @@ function WomensFiltersProducts({productsWomens}) {
       
     >
       <div className="container">
-        <div className="womens-img__block-prod" data-test-id={`product-page-women`}>
+        <div className="womens-img__block-prod" data-test-id={`products-page-women`}>
           {productsWomens.map((cart, index) => {
             return (
               <CartWomens
