@@ -30,9 +30,8 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
             <ul className="filters__list" data-test-id='filters-color'>
               {colorCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} >
+                  <li className="filters__list-item" key={index} data-test-id={`filter-color-${item}`}>
                     <CheckBox
-                      data-test-id={`filter-color-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("COLOR", input.checked, item.toLowerCase())
@@ -48,9 +47,8 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
             <ul className="filters__list" data-test-id='filters-size'>
               {sizeCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} >
+                  <li className="filters__list-item" key={index} data-test-id={`filter-size-${item}`}>
                     <CheckBox
-                      data-test-id={`filter-size-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("SIZE", input.checked, item.toLowerCase())
@@ -66,9 +64,8 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
             <ul className="filters__list" data-test-id='filters-brand'>
               {brandCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} >
+                  <li className="filters__list-item" key={index} data-test-id={`filter-brand-${item}`}>
                     <CheckBox
-                      data-test-id={`filter-brand-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("BRAND", input.checked, item.toLowerCase())

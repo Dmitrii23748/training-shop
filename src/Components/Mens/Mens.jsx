@@ -7,7 +7,7 @@ function Mens({ categoryMensMain }) {
     <>
       <section
         className="mens"
-        data-test-id={`products-page-/training-shop/mens`}
+        data-test-id={`clothes-men`}
       >
         <div className="container">
           <div className="mens-img__block">

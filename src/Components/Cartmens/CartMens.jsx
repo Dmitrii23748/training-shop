@@ -6,8 +6,8 @@ import Stars from "../Stars/Stars";
 
 function CartMens({routeId, id, name, price, img, rating, discount }) {
   return (
-      <div className="men-cart" data-test-id={`clothes-card-/training-shop/mens`}>
-        <Link to={`/men/${routeId}`} className="men-cart__link" >
+      <div className="men-cart">
+        <Link to={`/men/${routeId}`} className="men-cart__link" data-test-id={`clothes-card-men`}>
           <img
             className="mens-cart__img"
             src={`https://training.cleverland.by/shop/${img}`}
