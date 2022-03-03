@@ -78,7 +78,7 @@ function CartPageComponentMen({ routeId }) {
                   src={headerArrow}
                   alt="headerArrow"
                 />
-                <Link to={`/mens/`}>
+                <Link to={`/men/`}>
                   <p className="womens-cart-h__title-text womens-cart-h__women-link">
                     Men
                   </p>

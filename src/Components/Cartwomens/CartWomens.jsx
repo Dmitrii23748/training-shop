@@ -9,7 +9,7 @@ function CartWomens({routeId, id, name, price, sale, discount, img, rating }) {
   
     <>
       <div className="women-cart" >
-        <Link to={`/womens/${routeId}`} className="women-cart__link" data-test-id={`clothes-card-women`}>
+        <Link to={`/women/${routeId}`} className="women-cart__link" data-test-id={`clothes-card-women`}>
           <img
             className="womens-cart__img"
             src={`https://training.cleverland.by/shop/${img}`}

@@ -80,22 +80,22 @@ function Footer() {
               <ul className="footer-info__item footer-info__category">
                 <h3 className="footer-info__title">Categories</h3>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/mens" data-test-id={`footer-nav-link-/training-shop/mens`}>
+                  <Link className="footer-info__category-link" to="/men" data-test-id={`footer-nav-link-men`}>
                     Men
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/womens" data-test-id={`footer-nav-link-/training-shop/womens`}>
+                  <Link className="footer-info__category-link" to="/women" data-test-id={`footer-nav-link-women`}>
                     Women
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/accessories" data-test-id={`footer-nav-link-/training-shop/accessories`}>
+                  <Link className="footer-info__category-link" to="/accessories" data-test-id={`footer-nav-link-accessories`}>
                     Accessories
                   </Link>
                 </li>
                 <li className="footer-info__category-item">
-                  <Link className="footer-info__category-link" to="/beauty" data-test-id={`footer-nav-link-/training-shop/beauty`}>
+                  <Link className="footer-info__category-link" to="/beauty" data-test-id={`footer-nav-link-beauty`}>
                     Beauty
                   </Link>
                 </li>
@@ -103,7 +103,7 @@ function Footer() {
               <ul className="footer-info__item footer-info__infomation">
                 <h3 className="footer-info__title">Infomation</h3>
                 <li className="footer-info__infomation-item">
-                  <Link className="footer-info__infomation-link" to="/aboutUs" data-test-id={`footer-nav-link-/training-shop/aboutUs`}>
+                  <Link className="footer-info__infomation-link" to="/aboutUs" data-test-id={`footer-nav-link-aboutUs`}>
                     About Us
                   </Link>
                 </li>
@@ -111,13 +111,13 @@ function Footer() {
                   <Link
                     className="footer-info__infomation-link"
                     to="/contact"
-                    data-test-id={`footer-nav-link-/training-shop/contact`}
+                    data-test-id={`footer-nav-link-contact`}
                   >
                     Contact Us
                   </Link>
                 </li>
                 <li className="footer-info__infomation-item">
-                  <Link className="footer-info__infomation-link" to="/blog" data-test-id={`footer-nav-link-/training-shop/blog`}> 
+                  <Link className="footer-info__infomation-link" to="/blog" data-test-id={`footer-nav-link-blog`}> 
                     Blog
                   </Link>
                 </li>

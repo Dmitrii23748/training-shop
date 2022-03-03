@@ -89,7 +89,7 @@ function Navigation({ showLink, handleShowLink }) {
                     <NavLink
                       className="nav-down__link"
                       to="/aboutUs"
-                      data-test-id={`menu-link-/training-shop/aboutUs`}
+                      data-test-id={`menu-link-aboutUs`}
                     >
                       About Us
                     </NavLink>
@@ -97,8 +97,8 @@ function Navigation({ showLink, handleShowLink }) {
                   <li className="nav-down__item" onClick={handleShowLink}>
                     <NavLink
                       className="nav-down__link"
-                      to="/womens"
-                      data-test-id={`menu-link-/training-shop/womens`}
+                      to="/women"
+                      data-test-id={`menu-link-women`}
                     >
                       Women
                     </NavLink>
@@ -106,8 +106,8 @@ function Navigation({ showLink, handleShowLink }) {
                   <li className="nav-down__item" onClick={handleShowLink}>
                     <NavLink
                       className="nav-down__link"
-                      to="/mens"
-                      data-test-id={`menu-link-/training-shop/mens`}
+                      to="/men"
+                      data-test-id={`menu-link-men`}
                     >
                       Men
                     </NavLink>
@@ -116,7 +116,7 @@ function Navigation({ showLink, handleShowLink }) {
                     <NavLink
                       className="nav-down__link"
                       to="/beauty"
-                      data-test-id={`menu-link-/training-shop/beauty`}
+                      data-test-id={`menu-link-beauty`}
                     >
                       Beauty
                     </NavLink>
@@ -125,7 +125,7 @@ function Navigation({ showLink, handleShowLink }) {
                     <NavLink
                       className="nav-down__link"
                       to="/accessories"
-                      data-test-id={`menu-link-/training-shop/accessories`}
+                      data-test-id={`menu-link-accessories`}
                     >
                       Accessories
                     </NavLink>
@@ -134,7 +134,7 @@ function Navigation({ showLink, handleShowLink }) {
                     <NavLink
                       className="nav-down__link"
                       to="/blog"
-                      data-test-id={`menu-link-/training-shop/blog`}
+                      data-test-id={`menu-link-blog`}
                     >
                       Blog
                     </NavLink>
@@ -143,7 +143,7 @@ function Navigation({ showLink, handleShowLink }) {
                     <Link
                       className="nav-down__link"
                       to="/contact"
-                      data-test-id={`menu-link-/training-shop/contact`}
+                      data-test-id={`menu-link-contact`}
                     >
                       Contact
                     </Link>
