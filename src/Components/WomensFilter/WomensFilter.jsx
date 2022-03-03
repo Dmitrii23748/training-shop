@@ -47,13 +47,11 @@ function WomensFilter({closeOpenFilterWomens, handleCloseOpenFilterWomens}) {
       <div className="womens-header__filters-block">
         <div className="container">
           <div className="womens-header__filters">
-            <div className="womens-header__filters-item">
+            <div className="womens-header__filters-item" data-test-id='filter-button' onClick={handleCloseOpenFilterWomens}>
               <img className="womens-header__filters-filter"
                 src={closeOpenFilterWomens ? closeFilter : filter } alt="filter"
-                onClick={handleCloseOpenFilterWomens}
-                data-test-id='filter-button'
                 />
-              <p className="womens-header__filters-text" onClick={handleCloseOpenFilterWomens}>Filter</p>
+              <p className="womens-header__filters-text" >Filter</p>
             </div>
             <div className="womens-header__filters-item">
               <img className="womens-header__filters-burgerFilter" src={burgerFilter} alt="burgerFilter" />

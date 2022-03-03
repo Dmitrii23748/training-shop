@@ -8,10 +8,10 @@ function MensFiltersProducts({productsMens}) {
   return (
     <section
       className="mens-filter__prod"
-      data-test-id={`product-page-men`}
+    
     >
       <div className="container">
-        <div className="mens-img__block-prod">
+        <div className="mens-img__block-prod" data-test-id={`product-page-men`}>
           {productsMens.map((cart, index) => {
             return (
               <CartMens
