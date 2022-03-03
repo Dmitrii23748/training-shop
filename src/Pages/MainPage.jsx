@@ -67,7 +67,7 @@ function MainPage() {
     <div data-test-id="app">
       <Header />
       <Free />
-      <WomensBtn filtersWomensMainPage={filtersWomensMainPage}/>
+      <WomensBtn filtersWomensMainPage={filtersWomensMainPage} />
       <Womens categoryWomensMain={categoryWomensMain}/>
       <SeeBtn />
       <MensBtn filtersMensMainPage={filtersMensMainPage} />
