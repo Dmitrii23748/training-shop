@@ -10,7 +10,7 @@ function CheckBox(props) {
       }
   } 
   return (
-    <label className="custom-checkbox-label real-label" htmlFor={props.label}>
+    <label className="custom-checkbox-label real-label" htmlFor={props.label} >
       <input
         className="real-checkbox"
         type="checkbox"

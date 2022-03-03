@@ -16,15 +16,15 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
   const brandCategory = createUniqueBrandsArray(NEWPRODUCTS.men);
 
   return (
-    <section className={closeOpenFilterMen ? "filters-category" : "filters-category hide"}>
+    <section className={closeOpenFilterMen ? "filters-category" : "filters-category hide"} data-test-id='filters-men'>
       <div className="container">
         <div className="filters-block-mens">
-          <div className="filters-mens">
+          <div className="filters-mens" data-test-id='filters-color'>
             <h3 className="filter-title">color</h3>
             <ul className="filters__list">
               {colorCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-color-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>
@@ -36,12 +36,12 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
               })}
             </ul>
           </div>
-          <div className="filters-mens">
+          <div className="filters-mens"  data-test-id='filters-size'>
             <h3 className="filter-title">size</h3>
             <ul className="filters__list">
               {sizeCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-size-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>
@@ -53,12 +53,12 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
               })}
             </ul>
           </div>
-          <div className="filters-mens">
+          <div className="filters-mens"  data-test-id='filters-brand'>
             <h3 className="filter-title">brand</h3>
             <ul className="filters__list">
               {brandCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-brand-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>

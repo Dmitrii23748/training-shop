@@ -22,15 +22,16 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
       className={
         closeOpenFilterWomens ? "filters-category" : "filters-category hide"
       }
+      data-test-id='filters-women'
     >
       <div className="container">
         <div className="filters-block-womens">
-          <div className="filters-womens">
+          <div className="filters-womens" data-test-id='filters-color'>
             <h3 className="filter-title">color</h3>
             <ul className="filters__list">
               {colorCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-color-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>
@@ -42,12 +43,12 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
               })}
             </ul>
           </div>
-          <div className="filters-womens">
+          <div className="filters-womens" data-test-id='filters-size'>
             <h3 className="filter-title">size</h3>
             <ul className="filters__list">
               {sizeCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-size-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>
@@ -59,12 +60,12 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
               })}
             </ul>
           </div>
-          <div className="filters-womens">
+          <div className="filters-womens" data-test-id='filters-brand'>
             <h3 className="filter-title">brand</h3>
             <ul className="filters__list">
               {brandCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index}>
+                  <li className="filters__list-item" key={index} data-test-id={`filter-brand-${item}`}>
                     <CheckBox
                       label={item}
                       onChange={(input) =>
