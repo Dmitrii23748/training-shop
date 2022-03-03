@@ -22,17 +22,17 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
       className={
         closeOpenFilterWomens ? "filters-category" : "filters-category hide"
       }
-      data-test-id='filters-women'
     >
       <div className="container">
-        <div className="filters-block-womens">
-          <div className="filters-womens" data-test-id='filters-color'>
+        <div className="filters-block-womens" data-test-id='filters-women'>
+          <div className="filters-womens">
             <h3 className="filter-title">color</h3>
-            <ul className="filters__list">
+            <ul className="filters__list" data-test-id='filters-color'>
               {colorCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-color-${item}`}>
+                  <li className="filters__list-item" key={index} >
                     <CheckBox
+                      data-test-id={`filter-color-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("COLOR", input.checked, item.toLowerCase())
@@ -43,13 +43,14 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
               })}
             </ul>
           </div>
-          <div className="filters-womens" data-test-id='filters-size'>
+          <div className="filters-womens">
             <h3 className="filter-title">size</h3>
-            <ul className="filters__list">
+            <ul className="filters__list" data-test-id='filters-size'>
               {sizeCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-size-${item}`}>
+                  <li className="filters__list-item" key={index} >
                     <CheckBox
+                      data-test-id={`filter-size-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("SIZE", input.checked, item.toLowerCase())
@@ -60,13 +61,14 @@ function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
               })}
             </ul>
           </div>
-          <div className="filters-womens" data-test-id='filters-brand'>
+          <div className="filters-womens">
             <h3 className="filter-title">brand</h3>
-            <ul className="filters__list">
+            <ul className="filters__list" data-test-id='filters-brand'>
               {brandCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-brand-${item}`}>
+                  <li className="filters__list-item" key={index} >
                     <CheckBox
+                      data-test-id={`filter-brand-${item}`}
                       label={item}
                       onChange={(input) =>
                         filterSelect("BRAND", input.checked, item.toLowerCase())

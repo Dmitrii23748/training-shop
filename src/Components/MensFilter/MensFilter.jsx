@@ -6,6 +6,7 @@ import filter from "../../img/filter-icons/filter.svg";
 import closeFilter from '../../img/filter-icons/close-filter.svg';
 import burgerFilter from "../../img/filter-icons/burger-filter.svg";
 import squaresFilter from "../../img/filter-icons/squares-filter.svg";
+import { Link } from "react-router-dom";
 
 function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
   return (
@@ -15,9 +16,9 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
           <div className="mens-header__title">
             <div className="mens-header__title-link">
               <div className="mens-header__title-item">
-                <p className="mens-header__title-text mens-header__home-link">
+                <Link to='/' className="mens-header__title-text mens-header__home-link">
                   Home
-                </p>
+                </Link>
                 <img
                   className="mens-header__title-arrow"
                   src={headerArrow}
@@ -45,10 +46,11 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
       <div className="mens-header__filters-block">
         <div className="container">
           <div className="mens-header__filters">
-            <div className="mens-header__filters-item"  data-test-id='filter-button'>
+            <div className="mens-header__filters-item">
               <img className="mens-header__filters-filter"
                 src={closeOpenFilterMen ? closeFilter : filter} alt="filter"
                 onClick={handleCloseOpenFilterMen}
+                data-test-id='filter-button'
                 />
               <p className="mens-header__filters-text" onClick={handleCloseOpenFilterMen}>Filter</p>
             </div>

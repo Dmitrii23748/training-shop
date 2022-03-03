@@ -36,7 +36,7 @@ function MensBtn({filtersMensMainPage}) {
                       className={ activeBtn === index ? 'womens-category__link active' : 'womens-category__link'}
                       type="button"
                       onClick={() => clickButtonCategoryMens(`${item.func}`, index)}
-                      data-test-id={`clothes-men-${item.label}`}
+                      data-test-id={`clothes-men-${item.name}`}
                       >
                       {item.label}
                     </button>
