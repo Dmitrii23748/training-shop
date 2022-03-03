@@ -15,6 +15,8 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
   const colorCategory = createUniqueColorsArray(NEWPRODUCTS.men);
   const brandCategory = createUniqueBrandsArray(NEWPRODUCTS.men);
 
+  const paramsArr = ['color', 'size', 'brand'];
+
   return (
     <section className={closeOpenFilterMen ? "filters-category" : "filters-category hide"} >
       <div className="container">
@@ -24,8 +26,10 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
             <ul className="filters__list" data-test-id='filters-color'>
               {colorCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-color-${item}`}>
+                  <li className="filters__list-item" key={index}>
                     <CheckBox
+                      paramsArrProp={paramsArr[0]}
+                      itemParams={item}
                       label={item}
                       onChange={(input) =>
                         filterSelect("COLOR", input.checked, item.toLowerCase())
@@ -41,9 +45,10 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
             <ul className="filters__list" data-test-id='filters-size'>
               {sizeCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-size-${item}`}>
+                  <li className="filters__list-item" key={index}>
                     <CheckBox
-                     
+                      paramsArrProp={paramsArr[1]}
+                      itemParams={item}
                       label={item}
                       onChange={(input) =>
                         filterSelect("SIZE", input.checked, item.toLowerCase())
@@ -59,9 +64,10 @@ function FilterMens({ filterSelect, closeOpenFilterMen }) {
             <ul className="filters__list"  data-test-id='filters-brand'>
               {brandCategory.map((item, index) => {
                 return (
-                  <li className="filters__list-item" key={index} data-test-id={`filter-brand-${item}`}>
+                  <li className="filters__list-item" key={index}>
                     <CheckBox
-                     
+                      paramsArrProp={paramsArr[2]}
+                      itemParams={item}
                       label={item}
                       onChange={(input) =>
                         filterSelect("BRAND", input.checked, item.toLowerCase())

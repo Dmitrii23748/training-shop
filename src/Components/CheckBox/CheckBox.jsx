@@ -12,6 +12,7 @@ function CheckBox(props) {
   return (
     <label className="custom-checkbox-label real-label" htmlFor={props.label} >
       <input
+        data-test-id={`filter-${props.paramsArrProp}-${props.itemParams}`}
         className="real-checkbox"
         type="checkbox"
         ref={inputRef}
