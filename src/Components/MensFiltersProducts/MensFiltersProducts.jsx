@@ -8,7 +8,7 @@ function MensFiltersProducts({productsMens}) {
   return (
     <section
       className="mens-filter__prod"
-      data-test-id={`products-page-men`}
+      data-test-id={`product-page-men`}
     >
       <div className="container">
         <div className="mens-img__block-prod">
