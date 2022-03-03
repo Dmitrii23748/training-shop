@@ -9,7 +9,7 @@ function Womens({categoryWomensMain}) {
   return (
     <section
       className="womens"
-      data-test-id={`products-page-/training-shop/womens`}
+      data-test-id={`clothes-women`}
     >
       <div className="container">
         <div className="womens-img__block">
