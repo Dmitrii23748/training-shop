@@ -46,7 +46,9 @@ CartWomens.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   sale: PropTypes.string,
-  discount: PropTypes.string
+  discount: PropTypes.string,
+  routeId: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired
 }
 
 export default CartWomens;

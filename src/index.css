@@ -82,6 +82,15 @@ a {
   text-decoration: none;
 }
 
+.wrapper-html {
+  position: relative;
+}
+
+.wrapper-html.noscroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .wrapper {
   overflow: hidden;
 }
@@ -105,4 +114,8 @@ a {
   height: 22px;
   background-color: #121212;
   transform: rotate(45deg);
+}
+
+.cart-wrapper.cart-wrapper-none {
+  width: 0;
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./CartPageComponentWomen.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
@@ -24,6 +25,7 @@ import {
   womensMainPageProducts,
 } from "../../data/root";
 import { Link } from "react-router-dom";
+import ButtonCartWomen from "../ButtonCartWomen/ButtonCartWomen";
 
 function CartPageComponentWomen({ routeId }) {
   const cartWomenParams = objProductWomens[`${routeId}`];
@@ -54,6 +56,16 @@ function CartPageComponentWomen({ routeId }) {
     }
     return arr;
   }, []);
+
+  const cartProductWomen = {
+    id: `${cartWomenParams.id}${cartWomenSize[sizeStateWomens]}${newArrColorWomens[colorStateWomens].color}`,
+    name: cartWomenParams.name,
+    size: cartWomenSize[sizeStateWomens],
+    color: newArrColorWomens[colorStateWomens].color,
+    pictureUrl: newArrColorWomens[colorStateWomens].url,
+    price: cartWomenParams.price,
+    countProd: 1
+  }
 
 
   const [firstSwiper, setFirstSwiper] = useState(null);
@@ -263,9 +275,13 @@ function CartPageComponentWomen({ routeId }) {
                 <h3 className="cart-page__price-item cart-page__price-number">
                   $ {cartWomenPrice}
                 </h3>
-                <button className="cart-page__price-item cart-page__price-btn">
+
+                {/* <button className="cart-page__price-item cart-page__price-btn">
                   Add to card
-                </button>
+                </button> */}
+
+                <ButtonCartWomen  cartProductWomen={cartProductWomen}/>
+
                 <button className="cart-page__price-item cart-page__price-heart">
                   <img
                     className="cart-page__price-heart-img"
@@ -524,3 +540,7 @@ function CartPageComponentWomen({ routeId }) {
 }
 
 export default CartPageComponentWomen;
+
+CartPageComponentWomen.propTypes = {
+  routeId: PropTypes.string.isRequired,
+}

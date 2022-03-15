@@ -6,7 +6,6 @@ import circle from '../../img/free/circle.svg';
 
 function Free() {
   return (
-    <>
       <section className="free">
         <div className="container">
             <div className="free-block">
@@ -34,7 +33,6 @@ function Free() {
             </div>
         </div>
       </section>
-    </>
   );
 }
 

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import PropTypes from "prop-types";
 import "./Womens.css";
 import CartWomens from "../Cartwomens/CartWomens";
 
@@ -35,3 +36,7 @@ function Womens({categoryWomensMain}) {
 }
 
 export default Womens;
+
+Womens.propTypes = {
+  categoryWomensMain: PropTypes.array.isRequired
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./MensFiltersProducts.css";
 import CartMens from '../Cartmens/CartMens'
 
@@ -34,3 +35,8 @@ function MensFiltersProducts({productsMens}) {
 }
 
 export default MensFiltersProducts;
+
+
+MensFiltersProducts.propTypes = {
+  productsMens: PropTypes.array.isRequired
+}

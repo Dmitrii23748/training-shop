@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./WomensBtn.css";
 
 function WomensBtn({filtersWomensMainPage}) {
@@ -54,3 +55,7 @@ function WomensBtn({filtersWomensMainPage}) {
 }
 
 export default WomensBtn;
+
+WomensBtn.propTypes = {
+  filtersWomensMainPage: PropTypes.func.isRequired
+}

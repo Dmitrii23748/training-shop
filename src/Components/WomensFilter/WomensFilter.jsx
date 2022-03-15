@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./WomensFilter.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
@@ -65,3 +66,8 @@ function WomensFilter({closeOpenFilterWomens, handleCloseOpenFilterWomens}) {
 }
 
 export default WomensFilter;
+
+WomensFilter.propTypes = {
+  closeOpenFilterWomens: PropTypes.bool.isRequired,
+  handleCloseOpenFilterWomens: PropTypes.func.isRequired
+}

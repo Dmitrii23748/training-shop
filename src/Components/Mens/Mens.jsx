@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Mens.css";
 import CartMens from "../Cartmens/CartMens";
 
@@ -34,3 +35,7 @@ function Mens({ categoryMensMain }) {
 }
 
 export default Mens;
+
+Mens.propTypes = {
+  categoryMensMain: PropTypes.array.isRequired
+}

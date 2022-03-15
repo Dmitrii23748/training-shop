@@ -16,7 +16,6 @@ import { Navigation } from "swiper";
 
 function Header() {
   return (
-    <>
       <header className="header" data-test-id="header">
         <div className="container">
           <div className="header-block">
@@ -108,7 +107,6 @@ function Header() {
           </div>
         </div>
       </header>
-    </>
   );
 }
 

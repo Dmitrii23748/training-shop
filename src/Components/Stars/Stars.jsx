@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Stars.css";
 import staryellow from "../../img/stars/yellow-star.svg";
 import stargrey from "../../img/stars/grey-star.svg";
@@ -36,3 +37,8 @@ function Stars({ rating }) {
 }
 
 export default Stars;
+
+
+Stars.propTypes = {
+  rating: PropTypes.number.isRequired
+}

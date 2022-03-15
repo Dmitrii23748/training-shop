@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./StarsCart.css";
 import staryellow from "../../img/stars/yellow-star.svg";
 import stargrey from "../../img/stars/grey-star.svg";
@@ -36,3 +37,7 @@ function StarsCart({ cartRating }) {
 }
 
 export default StarsCart;
+
+StarsCart.propTypes = {
+  cartRating: PropTypes.number.isRequired
+}

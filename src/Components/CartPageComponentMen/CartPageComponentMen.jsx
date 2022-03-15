@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./CartPageComponentMen.css";
 // import { PRODUCTS } from "../../data/products";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
@@ -25,14 +26,21 @@ import {
   mensMainPageProducts,
 } from "../../data/root";
 import { Link } from "react-router-dom";
+import ButtonCart from "../ButtonCart/ButtonCart";
 
 function CartPageComponentMen({ routeId }) {
+ 
   const cartMenParams = objProductMens[`${routeId}`];
+  // console.log(cartMenParams);
+
   const cartMenImages = objProductMens[`${routeId}`].images;
   const cartMenSize = objProductMens[`${routeId}`].sizes;
   const cartMenPrice = objProductMens[`${routeId}`].price;
   const cartMenReviews = objProductMens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartMenImages, "color");
+
+
+
 
   const [sizeStateMens, setSizeStateMens] = useState(0);
   const handleUpdateSizeMen = (index) => {
@@ -54,10 +62,22 @@ function CartPageComponentMen({ routeId }) {
       }
       return arr;
     }, []);
+    // new Date().toISOString(),
+    const cartProductMen = {
+      id: `${cartMenParams.id}${cartMenSize[sizeStateMens]}${newArrColorMens[colorStateMens].color}`,
+      name: cartMenParams.name,
+      size: cartMenSize[sizeStateMens],
+      color: newArrColorMens[colorStateMens].color,
+      pictureUrl: newArrColorMens[colorStateMens].url,
+      price: cartMenParams.price,
+      countProd: 1
+    }
 
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+
   return (
     <section
       className="cart-page"
@@ -263,9 +283,11 @@ function CartPageComponentMen({ routeId }) {
                 <h3 className="cart-page__price-item cart-page__price-number">
                   $ {cartMenPrice}
                 </h3>
-                <button className="cart-page__price-item cart-page__price-btn">
-                  Add to card
-                </button>
+
+                <ButtonCart
+                cartProductMen={cartProductMen}
+                />
+
                 <button className="cart-page__price-item cart-page__price-heart">
                   <img
                     className="cart-page__price-heart-img"
@@ -524,3 +546,7 @@ function CartPageComponentMen({ routeId }) {
 }
 
 export default CartPageComponentMen;
+
+CartPageComponentMen.propTypes = {
+  routeId: PropTypes.string.isRequired
+}

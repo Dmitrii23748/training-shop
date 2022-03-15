@@ -13,15 +13,30 @@ import BeautyPage from "./Pages/BeautyPage";
 import AccessoriesPage from "./Pages/AccssesoriesPage";
 import BlogPage from "./Pages/BlogPage";
 import ContactPage from "./Pages/ContactPage";
+import ShopCart from "./Components/ShopCart/ShopCart";
 
 function App() {
   const [showLink, setShowLink] = useState(false);
   const handleShowLink = () => {
     setShowLink(!showLink);
   };
+
+  const [showCart, setShowCart] = useState(false);
+  const handleShowCart = () => {
+    setShowCart(!showCart);
+  };
   return (
-    <>
-      <Navigation showLink={showLink} handleShowLink={handleShowLink} />
+    <div className={showCart ? "wrapper-html noscroll" : "wrapper-html"}>
+      <ShopCart showCart={showCart} handleShowCart={handleShowCart}  setShowCart={setShowCart}/>
+      {/* {showCart ? (
+        <ShopCart handleShowCart={handleShowCart} setShowCart={setShowCart} />
+      ) : null} */}
+
+      <Navigation
+        showLink={showLink}
+        handleShowLink={handleShowLink}
+        handleShowCart={handleShowCart}
+      />
       <div className="wrapper" onClick={() => setShowLink(false)}>
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -37,8 +52,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-      
-    </>
+    </div>
   );
 }
 

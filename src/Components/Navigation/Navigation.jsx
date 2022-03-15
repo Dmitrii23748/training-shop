@@ -13,10 +13,15 @@ import globe from "../../img/icon-nav/globe.svg";
 import user from "../../img/icon-nav/user.svg";
 import shop from "../../img/icon-nav/shop.svg";
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function Navigation({ showLink, handleShowLink }) {
+function Navigation({ showLink, handleShowLink, handleShowCart }) {
+  const productsMens = useSelector((state) => state.cart.itemsInCart);
+  const productsWomens = useSelector((state) => state.cart.itemsInCartWomens);
+  const productsMensAndWomens = [...productsMens, ...productsWomens];
+
+
   return (
-    <>
       <section className="navigation">
         <div className="nav-up-block">
           <div className="container">
@@ -161,9 +166,9 @@ function Navigation({ showLink, handleShowLink }) {
                   <li className="nav-down__icons-item">
                     <img src={user} alt="user" />
                   </li>
-                  <li className="nav-down__icons-item nav-down__icons_shop">
+                  <li className="nav-down__icons-item nav-down__icons_shop" onClick={handleShowCart}>
                     <img src={shop} alt="shop" />
-                    <span className="icons-shop__span">2</span>
+                    <span className="icons-shop__span">{productsMensAndWomens.length}</span>
                   </li>
                 </ul>
               </div>
@@ -180,7 +185,6 @@ function Navigation({ showLink, handleShowLink }) {
           </div>
         </div>
       </section>
-    </>
   );
 }
 
@@ -189,5 +193,6 @@ export default Navigation;
 
 Navigation.propTypes = {
   showLink: PropTypes.bool.isRequired,
-  handleShowLink: PropTypes.func.isRequired
+  handleShowLink: PropTypes.func.isRequired,
+  handleShowCart: PropTypes.func.isRequired
 };

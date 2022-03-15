@@ -1,6 +1,8 @@
 /* eslint-disable array-callback-return */
 import { NEWPRODUCTS } from "./newProducts";
 
+
+
 export const womensMainPageProducts = NEWPRODUCTS.women;
 export const mensMainPageProducts = NEWPRODUCTS.men;
 
@@ -75,6 +77,7 @@ export const priceCheckBoxMens = [
   { title: "179 - 192", priceCheck: [179.99, 184.8, 191.2] },
   { title: "200 - 262", priceCheck: [200.8, 203.4, 261.2] },
 ];
+
 
 
 

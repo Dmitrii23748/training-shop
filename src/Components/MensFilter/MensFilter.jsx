@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./MensFilter.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
@@ -65,3 +66,9 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
 }
 
 export default MensFilter;
+
+
+MensFilter.propTypes = {
+  closeOpenFilterMen: PropTypes.bool.isRequired,
+  handleCloseOpenFilterMen: PropTypes.func.isRequired
+}

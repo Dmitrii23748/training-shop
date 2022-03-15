@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./MensBtn.css";
 
 function MensBtn({filtersMensMainPage}) {
@@ -52,3 +53,7 @@ function MensBtn({filtersMensMainPage}) {
 }
 
 export default MensBtn;
+
+MensBtn.propTypes = {
+  filtersMensMainPage: PropTypes.func.isRequired
+}
