@@ -142,7 +142,7 @@ function ShopCart({showCart, handleShowCart, setShowCart }) {
                   <div className="cart-footer__price">
                     <div className="cart-footer__price-title">Total</div>
                     <span className="cart-footer__price-number">
-                      $ {Number(totalPrice).toFixed(1)}
+                      $ {Number(totalPrice).toFixed(2)}
                     </span>
                   </div>
                   {itemCartPayment &&

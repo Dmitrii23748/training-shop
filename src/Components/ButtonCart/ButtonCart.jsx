@@ -24,7 +24,7 @@ function ButtonCart({cartProductMen}) {
      onClick={handleAddProductMen}
      data-test-id='add-cart-button'
      >
-      { isItemInCart ? 'Remove cart' : 'Add to card'}
+      { isItemInCart ? 'Remove to cart' : 'Add to card'}
     </button>
   );
 }

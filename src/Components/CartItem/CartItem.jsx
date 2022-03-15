@@ -61,7 +61,7 @@ let couteProd = prod.countProd * prod.price
                 <img className="img-plus" src={plus} alt="plus" />
               </button>
             </div>
-            <span className="count-down-price">$ {couteProd.toFixed(1)}</span>
+            <span className="count-down-price">$ {couteProd.toFixed(2)}</span>
           </div>
         </div>
       </div>
