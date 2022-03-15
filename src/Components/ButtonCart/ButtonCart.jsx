@@ -22,6 +22,7 @@ function ButtonCart({cartProductMen}) {
     <button
      className="cart-page__price-item cart-page__price-btn"
      onClick={handleAddProductMen}
+     data-test-id='add-cart-button'
      >
       { isItemInCart ? 'Remove cart' : 'Add to card'}
     </button>

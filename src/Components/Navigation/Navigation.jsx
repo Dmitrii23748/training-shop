@@ -166,7 +166,7 @@ function Navigation({ showLink, handleShowLink, handleShowCart }) {
                   <li className="nav-down__icons-item">
                     <img src={user} alt="user" />
                   </li>
-                  <li className="nav-down__icons-item nav-down__icons_shop" onClick={handleShowCart}>
+                  <li className="nav-down__icons-item nav-down__icons_shop" onClick={handleShowCart} data-test-id='cart-button'>
                     <img src={shop} alt="shop" />
                     <span className="icons-shop__span">{productsMensAndWomens.length}</span>
                   </li>

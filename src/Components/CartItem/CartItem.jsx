@@ -38,7 +38,7 @@ let couteProd = prod.countProd * prod.price
 
 
   return (
-    <div className="item-cart-product">
+    <div className="item-cart-product" data-test-id='cart-card'>
       <div className="count-pr__img-count-blocks">
         <img
           className="cart-img-pr"
@@ -53,11 +53,11 @@ let couteProd = prod.countProd * prod.price
           </div>
           <div className="count-down-pr">
             <div className="btn-count-pr">
-              <button className="btn-count-pr__minus" onClick={minusItemProd}>
+              <button className="btn-count-pr__minus" onClick={minusItemProd} data-test-id='minus-product'>
                 <img className="img-plus" src={minus} alt="minus" />
               </button>
               <span className="count-number-pr">{prod.countProd}</span>
-              <button className="btn-count-pr__plus" onClick={plusItemProd}>
+              <button className="btn-count-pr__plus" onClick={plusItemProd} data-test-id='plus-product'>
                 <img className="img-plus" src={plus} alt="plus" />
               </button>
             </div>
@@ -70,6 +70,7 @@ let couteProd = prod.countProd * prod.price
         <button
           className="delete-pr__btn"
           onClick={() => deleteCartMenItem(prod.id)}
+          data-test-id='remove-product'
         >
           <img className="delete-img-pr" src={deleteCart} alt="delete" />
         </button>

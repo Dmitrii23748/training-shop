@@ -43,7 +43,9 @@ function ShopCart({showCart, handleShowCart, setShowCart }) {
   };
 
   return (
-    <section className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none" } onClick={() => setShowCart(false)}>
+    <section className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none" } onClick={() => setShowCart(false)}
+    data-test-id='cart'
+    >
       <div className={showCart ? "cart show-cart" : "cart"} onClick={(e) => e.stopPropagation()}>
         <div className="cart-block-title">
           <div className="container-cart">

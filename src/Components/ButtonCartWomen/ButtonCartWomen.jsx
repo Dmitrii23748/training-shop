@@ -22,6 +22,7 @@ function ButtonCartWomen({cartProductWomen}) {
     <button
      className="cart-page__price-item cart-page__price-btn"
      onClick={handleAddProductWomens}
+     data-test-id='add-cart-button'
      >
      { isItemInCartWomen ? 'Remove cart' : 'Add to card'}
     </button>
