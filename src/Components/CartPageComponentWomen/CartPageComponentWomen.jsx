@@ -35,7 +35,6 @@ function CartPageComponentWomen({ routeId }) {
   const cartWomenReviews = objProductWomens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartWomenImages, "color");
 
-
   const [sizeStateWomens, setSizeStateWomens] = useState(0);
   const handleUpdateSizeWomen = (index) => {
     setSizeStateWomens(index);
@@ -47,15 +46,15 @@ function CartPageComponentWomen({ routeId }) {
   };
 
   let newArrColorWomens = cartWomenImages
-  .sort(function (a, b) {
-    return a.color > b.color ? -1 : 1;
-  })
-  .reduce(function (arr, el) {
-    if (!arr.length || arr[arr.length - 1].color !== el.color) {
-      arr.push(el);
-    }
-    return arr;
-  }, []);
+    .sort(function (a, b) {
+      return a.color > b.color ? -1 : 1;
+    })
+    .reduce(function (arr, el) {
+      if (!arr.length || arr[arr.length - 1].color !== el.color) {
+        arr.push(el);
+      }
+      return arr;
+    }, []);
 
   const cartProductWomen = {
     id: `${cartWomenParams.id}${cartWomenSize[sizeStateWomens]}${newArrColorWomens[colorStateWomens].color}`,
@@ -64,19 +63,15 @@ function CartPageComponentWomen({ routeId }) {
     color: newArrColorWomens[colorStateWomens].color,
     pictureUrl: newArrColorWomens[colorStateWomens].url,
     price: cartWomenParams.price,
-    countProd: 1
-  }
-
+    countProd: 1,
+  };
 
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <section
-      className="cart-page"
-      data-test-id={`product-page-women`}
-    >
+    <section className="cart-page" data-test-id={`product-page-women`}>
       <div className="cart-page__navigation">
         <div className="container">
           <div className="womens-cart-h__title">
@@ -223,7 +218,9 @@ function CartPageComponentWomen({ routeId }) {
             <div className="cart-page__picture-text">
               <div className="cart-page__picture-color">
                 <p className="cart-page__picture-color_text">color:</p>
-                <span className="cart-page__color-span">{newArrColorWomens[colorStateWomens].color}</span>
+                <span className="cart-page__color-span">
+                  {newArrColorWomens[colorStateWomens].color}
+                </span>
               </div>
               <div className="cart-page__picture-mini-img">
                 {newArrColorWomens.map((item, index) => {
@@ -280,7 +277,7 @@ function CartPageComponentWomen({ routeId }) {
                   Add to card
                 </button> */}
 
-                <ButtonCartWomen  cartProductWomen={cartProductWomen}/>
+                <ButtonCartWomen cartProductWomen={cartProductWomen} />
 
                 <button className="cart-page__price-item cart-page__price-heart">
                   <img
@@ -503,31 +500,33 @@ function CartPageComponentWomen({ routeId }) {
               {womensMainPageProducts.map((item, index) => {
                 return (
                   <SwiperSlide key={index}>
-                    <div className="womens-cart womens-cart-slider">
-                      <div href="womens" className="men-cart__link">
-                        <img
-                          className="womens-cart__img"
-                          src={`https://training.cleverland.by/shop/${item.images[0].url}`}
-                          alt="womens-img"
-                        />
-                        <p className="womens-cart__text">{item.name}</p>
-                        <div className="womens-cart__stars">
-                          <div className="womens-cart__price-sale">
-                            <span className="womens-cart__stars-text">
-                              $ {item.price}
-                            </span>
+                    <Link to={`/women/${item.id}`}>
+                      <div className="womens-cart womens-cart-slider">
+                        <div href="womens" className="men-cart__link">
+                          <img
+                            className="womens-cart__img"
+                            src={`https://training.cleverland.by/shop/${item.images[0].url}`}
+                            alt="womens-img"
+                          />
+                          <p className="womens-cart__text">{item.name}</p>
+                          <div className="womens-cart__stars">
+                            <div className="womens-cart__price-sale">
+                              <span className="womens-cart__stars-text">
+                                $ {item.price}
+                              </span>
+                            </div>
+                            <StarsCart cartRating={item.rating} />
                           </div>
-                          <StarsCart cartRating={item.rating} />
+                          {item.discount ? (
+                            <div className="womens-percent womens-percent-cart">
+                              <p className="womens-percent__text">
+                                {item.discount}
+                              </p>
+                            </div>
+                          ) : null}
                         </div>
-                        {item.discount ? (
-                          <div className="womens-percent womens-percent-cart">
-                            <p className="womens-percent__text">
-                              {item.discount}
-                            </p>
-                          </div>
-                        ) : null}
                       </div>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 );
               })}
@@ -543,4 +542,4 @@ export default CartPageComponentWomen;
 
 CartPageComponentWomen.propTypes = {
   routeId: PropTypes.string.isRequired,
-}
+};

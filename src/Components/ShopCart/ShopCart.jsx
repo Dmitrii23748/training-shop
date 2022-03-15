@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./ShopCart.css";
@@ -8,17 +7,14 @@ import CartDelivery from "../CartDelivery/CartDelivery";
 import CartPayment from "../CartPayment/CartPayment";
 import { useSelector } from "react-redux";
 
-function ShopCart({showCart, handleShowCart, setShowCart }) {
+function ShopCart({ showCart, handleShowCart, setShowCart }) {
   const productsMens = useSelector((state) => state.cart.itemsInCart);
   const productsWomens = useSelector((state) => state.cart.itemsInCartWomens);
   const productsMensAndWomens = [...productsMens, ...productsWomens];
 
-
   const totalPrice = productsMensAndWomens.reduce((acc, prod) => {
-    return acc += prod.price * prod.countProd
+    return (acc += prod.price * prod.countProd);
   }, 0);
-
-
 
   const [itemCartMain, setItemCartMain] = useState(true);
   const [itemCartDelivery, setItemCartDelivery] = useState(false);
@@ -43,15 +39,25 @@ function ShopCart({showCart, handleShowCart, setShowCart }) {
   };
 
   return (
-    <section className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none" } onClick={() => setShowCart(false)}
-    data-test-id='cart'
+    <section
+      className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none"}
+      onClick={() => setShowCart(false)}
+      data-test-id="cart"
     >
-      <div className={showCart ? "cart show-cart" : "cart"} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={showCart ? "cart show-cart" : "cart"}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="cart-block-title">
           <div className="container-cart">
             <div className="cart-block-title__flex">
               <h3 className="cart-title">Shopping Cart</h3>
-              <button className="cart__btn-close" onClick={() => {handleShowCart()}}>
+              <button
+                className="cart__btn-close"
+                onClick={() => {
+                  handleShowCart();
+                }}
+              >
                 <img className="cart__close-btn" src={cartClose} alt="close" />
               </button>
             </div>
@@ -102,17 +108,14 @@ function ShopCart({showCart, handleShowCart, setShowCart }) {
                         : "item-main__block item-main__block-none"
                     }
                   >
-                    {itemCartMain &&
-                      itemCartDelivery === false &&
-                      itemCartPayment === false &&
-                      productsMensAndWomens.map((prod, index) => {
-                        return (
-                          <CartItem
-                            key={index}
-                            prod={prod}
-                          />
-                        );
-                      })}
+                    <div className="item-main__block-height">
+                      {itemCartMain &&
+                        itemCartDelivery === false &&
+                        itemCartPayment === false &&
+                        productsMensAndWomens.map((prod, index) => {
+                          return <CartItem key={index} prod={prod} />;
+                        })}
+                    </div>
                   </div>
 
                   <div

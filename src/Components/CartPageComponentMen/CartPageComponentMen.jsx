@@ -29,7 +29,6 @@ import { Link } from "react-router-dom";
 import ButtonCart from "../ButtonCart/ButtonCart";
 
 function CartPageComponentMen({ routeId }) {
- 
   const cartMenParams = objProductMens[`${routeId}`];
   // console.log(cartMenParams);
 
@@ -38,9 +37,6 @@ function CartPageComponentMen({ routeId }) {
   const cartMenPrice = objProductMens[`${routeId}`].price;
   const cartMenReviews = objProductMens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartMenImages, "color");
-
-
-
 
   const [sizeStateMens, setSizeStateMens] = useState(0);
   const handleUpdateSizeMen = (index) => {
@@ -62,27 +58,23 @@ function CartPageComponentMen({ routeId }) {
       }
       return arr;
     }, []);
-    // new Date().toISOString(),
-    const cartProductMen = {
-      id: `${cartMenParams.id}${cartMenSize[sizeStateMens]}${newArrColorMens[colorStateMens].color}`,
-      name: cartMenParams.name,
-      size: cartMenSize[sizeStateMens],
-      color: newArrColorMens[colorStateMens].color,
-      pictureUrl: newArrColorMens[colorStateMens].url,
-      price: cartMenParams.price,
-      countProd: 1
-    }
+  // new Date().toISOString(),
+  const cartProductMen = {
+    id: `${cartMenParams.id}${cartMenSize[sizeStateMens]}${newArrColorMens[colorStateMens].color}`,
+    name: cartMenParams.name,
+    size: cartMenSize[sizeStateMens],
+    color: newArrColorMens[colorStateMens].color,
+    pictureUrl: newArrColorMens[colorStateMens].url,
+    price: cartMenParams.price,
+    countProd: 1,
+  };
 
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-
   return (
-    <section
-      className="cart-page"
-      data-test-id={`product-page-men`}
-    >
+    <section className="cart-page" data-test-id={`product-page-men`}>
       <div className="cart-page__navigation">
         <div className="container">
           <div className="womens-cart-h__title">
@@ -284,9 +276,7 @@ function CartPageComponentMen({ routeId }) {
                   $ {cartMenPrice}
                 </h3>
 
-                <ButtonCart
-                cartProductMen={cartProductMen}
-                />
+                <ButtonCart cartProductMen={cartProductMen} />
 
                 <button className="cart-page__price-item cart-page__price-heart">
                   <img
@@ -507,33 +497,36 @@ function CartPageComponentMen({ routeId }) {
               modules={[Navigation]}
             >
               {mensMainPageProducts.map((item, index) => {
+                console.log(item.id);
                 return (
                   <SwiperSlide key={index}>
-                    <div className="womens-cart womens-cart-slider">
-                      <div href="womens" className="men-cart__link">
-                        <img
-                          className="womens-cart__img"
-                          src={`https://training.cleverland.by/shop/${item.images[0].url}`}
-                          alt="womens-img"
-                        />
-                        <p className="womens-cart__text">{item.name}</p>
-                        <div className="womens-cart__stars">
-                          <div className="womens-cart__price-sale">
-                            <span className="womens-cart__stars-text">
-                              $ {item.price}
-                            </span>
+                    <Link to={`/men/${item.id}`}>
+                      <div className="womens-cart womens-cart-slider">
+                        <div href="womens" className="men-cart__link">
+                          <img
+                            className="womens-cart__img"
+                            src={`https://training.cleverland.by/shop/${item.images[0].url}`}
+                            alt="womens-img"
+                          />
+                          <p className="womens-cart__text">{item.name}</p>
+                          <div className="womens-cart__stars">
+                            <div className="womens-cart__price-sale">
+                              <span className="womens-cart__stars-text">
+                                $ {item.price}
+                              </span>
+                            </div>
+                            <StarsCart cartRating={item.rating} />
                           </div>
-                          <StarsCart cartRating={item.rating} />
+                          {item.discount ? (
+                            <div className="womens-percent womens-percent-cart">
+                              <p className="womens-percent__text">
+                                {item.discount}
+                              </p>
+                            </div>
+                          ) : null}
                         </div>
-                        {item.discount ? (
-                          <div className="womens-percent womens-percent-cart">
-                            <p className="womens-percent__text">
-                              {item.discount}
-                            </p>
-                          </div>
-                        ) : null}
                       </div>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 );
               })}
@@ -548,5 +541,5 @@ function CartPageComponentMen({ routeId }) {
 export default CartPageComponentMen;
 
 CartPageComponentMen.propTypes = {
-  routeId: PropTypes.string.isRequired
-}
+  routeId: PropTypes.string.isRequired,
+};
