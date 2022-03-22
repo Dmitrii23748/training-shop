@@ -36,7 +36,7 @@ function App() {
 
 
   return (
-    <div className={showCart ? "wrapper-html noscroll" : "wrapper-html"}>
+    <div className={showCart ? "wrapper-html noscroll" : "wrapper-html"} data-test-id="app">
       <ShopCart showCart={showCart} handleShowCart={handleShowCart}  setShowCart={setShowCart}/>
       {/* {showCart ? (
         <ShopCart handleShowCart={handleShowCart} setShowCart={setShowCart} />

@@ -97,7 +97,7 @@ function MainPage() {
   };
 
   return (
-    <div data-test-id="app">
+    <div>
       {status === "loading" && (
         <div className="parent-loader" data-test-id="loader">
           <Loader
