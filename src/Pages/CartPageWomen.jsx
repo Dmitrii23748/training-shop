@@ -1,18 +1,11 @@
 import React from "react";
 import CartPageComponentWomen from "../Components/CartPageComponentWomen/CartPageComponentWomen";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../redux/products/productsSlice";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 import Loader from "react-js-loader";
 
 function CartPageWomen() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
-
   
   const { status, error } = useSelector((state) => state.products);
 

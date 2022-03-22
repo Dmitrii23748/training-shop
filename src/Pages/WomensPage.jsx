@@ -168,12 +168,13 @@ function WomensPage() {
           </div>
         </div>
       )}
+
+      <WomensFilter
+        closeOpenFilterWomens={closeOpenFilterWomens}
+        handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
+      />
       {status === "resolved" ? (
         <>
-          <WomensFilter
-            closeOpenFilterWomens={closeOpenFilterWomens}
-            handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
-          />
           <FilterWomens
             filterSelect={filterSelect}
             closeOpenFilterWomens={closeOpenFilterWomens}

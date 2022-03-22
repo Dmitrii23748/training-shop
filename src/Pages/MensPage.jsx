@@ -170,12 +170,13 @@ function MensPage() {
           </div>
         </div>
       )}
+
+      <MensFilter
+        closeOpenFilterMen={closeOpenFilterMen}
+        handleCloseOpenFilterMen={handleCloseOpenFilterMen}
+      />
       {status === "resolved" ? (
         <>
-          <MensFilter
-            closeOpenFilterMen={closeOpenFilterMen}
-            handleCloseOpenFilterMen={handleCloseOpenFilterMen}
-          />
           <FilterMens
             filterSelect={filterSelect}
             closeOpenFilterMen={closeOpenFilterMen}
