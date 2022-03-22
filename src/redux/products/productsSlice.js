@@ -5,7 +5,7 @@ export const getAllProducts = createAsyncThunk(
     'products/getAllProducts',
     async (_, {rejectWithValue}) => {
         try {
-            const res = await axios.get('https://rtraining.cleverland.by/shop/products');
+            const res = await axios.get('https://training.cleverland.by/shop/products');
             if(res.status !== 200) {
                 throw new Error("ошибка")
             }
