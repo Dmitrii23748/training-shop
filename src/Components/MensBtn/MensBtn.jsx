@@ -3,18 +3,21 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./MensBtn.css";
 
-function MensBtn({filtersMensMainPage}) {
+function MensBtn({filtersMensMainPage, mensMainPageProducts}) {
 
   const [activeBtn, setActiveBtn ] = useState(0);
 
   const clickButtonCategoryMens = (statusBtn, indexBtn) => {
-    filtersMensMainPage(statusBtn);
     setActiveBtn(indexBtn)
+    filtersMensMainPage(statusBtn);
+    
   }
 
   useEffect(() => {
-    filtersMensMainPage('isNewArrivals')
-  }, [])
+    if( mensMainPageProducts !== undefined) { 
+      filtersMensMainPage('isNewArrivals')
+    }
+  }, [mensMainPageProducts])
 
   const buttons = [
     { name:'isNewArrivals', label: 'NEW ARRIVALS', func: 'isNewArrivals'},

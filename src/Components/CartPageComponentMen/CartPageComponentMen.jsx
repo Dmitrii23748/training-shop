@@ -21,7 +21,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import {
-  objProductMens,
   createUniqueCartColor,
 } from "../../data/root";
 import { Link } from "react-router-dom";
@@ -33,13 +32,7 @@ function CartPageComponentMen({ routeId }) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
   const mensMainPageProducts = PRODUCTS.men;
 
-  const cartMenParams = objProductMens[`${routeId}`];
-  const cartMenImages = objProductMens[`${routeId}`].images;
-  const cartMenSize = objProductMens[`${routeId}`].sizes;
-  const cartMenPrice = objProductMens[`${routeId}`].price;
-  const cartMenReviews = objProductMens[`${routeId}`].reviews;
-  const arrCartColor = createUniqueCartColor(cartMenImages, "color");
-
+ 
   const [sizeStateMens, setSizeStateMens] = useState(0);
   const handleUpdateSizeMen = (index) => {
     setSizeStateMens(index);
@@ -49,8 +42,22 @@ function CartPageComponentMen({ routeId }) {
   const handleUpdateColorMen = (index) => {
     setcolorStateMens(index);
   };
+
+  const objProductMens = mensMainPageProducts.reduce((acc, menProduct) => {
+    acc[menProduct.id] = menProduct;
+    return acc;
+  }, {});
+
+  const cartMenParams = objProductMens[`${routeId}`];
+  const cartMenImages = objProductMens[`${routeId}`].images;
+  const cartMenSize = objProductMens[`${routeId}`].sizes;
+  const cartMenPrice = objProductMens[`${routeId}`].price;
+  const cartMenReviews = objProductMens[`${routeId}`].reviews;
+  const arrCartColor = createUniqueCartColor(cartMenImages, "color");
+
+  
   // получение уникального цвета и картинки для него
-  let newArrColorMens = cartMenImages
+  let newArrColorMens = [...cartMenImages]
     .sort(function (a, b) {
       return a.color < b.color ? -1 : 1;
     })

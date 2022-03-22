@@ -154,7 +154,7 @@ function MensPage() {
   return (
     <div data-test-id={`clothes-/training-shop/mens`}>
       {status === "loading" && (
-        <div className="parent-loader">
+        <div className="parent-loader" data-test-id="loader">
           <Loader
             type="bubble-top"
             bgColor={"#121212"}
@@ -164,7 +164,7 @@ function MensPage() {
         </div>
       )}
       {error && (
-        <div className="wrapper-error">
+        <div className="wrapper-error" data-test-id="error">
           <div className="error-message-block">
             <h2 className="error-title">Ошибка получения данных</h2>
           </div>

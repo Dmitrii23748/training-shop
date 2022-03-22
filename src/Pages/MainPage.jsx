@@ -10,7 +10,6 @@ import SeeBtn from "../Components/SeeBtn/SeeBtn";
 import SeeBtnMen from "../Components/SeeBtnMen/SeeBtnMen";
 import WomensBtn from "../Components/WomensBtn/WomensBtn";
 import MensBtn from "../Components/MensBtn/MensBtn";
-import { mensMainPageProducts } from "../data/root";
 import { useSelector } from "react-redux";
 import Loader from "react-js-loader";
 
@@ -18,6 +17,7 @@ function MainPage() {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
 
   const womensMainPageProducts = PRODUCTS.women;
+  const mensMainPageProducts = PRODUCTS.men;
 
   const { status, error } = useSelector((state) => state.products);
 
@@ -62,42 +62,44 @@ function MainPage() {
     }
   };
   const filtersMensMainPage = (status) => {
-    if (status === "isNewArrivals") {
-      let newIsNewArrivals = [...mensMainPageProducts].filter(
-        (item) => item.particulars.isNewArrivals === true
-      );
-      setcategoryMensMain(newIsNewArrivals);
-    }
-    if (status === "isSpecial") {
-      let newIsStatus = [...mensMainPageProducts].filter(
-        (item) => item.particulars.isSpecial === true
-      );
-      setcategoryMensMain(newIsStatus);
-    }
-    if (status === "isBestseller") {
-      let newIsBestseller = [...mensMainPageProducts].filter(
-        (item) => item.particulars.isBestseller === true
-      );
-      setcategoryMensMain(newIsBestseller);
-    }
-    if (status === "isMostViewed") {
-      let newIsMostViewed = [...mensMainPageProducts].filter(
-        (item) => item.particulars.isMostViewed === true
-      );
-      setcategoryMensMain(newIsMostViewed);
-    }
-    if (status === "isFeatured") {
-      let newIsFeatured = [...mensMainPageProducts].filter(
-        (item) => item.particulars.isFeatured === true
-      );
-      setcategoryMensMain(newIsFeatured);
+    if (mensMainPageProducts !== undefined) {
+      if (status === "isNewArrivals") {
+        let newIsNewArrivals = [...mensMainPageProducts].filter(
+          (item) => item.particulars.isNewArrivals === true
+        );
+        setcategoryMensMain(newIsNewArrivals);
+      }
+      if (status === "isSpecial") {
+        let newIsStatus = [...mensMainPageProducts].filter(
+          (item) => item.particulars.isSpecial === true
+        );
+        setcategoryMensMain(newIsStatus);
+      }
+      if (status === "isBestseller") {
+        let newIsBestseller = [...mensMainPageProducts].filter(
+          (item) => item.particulars.isBestseller === true
+        );
+        setcategoryMensMain(newIsBestseller);
+      }
+      if (status === "isMostViewed") {
+        let newIsMostViewed = [...mensMainPageProducts].filter(
+          (item) => item.particulars.isMostViewed === true
+        );
+        setcategoryMensMain(newIsMostViewed);
+      }
+      if (status === "isFeatured") {
+        let newIsFeatured = [...mensMainPageProducts].filter(
+          (item) => item.particulars.isFeatured === true
+        );
+        setcategoryMensMain(newIsFeatured);
+      }
     }
   };
 
   return (
     <div data-test-id="app">
       {status === "loading" && (
-        <div className="parent-loader">
+        <div className="parent-loader" data-test-id="loader">
           <Loader
             type="bubble-top"
             bgColor={"#121212"}
@@ -107,7 +109,7 @@ function MainPage() {
         </div>
       )}
       {error && (
-        <div className="wrapper-error">
+        <div className="wrapper-error" data-test-id="error">
           <div className="error-message-block">
             <h2 className="error-title">Ошибка получения данных</h2>
           </div>
@@ -123,7 +125,7 @@ function MainPage() {
         <Womens categoryWomensMain={categoryWomensMain} />
       ) : null}
       <SeeBtn />
-      <MensBtn filtersMensMainPage={filtersMensMainPage} />
+      <MensBtn filtersMensMainPage={filtersMensMainPage} mensMainPageProducts={mensMainPageProducts} />
       {status === "resolved" ? (
         <Mens categoryMensMain={categoryMensMain} />
       ) : null}

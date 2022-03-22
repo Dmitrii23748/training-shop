@@ -1,23 +1,3 @@
-/* eslint-disable array-callback-return */
-import { NEWPRODUCTS } from "./newProducts";
-
-
-
-export const womensMainPageProducts = NEWPRODUCTS.women;
-export const mensMainPageProducts = NEWPRODUCTS.men;
-
-// export const objProductWomens = womensMainPageProducts.reduce(
-//   (acc, womenProduct) => {
-//     acc[womenProduct.id] = womenProduct;
-//     return acc;
-//   },
-//   {}
-// );
-
-export const objProductMens = mensMainPageProducts.reduce((acc, menProduct) => {
-  acc[menProduct.id] = menProduct;
-  return acc;
-}, {});
 
 
 export function createUniqueSizesArray(arr) {
@@ -79,21 +59,3 @@ export const priceCheckBoxMens = [
 ];
 
 
-
-
-
-
-
- // let colorPictureWomens = [];
-  // function colorUrl() {
-  
-  //   for (let index = 0; index < arrCartColor.length; index++) {
-  //     const b = cartWomenImages.filter((itemA) => {
-  //       return itemA.color === arrCartColor[index];
-  //     });
-  //     colorPictureWomens.push(b[index]);
-  //   }
-  // }
-
-  // colorUrl()
-  // console.log(colorPictureWomens);

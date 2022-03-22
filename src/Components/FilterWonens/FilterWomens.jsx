@@ -1,7 +1,7 @@
 import React from "react";
 import "./FilterWomens.css";
 import PropTypes from "prop-types";
-import { NEWPRODUCTS } from "../../data/newProducts";
+// import { NEWPRODUCTS } from "../../data/newProducts";
 import CheckBox from "../CheckBox/CheckBox";
 import {
   createUniqueSizesArray,
@@ -9,9 +9,10 @@ import {
   createUniqueBrandsArray,
   priceCheckBoxWomens,
 } from "../../data/root";
+import { useSelector } from "react-redux";
 
 function FilterWomens({ filterSelect, closeOpenFilterWomens }) {
-
+  const NEWPRODUCTS = useSelector((state) => state.products.allProducts);
 
   const sizeCategory = createUniqueSizesArray(NEWPRODUCTS.women);
   const colorCategory = createUniqueColorsArray(NEWPRODUCTS.women);
