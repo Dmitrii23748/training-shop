@@ -163,6 +163,11 @@ function MensPage() {
           />
         </div>
       )}
+
+      <MensFilter
+        closeOpenFilterMen={closeOpenFilterMen}
+        handleCloseOpenFilterMen={handleCloseOpenFilterMen}
+      />
       {error && (
         <div className="wrapper-error" data-test-id="error">
           <div className="error-message-block">
@@ -170,11 +175,6 @@ function MensPage() {
           </div>
         </div>
       )}
-
-      <MensFilter
-        closeOpenFilterMen={closeOpenFilterMen}
-        handleCloseOpenFilterMen={handleCloseOpenFilterMen}
-      />
       {status === "resolved" ? (
         <>
           <FilterMens

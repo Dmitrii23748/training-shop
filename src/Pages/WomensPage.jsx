@@ -161,18 +161,17 @@ function WomensPage() {
           />
         </div>
       )}
-      {error && (
+      <WomensFilter
+        closeOpenFilterWomens={closeOpenFilterWomens}
+        handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
+      />
+       {error && (
         <div className="wrapper-error" data-test-id="error">
           <div className="error-message-block">
             <h2 className="error-title">Ошибка получения данных</h2>
           </div>
         </div>
       )}
-
-      <WomensFilter
-        closeOpenFilterWomens={closeOpenFilterWomens}
-        handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
-      />
       {status === "resolved" ? (
         <>
           <FilterWomens
