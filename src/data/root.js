@@ -6,13 +6,13 @@ import { NEWPRODUCTS } from "./newProducts";
 export const womensMainPageProducts = NEWPRODUCTS.women;
 export const mensMainPageProducts = NEWPRODUCTS.men;
 
-export const objProductWomens = womensMainPageProducts.reduce(
-  (acc, womenProduct) => {
-    acc[womenProduct.id] = womenProduct;
-    return acc;
-  },
-  {}
-);
+// export const objProductWomens = womensMainPageProducts.reduce(
+//   (acc, womenProduct) => {
+//     acc[womenProduct.id] = womenProduct;
+//     return acc;
+//   },
+//   {}
+// );
 
 export const objProductMens = mensMainPageProducts.reduce((acc, menProduct) => {
   acc[menProduct.id] = menProduct;

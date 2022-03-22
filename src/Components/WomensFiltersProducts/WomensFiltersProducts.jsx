@@ -13,7 +13,7 @@ function WomensFiltersProducts({productsWomens}) {
     >
       <div className="container">
         <div className="womens-img__block-prod" data-test-id={`products-page-women`}>
-          {productsWomens.map((cart, index) => {
+          {productsWomens && productsWomens.map((cart, index) => {
             return (
               <CartWomens
                 key={cart.id}
@@ -37,5 +37,5 @@ function WomensFiltersProducts({productsWomens}) {
 export default WomensFiltersProducts;
 
 WomensFiltersProducts.propTypes = {
-  productsWomens: PropTypes.array.isRequired
+  productsWomens: PropTypes.array
 }

@@ -5,7 +5,6 @@ const cartSlice = createSlice({
   initialState: {
     itemsInCart: [],
     itemsInCartWomens: [],
-
   },
   reducers: {
     setItemInCart: (state, action) => {

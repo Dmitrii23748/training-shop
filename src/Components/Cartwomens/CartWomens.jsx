@@ -6,7 +6,6 @@ import Stars from "../Stars/Stars";
 
 function CartWomens({routeId, id, name, price, sale, discount, img, rating }) {
   return (
-  
     <>
       <div className="women-cart" >
         <Link to={`/women/${routeId}`} className="women-cart__link" data-test-id={`clothes-card-women`}>

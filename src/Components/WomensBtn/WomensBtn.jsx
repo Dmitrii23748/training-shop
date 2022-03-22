@@ -1,21 +1,16 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./WomensBtn.css";
 
-function WomensBtn({filtersWomensMainPage}) {
+function WomensBtn({filtersWomensMainPage, womensMainPageProducts}) {
 
   const [activeBtn, setActiveBtn ] = useState(0)
 
   const clickButtonCategoryWomens = (statusBtn, indexBtn) => {
-    filtersWomensMainPage(statusBtn);
     setActiveBtn(indexBtn)
+    filtersWomensMainPage(statusBtn);
   }
-
-  useEffect(() => {
-    filtersWomensMainPage('isNewArrivals')
-  }, [])
 
   const buttons = [
     { name:'isNewArrivals', label: 'NEW ARRIVALS', func: 'isNewArrivals'},
@@ -24,6 +19,12 @@ function WomensBtn({filtersWomensMainPage}) {
     { name:'isMostViewed', label: 'MOST VIEWED', func: 'isMostViewed'},
     { name:'isFeatured', label: 'FEATURED PRODUCTS', func: 'isFeatured'}
   ]
+
+  useEffect(() => {
+    if( womensMainPageProducts !== undefined) {
+      filtersWomensMainPage('isNewArrivals')
+    }
+  }, [womensMainPageProducts])
 
   return (
     <section className="section-womens-btn">

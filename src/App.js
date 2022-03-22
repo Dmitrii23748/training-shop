@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
@@ -14,6 +14,8 @@ import AccessoriesPage from "./Pages/AccssesoriesPage";
 import BlogPage from "./Pages/BlogPage";
 import ContactPage from "./Pages/ContactPage";
 import ShopCart from "./Components/ShopCart/ShopCart";
+import { useDispatch} from "react-redux";
+import { getAllProducts } from "./redux/products/productsSlice";
 
 function App() {
   const [showLink, setShowLink] = useState(false);
@@ -25,6 +27,14 @@ function App() {
   const handleShowCart = () => {
     setShowCart(!showCart);
   };
+
+  const dispatch = useDispatch(); 
+  useEffect(() => {
+    dispatch(getAllProducts())
+  }, [dispatch])
+  
+
+
   return (
     <div className={showCart ? "wrapper-html noscroll" : "wrapper-html"}>
       <ShopCart showCart={showCart} handleShowCart={handleShowCart}  setShowCart={setShowCart}/>
@@ -41,7 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/women" element={<WomensPage />} />
-          <Route path="/women/:routeId" element={<CartPageWomen />} />
+          <Route path="/women/:routeId" element={<CartPageWomen/>} />
           <Route path="/men" element={<MensPage />} />
           <Route path="/men/:routeId" element={<CartPageMen />} />
           <Route path="/aboutUs" element={<AboutUsPage />} />

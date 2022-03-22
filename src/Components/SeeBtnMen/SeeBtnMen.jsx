@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SeeBtn.css";
 
-function SeeBtn() {
+function SeeBtnMen() {
   return (
     <section className="btn-block">
       <div className="container">
-        <Link to={`/women`}>
+        <Link to={`/men`}>
           <div className="see__btn-block">
             <button className="see-btn">see all</button>
           </div>
@@ -16,4 +16,4 @@ function SeeBtn() {
   );
 }
 
-export default SeeBtn;
+export default SeeBtnMen;

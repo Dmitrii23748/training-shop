@@ -3,11 +3,15 @@ import React, { useCallback, useEffect, useState } from "react";
 import FilterWomens from "../Components/FilterWonens/FilterWomens";
 import WomensFiltersProducts from "../Components/WomensFiltersProducts/WomensFiltersProducts";
 import WomensFilter from "../Components/WomensFilter/WomensFilter";
-import { womensMainPageProducts} from "../data/root";
 import WomensCountFilters from "../Components/WomensCountFilters/WomensCountFilters";
-// import { NEWPRODUCTS } from "../data/newProducts";
+import { useSelector } from "react-redux";
+import Loader from "react-js-loader";
 
 function WomensPage() {
+  const PRODUCTS = useSelector((state) => state.products.allProducts);
+
+  const womensMainPageProducts = PRODUCTS.women;
+  const { status, error } = useSelector((state) => state.products);
 
   const initFilter = {
     color: [],
@@ -20,9 +24,8 @@ function WomensPage() {
   const [closeOpenFilterWomens, setCloseOpenFilterWomens] = useState(false);
 
   const handleCloseOpenFilterWomens = () => {
-    setCloseOpenFilterWomens(!closeOpenFilterWomens)
-  }
-
+    setCloseOpenFilterWomens(!closeOpenFilterWomens);
+  };
 
   const filterSelect = (type, checked, item) => {
     if (checked) {
@@ -37,25 +40,32 @@ function WomensPage() {
           setFilter({ ...filter, size: [...filter.size, item.toLowerCase()] });
           break;
         case "BRAND":
-          setFilter({...filter, brand: [...filter.brand, item.toLowerCase()]});
+          setFilter({
+            ...filter,
+            brand: [...filter.brand, item.toLowerCase()],
+          });
           break;
         case "PRICE":
-          const arrPriceItem = item.map(priceItem => {
+          const arrPriceItem = item.map((priceItem) => {
             return priceItem;
-          })
-          setFilter({...filter, price: [...filter.price, ...arrPriceItem]});
-          break
+          });
+          setFilter({ ...filter, price: [...filter.price, ...arrPriceItem] });
+          break;
         default:
           console.log("ok");
       }
     } else {
       switch (type) {
         case "COLOR":
-          const newColor = filter.color.filter((color) => color.toLowerCase() !== item.toLowerCase());
+          const newColor = filter.color.filter(
+            (color) => color.toLowerCase() !== item.toLowerCase()
+          );
           setFilter({ ...filter, color: newColor });
           break;
         case "SIZE":
-          const newSize = filter.size.filter((size) => size.toLowerCase() !== item.toLowerCase());
+          const newSize = filter.size.filter(
+            (size) => size.toLowerCase() !== item.toLowerCase()
+          );
           setFilter({ ...filter, size: newSize });
           break;
         case "BRAND":
@@ -64,14 +74,18 @@ function WomensPage() {
           });
           setFilter({ ...filter, brand: newBrand });
           break;
-        case "PRICE":         
+        case "PRICE":
           const itemZero = item[0];
           const itemOne = item[1];
           const itemTwo = item[2];
           const newPrice = filter.price.filter((priceItem) => {
-              return priceItem !== itemZero && priceItem !== itemOne && priceItem !== itemTwo;
-          })
-          setFilter({...filter, price: newPrice})
+            return (
+              priceItem !== itemZero &&
+              priceItem !== itemOne &&
+              priceItem !== itemTwo
+            );
+          });
+          setFilter({ ...filter, price: newPrice });
           break;
         default:
           console.log("ok");
@@ -79,53 +93,56 @@ function WomensPage() {
     }
   };
 
-
   const updateProducts = useCallback(() => {
-    let temp = womensMainPageProducts;
-    if (filter.color.length > 0) {
-      temp = temp.filter((item) => {
-        const colorsWomensProducts = item.images.map((item) => {
-          return item.color.toLowerCase();
+    if (womensMainPageProducts !== undefined) {
+      let temp = womensMainPageProducts;
+      if (filter.color.length > 0) {
+        temp = temp.filter((item) => {
+          const colorsWomensProducts = item.images.map((item) => {
+            return item.color.toLowerCase();
+          });
+          const check = colorsWomensProducts.find((colorItem) =>
+            filter.color.includes(colorItem.toLowerCase())
+          );
+          return check !== undefined;
         });
-        const check = colorsWomensProducts.find((colorItem) =>
-          filter.color.includes(colorItem.toLowerCase())
-        );
-        return check !== undefined;
-      });
-    }
-    if (filter.size.length > 0) {
-      temp = temp.filter((item) => {
-        const check = item.sizes.find((size) => filter.size.includes(size.toLowerCase()));
-        return check !== undefined;
-      });
-    }
-    if (filter.brand.length > 0) {
-      temp = temp.filter((item) => {
-        const brandsArrayWomens = [];
-        brandsArrayWomens.push(item.brand);
-        const brandsWomensProducts = brandsArrayWomens.map((item) => {
-          return item.toLowerCase();
+      }
+      if (filter.size.length > 0) {
+        temp = temp.filter((item) => {
+          const check = item.sizes.find((size) =>
+            filter.size.includes(size.toLowerCase())
+          );
+          return check !== undefined;
         });
-        const check = brandsWomensProducts.find((brandItem) => {
-          return filter.brand.includes(brandItem.toLowerCase())
-        })
-        return check !== undefined;
-      });
+      }
+      if (filter.brand.length > 0) {
+        temp = temp.filter((item) => {
+          const brandsArrayWomens = [];
+          brandsArrayWomens.push(item.brand);
+          const brandsWomensProducts = brandsArrayWomens.map((item) => {
+            return item.toLowerCase();
+          });
+          const check = brandsWomensProducts.find((brandItem) => {
+            return filter.brand.includes(brandItem.toLowerCase());
+          });
+          return check !== undefined;
+        });
+      }
+      if (filter.price.length > 0) {
+        temp = temp.filter((item) => {
+          const pricesArrayWomens = [];
+          pricesArrayWomens.push(item.price);
+          const priceWomensProducts = pricesArrayWomens.map((item) => {
+            return item;
+          });
+          const check = priceWomensProducts.find((priceItem) => {
+            return filter.price.includes(priceItem);
+          });
+          return check !== undefined;
+        });
+      }
+      setProductsWomens(temp);
     }
-    if(filter.price.length > 0) {
-      temp = temp.filter((item) => {
-        const pricesArrayWomens = [];
-        pricesArrayWomens.push(item.price);
-        const priceWomensProducts = pricesArrayWomens.map((item) => {
-          return item
-        })
-        const check = priceWomensProducts.find((priceItem) => {
-          return filter.price.includes(priceItem)
-        })
-        return check !== undefined
-      })
-    }
-    setProductsWomens(temp);
   }, [filter, womensMainPageProducts]);
 
   useEffect(() => {
@@ -134,27 +151,48 @@ function WomensPage() {
 
   return (
     <div data-test-id={`clothes-/training-shop/womens`}>
-      <WomensFilter
-        closeOpenFilterWomens={closeOpenFilterWomens}
-        handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
-        />
-      <FilterWomens
-        filterSelect={filterSelect} 
-        closeOpenFilterWomens={closeOpenFilterWomens}
-        />
-        <WomensCountFilters
-          productsWomens={productsWomens}
-          filterColor={filter.color}
-          filterSize={filter.size}
-          filterBrand={filter.brand}
-          filterPrice={filter.price}
-        />
-      <WomensFiltersProducts productsWomens={productsWomens} />
-      <div className="square-block">
-        <div className="container">
-          <div className="square"></div>
+      {status === "loading" && (
+        <div className="parent-loader">
+          <Loader
+            type="bubble-top"
+            bgColor={"#121212"}
+            color={"#121212"}
+            size={70}
+          />
         </div>
-      </div>
+      )}
+      {error && (
+        <div className="wrapper-error">
+          <div className="error-message-block">
+            <h2 className="error-title">Ошибка получения данных</h2>
+          </div>
+        </div>
+      )}
+      {status === "resolved" ? (
+        <>
+          <WomensFilter
+            closeOpenFilterWomens={closeOpenFilterWomens}
+            handleCloseOpenFilterWomens={handleCloseOpenFilterWomens}
+          />
+          <FilterWomens
+            filterSelect={filterSelect}
+            closeOpenFilterWomens={closeOpenFilterWomens}
+          />
+          <WomensCountFilters
+            productsWomens={productsWomens}
+            filterColor={filter.color}
+            filterSize={filter.size}
+            filterBrand={filter.brand}
+            filterPrice={filter.price}
+          />
+          <WomensFiltersProducts productsWomens={productsWomens} />
+          <div className="square-block">
+            <div className="container">
+              <div className="square"></div>
+            </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

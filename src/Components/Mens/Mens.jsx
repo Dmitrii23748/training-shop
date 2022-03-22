@@ -12,7 +12,7 @@ function Mens({ categoryMensMain }) {
       >
         <div className="container">
           <div className="mens-img__block" data-test-id={`clothes-men`}>
-            {categoryMensMain.map((cart, index) => {
+            {categoryMensMain && categoryMensMain.map((cart, index) => {
               return (
                 <CartMens
                   key={cart.id}
@@ -37,5 +37,5 @@ function Mens({ categoryMensMain }) {
 export default Mens;
 
 Mens.propTypes = {
-  categoryMensMain: PropTypes.array.isRequired
+  categoryMensMain: PropTypes.array
 }

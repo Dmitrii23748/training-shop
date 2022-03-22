@@ -11,10 +11,14 @@ function WomensCountFilters({
   filterBrand,
   filterPrice,
 }) {
-  const [filterCount, setFilterCount] = useState(productsWomens.length);
+
+  const [filterCount, setFilterCount] = useState([]);
 
   useEffect(() => {
-    setFilterCount(productsWomens.length);
+    if(productsWomens !== undefined) {
+      setFilterCount(productsWomens.length);
+    }
+    
   }, [productsWomens]);
   return (
     <section className="show-count__filters">
@@ -105,7 +109,7 @@ function WomensCountFilters({
 export default WomensCountFilters;
 
 WomensCountFilters.propTypes = {
-  productsWomens: PropTypes.array.isRequired,
+  productsWomens: PropTypes.array,
   filterColor: PropTypes.array.isRequired,
   filterSize: PropTypes.array.isRequired,
   filterBrand: PropTypes.array.isRequired,

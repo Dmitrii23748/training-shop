@@ -14,7 +14,7 @@ function Womens({categoryWomensMain}) {
     >
       <div className="container">
         <div className="womens-img__block" data-test-id={`clothes-women`}>
-          {categoryWomensMain.map((cart, index) => {
+          {categoryWomensMain && categoryWomensMain.map((cart, index) => {
             return (
               <CartWomens
                 key={cart.id}
@@ -38,5 +38,5 @@ function Womens({categoryWomensMain}) {
 export default Womens;
 
 Womens.propTypes = {
-  categoryWomensMain: PropTypes.array.isRequired
+  categoryWomensMain: PropTypes.array
 }

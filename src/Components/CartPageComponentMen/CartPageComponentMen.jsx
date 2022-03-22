@@ -23,15 +23,17 @@ import "swiper/css/thumbs";
 import {
   objProductMens,
   createUniqueCartColor,
-  mensMainPageProducts,
 } from "../../data/root";
 import { Link } from "react-router-dom";
 import ButtonCart from "../ButtonCart/ButtonCart";
+import { useSelector } from "react-redux";
 
 function CartPageComponentMen({ routeId }) {
-  const cartMenParams = objProductMens[`${routeId}`];
-  // console.log(cartMenParams);
 
+  const PRODUCTS = useSelector((state) => state.products.allProducts);
+  const mensMainPageProducts = PRODUCTS.men;
+
+  const cartMenParams = objProductMens[`${routeId}`];
   const cartMenImages = objProductMens[`${routeId}`].images;
   const cartMenSize = objProductMens[`${routeId}`].sizes;
   const cartMenPrice = objProductMens[`${routeId}`].price;
@@ -58,7 +60,9 @@ function CartPageComponentMen({ routeId }) {
       }
       return arr;
     }, []);
-  // new Date().toISOString(),
+ 
+
+
   const cartProductMen = {
     id: `${cartMenParams.id}${cartMenSize[sizeStateMens]}${newArrColorMens[colorStateMens].color}`,
     name: cartMenParams.name,
@@ -496,8 +500,7 @@ function CartPageComponentMen({ routeId }) {
               navigation={true}
               modules={[Navigation]}
             >
-              {mensMainPageProducts.map((item, index) => {
-                console.log(item.id);
+              {mensMainPageProducts && mensMainPageProducts.map((item, index) => {
                 return (
                   <SwiperSlide key={index}>
                     <Link to={`/men/${item.id}`}>
