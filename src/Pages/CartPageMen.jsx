@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import CartPageComponentMen from "../Components/CartPageComponentMen/CartPageComponentMen";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllProducts } from "../redux/products/productsSlice";
 
 import Loader from "react-js-loader";
 
-function CartPageMen() {
+function CartPageMen({ comments, setComments, openCloseComments }) {
 
+  const dispatch = useDispatch();
   const { status, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getAllProducts())
+  }, [dispatch])
 
   const { routeId } = useParams();
   return (
     <>
-     {status === "loading" && (
+      {status === "loading" && (
         <div className="parent-loader" data-test-id="loader">
           <Loader
             type="bubble-top"
@@ -29,11 +36,24 @@ function CartPageMen() {
           </div>
         </div>
       )}
-       {status === "resolved" ? (
-        <CartPageComponentMen routeId={routeId} />
+      {status === "resolved" ? (
+        <CartPageComponentMen
+          routeId={routeId}
+          comments={comments}
+          openCloseComments={openCloseComments}
+          setComments={setComments}
+        />
       ) : null}
     </>
-  ) 
+  );
 }
 
 export default CartPageMen;
+
+
+CartPageMen.propTypes = {
+  comments: PropTypes.bool.isRequired,
+  setComments: PropTypes.func.isRequired,
+  openCloseComments: PropTypes.func.isRequired
+};
+

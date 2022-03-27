@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./CartPageComponentWomen.css";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
@@ -22,12 +23,20 @@ import "swiper/css/thumbs";
 import { createUniqueCartColor } from "../../data/root";
 import { Link } from "react-router-dom";
 import ButtonCartWomen from "../ButtonCartWomen/ButtonCartWomen";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Comments from "../Comments/Comments";
+import { copyRewiewsWomens } from "../../redux/commets/commetsSlice";
 
-function CartPageComponentWomen({ routeId }) {
-
+function CartPageComponentWomen({
+  routeId,
+  comments,
+  setComments,
+  openCloseComments,
+}) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
   const womensMainPageProducts = PRODUCTS.women;
+
+  const dispatch = useDispatch();
 
   const [sizeStateWomens, setSizeStateWomens] = useState(0);
   const handleUpdateSizeWomen = (index) => {
@@ -53,6 +62,14 @@ function CartPageComponentWomen({ routeId }) {
   const cartWomenPrice = objProductWomens[`${routeId}`].price;
   const cartWomenReviews = objProductWomens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartWomenImages, "color");
+
+  const cartWomensReviewsRedux = useSelector(
+    (state) => state.comments.womensRewiews
+  );
+
+  useEffect(() => {
+    dispatch(copyRewiewsWomens(cartWomenReviews));
+  }, []);
 
   let newArrColorWomens = [...cartWomenImages]
     .sort(function (a, b) {
@@ -416,7 +433,7 @@ function CartPageComponentWomen({ routeId }) {
               <div className="cart-page__reviews">
                 <h3 className="cart-page__reviews-title">reviews</h3>
                 <div className="cart-page__reviews-stars-block">
-                  {cartWomenReviews.length > 0 ? (
+                  {cartWomensReviewsRedux.length > 0 ? (
                     <div className="cart-page__reviews-stars">
                       <div className="cart-page__stars-img">
                         <img
@@ -446,18 +463,24 @@ function CartPageComponentWomen({ routeId }) {
                         />
                       </div>
                       <p className="cart-page__stars-text">
-                        {cartWomenReviews.length} Reviews
+                        {cartWomensReviewsRedux.length} Reviews
                       </p>
                     </div>
                   ) : null}
 
                   <div className="cart-page__reviews-write-block">
-                    <img className="write-img" src={write} alt="write" />
+                    <img
+                      className="write-img"
+                      src={write}
+                      alt="write"
+                      onClick={openCloseComments}
+                      data-test-id="review-button"
+                    />
                     <p className="write-text">Write a review</p>
                   </div>
                 </div>
-                {cartWomenReviews.length > 0
-                  ? cartWomenReviews.map((item, index) => {
+                {cartWomensReviewsRedux.length > 0
+                  ? cartWomensReviewsRedux.map((item, index) => {
                       return (
                         <div className="cart-page__reviews-author" key={index}>
                           <div className="cart-page__author">
@@ -544,6 +567,11 @@ function CartPageComponentWomen({ routeId }) {
           </div>
         </div>
       </div>
+      {comments ? (
+        <div className="comments" onClick={(e) => setComments(false)}>
+          <Comments id={routeId} setComments={setComments} />
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -552,4 +580,7 @@ export default CartPageComponentWomen;
 
 CartPageComponentWomen.propTypes = {
   routeId: PropTypes.string,
+  comments: PropTypes.bool.isRequired,
+  setComments: PropTypes.func.isRequired,
+  openCloseComments: PropTypes.func.isRequired,
 };

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./CartPageComponentMen.css";
 // import { PRODUCTS } from "../../data/products";
@@ -20,19 +21,19 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import {
-  createUniqueCartColor,
-} from "../../data/root";
+import { createUniqueCartColor } from "../../data/root";
 import { Link } from "react-router-dom";
 import ButtonCart from "../ButtonCart/ButtonCart";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Comments from "../Comments/Comments";
+import { copyMensRewiews } from "../../redux/commets/commetsSlice";
 
-function CartPageComponentMen({ routeId }) {
-
+function CartPageComponentMen({ routeId, comments, setComments, openCloseComments }) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
   const mensMainPageProducts = PRODUCTS.men;
 
- 
+  const dispatch = useDispatch();
+
   const [sizeStateMens, setSizeStateMens] = useState(0);
   const handleUpdateSizeMen = (index) => {
     setSizeStateMens(index);
@@ -42,6 +43,7 @@ function CartPageComponentMen({ routeId }) {
   const handleUpdateColorMen = (index) => {
     setcolorStateMens(index);
   };
+
 
   const objProductMens = mensMainPageProducts.reduce((acc, menProduct) => {
     acc[menProduct.id] = menProduct;
@@ -55,7 +57,13 @@ function CartPageComponentMen({ routeId }) {
   const cartMenReviews = objProductMens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartMenImages, "color");
 
-  
+  const cartMenReviewsRedux = useSelector(state => state.comments.mensRewiews);
+
+  useEffect(() => {
+    dispatch(copyMensRewiews(cartMenReviews))
+  },[]);
+
+
   // получение уникального цвета и картинки для него
   let newArrColorMens = [...cartMenImages]
     .sort(function (a, b) {
@@ -67,8 +75,6 @@ function CartPageComponentMen({ routeId }) {
       }
       return arr;
     }, []);
- 
-
 
   const cartProductMen = {
     id: `${cartMenParams.id}${cartMenSize[sizeStateMens]}${newArrColorMens[colorStateMens].color}`,
@@ -417,7 +423,7 @@ function CartPageComponentMen({ routeId }) {
               <div className="cart-page__reviews">
                 <h3 className="cart-page__reviews-title">reviews</h3>
                 <div className="cart-page__reviews-stars-block">
-                  {cartMenReviews.length > 0 ? (
+                  {cartMenReviewsRedux.length > 0 ? (
                     <div className="cart-page__reviews-stars">
                       <div className="cart-page__stars-img">
                         <img
@@ -447,18 +453,24 @@ function CartPageComponentMen({ routeId }) {
                         />
                       </div>
                       <p className="cart-page__stars-text">
-                        {cartMenReviews.length} Reviews
+                        {cartMenReviewsRedux.length} Reviews
                       </p>
                     </div>
                   ) : null}
 
                   <div className="cart-page__reviews-write-block">
-                    <img className="write-img" src={write} alt="write" />
+                    <img
+                      className="write-img"
+                      src={write}
+                      alt="write"
+                      onClick={openCloseComments}
+                      data-test-id="review-button"
+                    />
                     <p className="write-text">Write a review</p>
                   </div>
                 </div>
-                {cartMenReviews.length > 0
-                  ? cartMenReviews.map((item, index) => {
+                {cartMenReviewsRedux.length > 0
+                  ? cartMenReviewsRedux.map((item, index) => {
                       return (
                         <div className="cart-page__reviews-author" key={index}>
                           <div className="cart-page__author">
@@ -507,43 +519,50 @@ function CartPageComponentMen({ routeId }) {
               navigation={true}
               modules={[Navigation]}
             >
-              {mensMainPageProducts && mensMainPageProducts.map((item, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <Link to={`/men/${item.id}`}>
-                      <div className="womens-cart womens-cart-slider">
-                        <div href="womens" className="men-cart__link">
-                          <img
-                            className="womens-cart__img"
-                            src={`https://training.cleverland.by/shop/${item.images[0].url}`}
-                            alt="womens-img"
-                          />
-                          <p className="womens-cart__text">{item.name}</p>
-                          <div className="womens-cart__stars">
-                            <div className="womens-cart__price-sale">
-                              <span className="womens-cart__stars-text">
-                                $ {item.price}
-                              </span>
+              {mensMainPageProducts &&
+                mensMainPageProducts.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <Link to={`/men/${item.id}`}>
+                        <div className="womens-cart womens-cart-slider">
+                          <div href="womens" className="men-cart__link">
+                            <img
+                              className="womens-cart__img"
+                              src={`https://training.cleverland.by/shop/${item.images[0].url}`}
+                              alt="womens-img"
+                            />
+                            <p className="womens-cart__text">{item.name}</p>
+                            <div className="womens-cart__stars">
+                              <div className="womens-cart__price-sale">
+                                <span className="womens-cart__stars-text">
+                                  $ {item.price}
+                                </span>
+                              </div>
+                              <StarsCart cartRating={item.rating} />
                             </div>
-                            <StarsCart cartRating={item.rating} />
+                            {item.discount ? (
+                              <div className="womens-percent womens-percent-cart">
+                                <p className="womens-percent__text">
+                                  {item.discount}
+                                </p>
+                              </div>
+                            ) : null}
                           </div>
-                          {item.discount ? (
-                            <div className="womens-percent womens-percent-cart">
-                              <p className="womens-percent__text">
-                                {item.discount}
-                              </p>
-                            </div>
-                          ) : null}
                         </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                );
-              })}
+                      </Link>
+                    </SwiperSlide>
+                  );
+                })}
             </Swiper>
           </div>
         </div>
       </div>
+
+      {comments ? (
+        <div className="comments" onClick={(e) => setComments(false)}>
+          <Comments id={routeId} setComments={setComments} />
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -552,4 +571,7 @@ export default CartPageComponentMen;
 
 CartPageComponentMen.propTypes = {
   routeId: PropTypes.string.isRequired,
+  comments: PropTypes.bool.isRequired,
+  setComments: PropTypes.func.isRequired,
+  openCloseComments: PropTypes.func.isRequired
 };

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import CartPageComponentWomen from "../Components/CartPageComponentWomen/CartPageComponentWomen";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-js-loader";
+import { getAllProducts } from "../redux/products/productsSlice";
 
-function CartPageWomen() {
-  
+function CartPageWomen({ comments, setComments, openCloseComments }) {
+  const dispatch = useDispatch();
+
   const { status, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const { routeId } = useParams();
   return (
@@ -31,10 +37,20 @@ function CartPageWomen() {
       )}
       {status === "resolved" ? (
         <CartPageComponentWomen
-          routeId={routeId}/>
+          routeId={routeId}
+          comments={comments}
+          openCloseComments={openCloseComments}
+          setComments={setComments}
+        />
       ) : null}
     </>
   );
 }
 
 export default CartPageWomen;
+
+CartPageWomen.propTypes = {
+  comments: PropTypes.bool.isRequired,
+  setComments: PropTypes.func.isRequired,
+  openCloseComments: PropTypes.func.isRequired
+};

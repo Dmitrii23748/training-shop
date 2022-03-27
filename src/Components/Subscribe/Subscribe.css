@@ -13,12 +13,16 @@
 }
 
 .subscribe-block {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
   text-align: center;
   padding: 80px 96px 96px 96px;
+}
+.form-subscribe {
+  width: 346px;
 }
 
 .subscribe-block__text {
@@ -78,6 +82,15 @@
   cursor: pointer;
 }
 
+.subscribe-block__btn:hover {
+  background-color: #E6E6E6;
+  color: #121212;
+}
+
+.subscribe-block__btn:disabled {
+  background-color: #9C9C9C;
+  color: #ffffff;
+}
 .subscribe__women {
   position: absolute;
   bottom: -96px;
@@ -87,6 +100,26 @@
   position: absolute;
   bottom: -47px;
   right: -39%;
+}
+
+.error-email-subscribe {
+  color: #f70606;
+  font-size: 14px;
+}
+
+.resolved-mail {
+  color: green;
+  font-size: 14px;
+}
+.error-mail {
+  color: #f70606;
+  font-size: 14px;
+}
+
+.parent-loader-subscribe {
+  position: absolute;
+  bottom: 81px;
+  left: 84px;
 }
 
 @media screen and (max-width: 1165px) {

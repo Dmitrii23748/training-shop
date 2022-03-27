@@ -1,3 +1,9 @@
+.cart-page {
+  position: relative;
+  
+}
+
+
 .cart-page__navigation {
   background-color: #f8f8f8;
   margin-bottom: 32px;
@@ -614,6 +620,10 @@
   height: 40px;
   opacity: 0;
   pointer-events: visible;
+}
+
+.write-img {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1129px) {

@@ -5,15 +5,18 @@
 
 .footer-contact__block {
   padding: 12px 0;
-}
-
-.footer-contact__block {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
+.loader-subscribe-footer {
+  position: absolute;
+  top: -22px;
+  right: 210px;
+}
 .footer-contact__list {
   display: flex;
   align-items: center;
@@ -54,8 +57,8 @@
 
 .footer-contact__btn {
   padding: 7px 23px;
-  border: 1px solid #fff;
-  background-color: transparent;
+  border: 1px solid #fff !important;
+  background-color: #121212;
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;
@@ -64,6 +67,10 @@
   color: #ffffff;
   opacity: 0.9;
   cursor: pointer;
+}
+.footer-contact__btn:hover {
+  background-color: #E6E6E6;
+  color: #121212;
 }
 
 .footer-contact__item {
@@ -160,6 +167,28 @@
 .footer-pay__item {
   margin: 0 6px;
 }
+
+.error-email-subscribe {
+  color: #f70606;
+  font-size: 14px;
+}
+
+.resolved-mail {
+  color: green;
+  font-size: 14px;
+}
+.error-mail {
+  color: #f70606;
+  font-size: 14px;
+}
+.footer-contact__btn-dis:disabled {
+  background-color:#9C9C9C;
+  color: #ffffff;
+}
+.footer-block__error-res {
+  text-align: center;
+}
+
 
 @media screen and (max-width: 1130px) {
    .footer-info__item {

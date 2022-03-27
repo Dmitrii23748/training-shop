@@ -14,10 +14,11 @@ import AccessoriesPage from "./Pages/AccssesoriesPage";
 import BlogPage from "./Pages/BlogPage";
 import ContactPage from "./Pages/ContactPage";
 import ShopCart from "./Components/ShopCart/ShopCart";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllProducts } from "./redux/products/productsSlice";
 
 function App() {
+  const dispatch = useDispatch();
   const [showLink, setShowLink] = useState(false);
   const handleShowLink = () => {
     setShowLink(!showLink);
@@ -28,19 +29,27 @@ function App() {
     setShowCart(!showCart);
   };
 
-  const dispatch = useDispatch(); 
-  useEffect(() => {
-    dispatch(getAllProducts())
-  }, [dispatch])
-  
+  const [comments, setComments] = useState(false);
+  const openCloseComments = () => {
+    setComments(!comments);
+  };
 
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   return (
-    <div className={showCart ? "wrapper-html noscroll" : "wrapper-html"} data-test-id="app">
-      <ShopCart showCart={showCart} handleShowCart={handleShowCart}  setShowCart={setShowCart}/>
-      {/* {showCart ? (
-        <ShopCart handleShowCart={handleShowCart} setShowCart={setShowCart} />
-      ) : null} */}
+    <div
+      className={
+        showCart || comments ? "wrapper-html noscroll" : "wrapper-html"
+      }
+      data-test-id="app"
+    >
+      <ShopCart
+        showCart={showCart}
+        handleShowCart={handleShowCart}
+        setShowCart={setShowCart}
+      />
 
       <Navigation
         showLink={showLink}
@@ -51,9 +60,27 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/women" element={<WomensPage />} />
-          <Route path="/women/:routeId" element={<CartPageWomen/>} />
+          <Route
+            path="/women/:routeId"
+            element={
+              <CartPageWomen
+                comments={comments}
+                openCloseComments={openCloseComments}
+                setComments={setComments}
+              />
+            }
+          />
           <Route path="/men" element={<MensPage />} />
-          <Route path="/men/:routeId" element={<CartPageMen />} />
+          <Route
+            path="/men/:routeId"
+            element={
+              <CartPageMen
+                comments={comments}
+                openCloseComments={openCloseComments}
+                setComments={setComments}
+              />
+            }
+          />
           <Route path="/aboutUs" element={<AboutUsPage />} />
           <Route path="/beauty" element={<BeautyPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
