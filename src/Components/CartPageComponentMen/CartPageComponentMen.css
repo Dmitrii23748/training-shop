@@ -525,6 +525,7 @@
   line-height: 22px;
 }
 .cart-page__author-text {
+  word-wrap: break-word;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
