@@ -521,6 +521,7 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
             >
               {mensMainPageProducts &&
                 mensMainPageProducts.map((item, index) => {
+                  
                   return (
                     <SwiperSlide key={index}>
                       <Link to={`/men/${item.id}`}  onClick={() => dispatch(getAllProducts())}>
