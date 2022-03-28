@@ -26,6 +26,7 @@ import ButtonCartWomen from "../ButtonCartWomen/ButtonCartWomen";
 import { useSelector, useDispatch } from "react-redux";
 import Comments from "../Comments/Comments";
 import { copyRewiewsWomens } from "../../redux/commets/commetsSlice";
+import { getAllProducts } from "../../redux/products/productsSlice";
 
 function CartPageComponentWomen({
   routeId,
@@ -69,7 +70,9 @@ function CartPageComponentWomen({
 
   useEffect(() => {
     dispatch(copyRewiewsWomens(cartWomenReviews));
-  }, []);
+  }, [dispatch]);
+
+
 
   let newArrColorWomens = [...cartWomenImages]
     .sort(function (a, b) {
@@ -533,7 +536,7 @@ function CartPageComponentWomen({
                 womensMainPageProducts.map((item, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <Link to={`/women/${item.id}`}>
+                      <Link to={`/women/${item.id}`} onClick={() => dispatch(getAllProducts())}>
                         <div className="womens-cart womens-cart-slider">
                           <div href="womens" className="men-cart__link">
                             <img

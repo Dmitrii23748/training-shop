@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./CartPageComponentMen.css";
-// import { PRODUCTS } from "../../data/products";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import StarsCart from "../StarsCart/StarsCart";
@@ -27,6 +26,7 @@ import ButtonCart from "../ButtonCart/ButtonCart";
 import { useSelector, useDispatch } from "react-redux";
 import Comments from "../Comments/Comments";
 import { copyMensRewiews } from "../../redux/commets/commetsSlice";
+import { getAllProducts } from "../../redux/products/productsSlice";
 
 function CartPageComponentMen({ routeId, comments, setComments, openCloseComments }) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
@@ -523,7 +523,7 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
                 mensMainPageProducts.map((item, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <Link to={`/men/${item.id}`}>
+                      <Link to={`/men/${item.id}`}  onClick={() => dispatch(getAllProducts())}>
                         <div className="womens-cart womens-cart-slider">
                           <div href="womens" className="men-cart__link">
                             <img

@@ -34,6 +34,7 @@ function Comments({ id, setComments }) {
     }
     
   }, [status]);
+  
 
   return (
     <div className="comments-block" onClick={(e) => e.stopPropagation()} data-test-id="review-modal">
