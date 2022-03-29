@@ -5,11 +5,13 @@ import staryellow from "../../img/stars/yellow-star.svg";
 import stargrey from "../../img/stars/grey-star.svg";
 
 function Stars({ rating }) {
+  console.log(rating);
   let starLength = 5;
   return (
     <>
       <div className="womens-cart__stars-block">
-        {[...Array(rating)].map((star, i) => {
+        { rating === 0 && rating <= 4 ?
+        [...Array(rating)].map((star, i) => {
           return (
             <img
               key={i}
@@ -18,8 +20,8 @@ function Stars({ rating }) {
               alt="staryellow"
             />
           );
-        })}
-        { rating > 0 ?
+        }) : null}
+        { rating === 0 && rating <= 4 ?
         [...Array(starLength - rating )].map((star, i) => {
           return (
             <img

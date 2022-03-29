@@ -9,7 +9,8 @@ function StarsCart({ cartRating }) {
   return (
     <>
       <div className="womens-cart__stars-block">
-        {[...Array(cartRating)].map((star, i) => {
+        { cartRating === 0 || cartRating <= 4 ?
+        [...Array(cartRating)].map((star, i) => {
           return (
             <img
               key={i}
@@ -18,8 +19,8 @@ function StarsCart({ cartRating }) {
               alt="staryellow"
             />
           );
-        })}
-        { cartRating > 0 ?
+        }) : null}
+        { cartRating === 0 || cartRating <= 4 ?
         [...Array(starLength - cartRating )].map((star, i) => {
           return (
             <img
