@@ -5,7 +5,6 @@ import staryellow from "../../img/stars/yellow-star.svg";
 import stargrey from "../../img/stars/grey-star.svg";
 
 function Stars({ rating }) {
-  console.log(rating);
   let starLength = 5;
   return (
     <>

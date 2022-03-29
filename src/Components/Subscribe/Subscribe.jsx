@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-escape */
 import React, { useEffect, useState } from "react";
 import "./Subscribe.css";
 import women from "../../img/subscribe/women.png";
 import men from "../../img/subscribe/men.png";
 import { useDispatch, useSelector } from "react-redux";
-import { setSubscribe } from "../../redux/subscribe/subscribeSlice";
+import { setSubscribe} from "../../redux/subscribe/subscribeSlice";
 import { postSubscribe } from "../../redux/subscribe/subscribeSlice";
 import Loader from "react-js-loader";
 
@@ -37,6 +38,7 @@ function Subscribe() {
     }
   };
 
+
   useEffect(() => {
     if (emailError) {
       setFormValid(false);
@@ -45,9 +47,11 @@ function Subscribe() {
     }
   }, [emailError]);
 
+
   const postEmailSubscribe = () => {
     dispath(postSubscribe(valueSubscribe));
   };
+
 
   return (
     <section className="subscribe">

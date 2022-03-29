@@ -31,7 +31,7 @@ const subscribeSlice = createSlice({
     reducers:{
         setSubscribe: (state, action) => {
             state.subscribeValue = action.payload
-        },
+        }
     },
     extraReducers: {
         [postSubscribe.pending] : (state) => {
