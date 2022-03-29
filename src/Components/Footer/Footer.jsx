@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from "react";
 import "./Footer.css";
@@ -33,6 +34,8 @@ function Footer() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
+  const [inputSubscribe, setInputSubscribe ] = useState(false)
+
   const blurEmail = (e) => {
     if (e.target.name === "email") {
       setEmailDirty(true);
@@ -60,6 +63,13 @@ function Footer() {
       setFormValid(true);
     }
   }, [emailError]);
+
+  useEffect(() => {
+    if( status === 'resolved') {
+      dispath(setSubscribeFooter(''));
+      setInputSubscribe(!inputSubscribe)
+    }
+  }, [status])
 
   const postEmailSubscribe = () => {
     dispath(postSubscribeFooter(valueSubscribe));
@@ -146,7 +156,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-block__error-res">
-        {status === "resolved" && valueSubscribe.length > 0 ? (
+        {inputSubscribe ? (
           <p className="resolved-mail">Почта отправлена успешно</p>
         ) : null}
         {error ? <p className="error-mail">Ошибка при отправке почты</p> : null}

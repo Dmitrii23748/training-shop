@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const postSubscribe = createAsyncThunk(
     'subscribe/postSubscribe',
-    async (email, {rejectWithValue}) => {
+    async (email, {rejectWithValue, dispatch}) => {
         try {
             const mailData = {
                 "mail": email

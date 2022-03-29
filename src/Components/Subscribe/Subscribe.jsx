@@ -18,6 +18,8 @@ function Subscribe() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
+  const [inputSubscribe, setInputSubscribe ] = useState(false)
+
   const blurEmail = (e) => {
     if (e.target.name === "email") {
       setEmailDirty(true);
@@ -46,6 +48,13 @@ function Subscribe() {
       setFormValid(true);
     }
   }, [emailError]);
+
+  useEffect(() => {
+    if( status === 'resolved') {
+      dispath(setSubscribe(''));
+      setInputSubscribe(!inputSubscribe)
+    }
+  }, [status])
 
 
   const postEmailSubscribe = () => {
@@ -76,7 +85,8 @@ function Subscribe() {
               onChange={(e) => handleChangeSubscribe(e)}
               data-test-id="main-subscribe-mail-field"
             />
-            {status === "resolved" && valueSubscribe.length > 0 ? (
+            {/* status === "resolved" && valueSubscribe.length > 0 */}
+            { inputSubscribe ? (
               <p className="resolved-mail">Почта отправлена успешно</p>
             ) : null}
             {error ? (
