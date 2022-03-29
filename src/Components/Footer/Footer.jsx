@@ -34,7 +34,7 @@ function Footer() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
-  const [inputSubscribe, setInputSubscribe ] = useState(false)
+  const [inputSubscribeFooter, setInputSubscribeFooter ] = useState(false)
 
   const blurEmail = (e) => {
     if (e.target.name === "email") {
@@ -67,7 +67,7 @@ function Footer() {
   useEffect(() => {
     if( status === 'resolved') {
       dispath(setSubscribeFooter(''));
-      setInputSubscribe(!inputSubscribe)
+      setInputSubscribeFooter(!inputSubscribeFooter)
     }
   }, [status])
 
@@ -156,7 +156,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-block__error-res">
-        {inputSubscribe ? (
+        {inputSubscribeFooter ? (
           <p className="resolved-mail">Почта отправлена успешно</p>
         ) : null}
         {error ? <p className="error-mail">Ошибка при отправке почты</p> : null}
