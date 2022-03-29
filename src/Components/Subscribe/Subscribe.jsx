@@ -19,6 +19,7 @@ function Subscribe() {
   const [formValid, setFormValid] = useState(false);
 
   const [inputSubscribe, setInputSubscribe ] = useState(false)
+  const [btnSubscribe, setBtnSubscribe ] = useState(false)
 
   const blurEmail = (e) => {
     if (e.target.name === "email") {
@@ -52,7 +53,8 @@ function Subscribe() {
   useEffect(() => {
     if( status === 'resolved') {
       dispath(setSubscribe(''));
-      setInputSubscribe(!inputSubscribe)
+      setInputSubscribe(!inputSubscribe);
+      setBtnSubscribe(!btnSubscribe)
     }
   }, [status])
 
@@ -96,7 +98,7 @@ function Subscribe() {
               onClick={postEmailSubscribe}
               type="button"
               className="subscribe-block__btn"
-              disabled={!formValid || status === "loading"}
+              disabled={!formValid || btnSubscribe}
               data-test-id="main-subscribe-mail-button"
             >
               Subscribe

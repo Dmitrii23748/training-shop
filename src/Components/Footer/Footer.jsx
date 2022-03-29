@@ -34,7 +34,8 @@ function Footer() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
-  const [inputSubscribeFooter, setInputSubscribeFooter ] = useState(false)
+  const [inputSubscribeFooter, setInputSubscribeFooter ] = useState(false);
+  const [btnSubscribe, setBtnSubscribe ] = useState(false)
 
   const blurEmail = (e) => {
     if (e.target.name === "email") {
@@ -67,7 +68,8 @@ function Footer() {
   useEffect(() => {
     if( status === 'resolved') {
       dispath(setSubscribeFooter(''));
-      setInputSubscribeFooter(!inputSubscribeFooter)
+      setInputSubscribeFooter(!inputSubscribeFooter);
+      setBtnSubscribe(!btnSubscribe)
     }
   }, [status])
 
@@ -102,7 +104,7 @@ function Footer() {
               <button
                 className="footer-contact__btn footer-contact__btn-dis"
                 type="button"
-                disabled={!formValid || status === "loading" }
+                disabled={!formValid || btnSubscribe }
                 onClick={postEmailSubscribe}
                 data-test-id="footer-subscribe-mail-button"
               >
