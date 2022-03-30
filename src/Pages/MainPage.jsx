@@ -14,12 +14,7 @@ import { useSelector } from "react-redux";
 import Loader from "react-js-loader";
 import Footer from "../Components/Footer/Footer";
 
-function MainPage({
-  inputSubscribe,
-  setInputSubscribe,
-  btnSubscribe,
-  setBtnSubscribe,
-}) {
+function MainPage() {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
 
   const womensMainPageProducts = PRODUCTS.women;

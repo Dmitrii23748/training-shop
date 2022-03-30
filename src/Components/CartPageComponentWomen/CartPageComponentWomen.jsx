@@ -33,9 +33,10 @@ function CartPageComponentWomen({
   comments,
   setComments,
   openCloseComments,
+  womensMainPageProducts
 }) {
-  const PRODUCTS = useSelector((state) => state.products.allProducts);
-  const womensMainPageProducts = PRODUCTS.women;
+  // const PRODUCTS = useSelector((state) => state.products.allProducts);
+  // const womensMainPageProducts = PRODUCTS.women;
 
   const dispatch = useDispatch();
 
@@ -49,13 +50,19 @@ function CartPageComponentWomen({
     setcolorStateWomens(index);
   };
 
-  const objProductWomens = womensMainPageProducts.reduce(
-    (acc, womenProduct) => {
-      acc[womenProduct.id] = womenProduct;
-      return acc;
-    },
-    {}
-  );
+
+
+
+    const objProductWomens = womensMainPageProducts.reduce(
+      (acc, womenProduct) => {
+        acc[womenProduct.id] = womenProduct;
+        return acc;
+      },
+      {}
+    );
+  
+
+
 
   const cartWomenParams = objProductWomens[`${routeId}`];
   const cartWomenImages = objProductWomens[`${routeId}`].images;
@@ -71,8 +78,6 @@ function CartPageComponentWomen({
   useEffect(() => {
     dispatch(copyRewiewsWomens(cartWomenReviews));
   }, [dispatch]);
-
-
 
   let newArrColorWomens = [...cartWomenImages]
     .sort(function (a, b) {
@@ -148,10 +153,13 @@ function CartPageComponentWomen({
             <div className="womens-cart-h__star-code">
               <div className="womens-cart-h__star">
                 <StarsCart cartRating={cartWomenParams.rating} />
-                <p className="womens-cart-h__star-text">
-                  {cartWomenParams.reviews.length} Reviews
-                </p>
+
+                  <p className="womens-cart-h__star-text">
+                    {cartWomensReviewsRedux.length} Reviews
+                  </p>
+
               </div>
+
               <div className="womens-cart-h__code">
                 <p className="womens-cart-h__code-text">SKU:</p>
                 <span className="womens-cart-h__code-text_span">777</span>
@@ -536,7 +544,10 @@ function CartPageComponentWomen({
                 womensMainPageProducts.map((item, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <Link to={`/women/${item.id}`} onClick={() => dispatch(getAllProducts())}>
+                      <Link
+                        to={`/women/${item.id}`}
+                        onClick={() => dispatch(getAllProducts())}
+                      >
                         <div className="womens-cart womens-cart-slider">
                           <div href="womens" className="men-cart__link">
                             <img

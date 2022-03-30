@@ -1,25 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import CartPageComponentWomen from "../Components/CartPageComponentWomen/CartPageComponentWomen";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import Loader from "react-js-loader";
-import { getAllProducts } from "../redux/products/productsSlice";
+import { useSelector} from "react-redux";
+// import Loader from "react-js-loader";
+
 import Footer from "../Components/Footer/Footer";
 
 function CartPageWomen({ comments, setComments, openCloseComments }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const { status, error } = useSelector((state) => state.products);
 
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllProducts());
+  // }, [dispatch]);
+  const PRODUCTS = useSelector((state) => state.products.allProducts);
+  const womensMainPageProducts = PRODUCTS.women;
 
   const { routeId } = useParams();
   return (
     <>
-      {status === "loading" && (
+      {/* {status === "loading" && (       
         <div className="parent-loader" data-test-id="loader">
           <Loader
             type="bubble-top"
@@ -28,7 +30,7 @@ function CartPageWomen({ comments, setComments, openCloseComments }) {
             size={70}
           />
         </div>
-      )}
+      )} */}
       {error && (
         <div className="wrapper-error" data-test-id="error">
           <div className="error-message-block">
@@ -42,8 +44,9 @@ function CartPageWomen({ comments, setComments, openCloseComments }) {
           comments={comments}
           openCloseComments={openCloseComments}
           setComments={setComments}
+          womensMainPageProducts={womensMainPageProducts}
         />
-      ) : null}
+        ) : null}
       <Footer/>
     </>
   );

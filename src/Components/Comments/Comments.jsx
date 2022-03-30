@@ -8,6 +8,7 @@ import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { setRating, postComments, setResolved } from "../../redux/commets/commetsSlice";
 import Loader from "react-js-loader";
+import { getAllProducts } from "../../redux/products/productsSlice";
 
 function Comments({ id, setComments }) {
   const dispatch = useDispatch();

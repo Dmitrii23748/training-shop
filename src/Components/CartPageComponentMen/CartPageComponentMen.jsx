@@ -140,7 +140,7 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
               <div className="womens-cart-h__star">
                 <StarsCart cartRating={cartMenParams.rating} />
                 <p className="womens-cart-h__star-text">
-                  {cartMenParams.reviews.length} Reviews
+                  {cartMenReviewsRedux.length} Reviews
                 </p>
               </div>
               <div className="womens-cart-h__code">
