@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
-import Footer from "./Components/Footer/Footer";
 import MainPage from "./Pages/MainPage";
 import WomensPage from "./Pages/WomensPage";
 import MensPage from "./Pages/MensPage";
@@ -34,6 +33,7 @@ function App() {
     setComments(!comments);
   };
 
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -58,7 +58,12 @@ function App() {
       />
       <div className="wrapper" onClick={() => setShowLink(false)}>
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/"
+            element={
+              <MainPage />
+            }
+          />
           <Route path="/women" element={<WomensPage />} />
           <Route
             path="/women/:routeId"
@@ -87,7 +92,6 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
-        <Footer />
       </div>
     </div>
   );

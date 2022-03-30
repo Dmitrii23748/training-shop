@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../redux/products/productsSlice";
 
 import Loader from "react-js-loader";
+import Footer from "../Components/Footer/Footer";
 
 function CartPageMen({ comments, setComments, openCloseComments }) {
 
@@ -44,6 +45,7 @@ function CartPageMen({ comments, setComments, openCloseComments }) {
           setComments={setComments}
         />
       ) : null}
+      <Footer/>
     </>
   );
 }

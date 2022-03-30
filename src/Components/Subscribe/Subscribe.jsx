@@ -5,7 +5,7 @@ import "./Subscribe.css";
 import women from "../../img/subscribe/women.png";
 import men from "../../img/subscribe/men.png";
 import { useDispatch, useSelector } from "react-redux";
-import { setSubscribe} from "../../redux/subscribe/subscribeSlice";
+import { setSubscribe } from "../../redux/subscribe/subscribeSlice";
 import { postSubscribe } from "../../redux/subscribe/subscribeSlice";
 import Loader from "react-js-loader";
 
@@ -24,6 +24,7 @@ function Subscribe() {
   const blurEmail = (e) => {
     if (e.target.name === "email") {
       setEmailDirty(true);
+      setBtnSubscribe(false);
       if (valueSubscribe === "") {
         setEmailError("Email не может быть пустым");
       }
@@ -39,8 +40,11 @@ function Subscribe() {
     } else {
       setEmailError("");
     }
+    if (e.target.value) {
+      setBtnSubscribe(false);
+      setInputSubscribe(false);
+    }
   };
-
 
   useEffect(() => {
     if (emailError) {
@@ -51,18 +55,21 @@ function Subscribe() {
   }, [emailError]);
 
   useEffect(() => {
-    if( status === 'resolved') {
-      dispath(setSubscribe(''));
+    if (status === "resolved") {
+      dispath(setSubscribe(""));
       setInputSubscribe(!inputSubscribe);
-      setBtnSubscribe(!btnSubscribe)
+      setBtnSubscribe(!btnSubscribe);
     }
-  }, [status])
+  }, [status]);
 
+  useEffect(() => {
+    setBtnSubscribe(false);
+    setInputSubscribe(false);
+  }, []);
 
   const postEmailSubscribe = () => {
     dispath(postSubscribe(valueSubscribe));
   };
-
 
   return (
     <section className="subscribe">
@@ -88,7 +95,7 @@ function Subscribe() {
               data-test-id="main-subscribe-mail-field"
             />
             {/* status === "resolved" && valueSubscribe.length > 0 */}
-            { inputSubscribe ? (
+            {inputSubscribe ? (
               <p className="resolved-mail">Почта отправлена успешно</p>
             ) : null}
             {error ? (
@@ -106,11 +113,7 @@ function Subscribe() {
 
             {status === "loading" && (
               <div className="parent-loader-subscribe" data-test-id="loader">
-                <Loader
-                  type="spinner-default"
-                  bgColor={"#121212"}
-                  size={30}
-                />
+                <Loader type="spinner-default" bgColor={"#121212"} size={30} />
               </div>
             )}
           </div>

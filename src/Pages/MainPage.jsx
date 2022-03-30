@@ -12,8 +12,14 @@ import WomensBtn from "../Components/WomensBtn/WomensBtn";
 import MensBtn from "../Components/MensBtn/MensBtn";
 import { useSelector } from "react-redux";
 import Loader from "react-js-loader";
+import Footer from "../Components/Footer/Footer";
 
-function MainPage() {
+function MainPage({
+  inputSubscribe,
+  setInputSubscribe,
+  btnSubscribe,
+  setBtnSubscribe,
+}) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
 
   const womensMainPageProducts = PRODUCTS.women;
@@ -125,15 +131,19 @@ function MainPage() {
         <Womens categoryWomensMain={categoryWomensMain} />
       ) : null}
       <SeeBtn />
-      <MensBtn filtersMensMainPage={filtersMensMainPage} mensMainPageProducts={mensMainPageProducts} />
+      <MensBtn
+        filtersMensMainPage={filtersMensMainPage}
+        mensMainPageProducts={mensMainPageProducts}
+      />
       {status === "resolved" ? (
         <Mens categoryMensMain={categoryMensMain} />
       ) : null}
 
       <SeeBtnMen />
       <Collection />
-      <Subscribe />
+      <Subscribe/>
       <Blog />
+      <Footer/>
     </div>
   );
 }

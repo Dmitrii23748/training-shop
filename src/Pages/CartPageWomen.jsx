@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "react-js-loader";
 import { getAllProducts } from "../redux/products/productsSlice";
+import Footer from "../Components/Footer/Footer";
 
 function CartPageWomen({ comments, setComments, openCloseComments }) {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function CartPageWomen({ comments, setComments, openCloseComments }) {
           setComments={setComments}
         />
       ) : null}
+      <Footer/>
     </>
   );
 }

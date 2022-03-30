@@ -6,6 +6,7 @@ import WomensFilter from "../Components/WomensFilter/WomensFilter";
 import WomensCountFilters from "../Components/WomensCountFilters/WomensCountFilters";
 import { useSelector } from "react-redux";
 import Loader from "react-js-loader";
+import Footer from "../Components/Footer/Footer";
 
 function WomensPage() {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
@@ -193,6 +194,7 @@ function WomensPage() {
           </div>
         </>
       ) : null}
+      <Footer/>
     </div>
   );
 }

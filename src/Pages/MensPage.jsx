@@ -6,6 +6,7 @@ import MensFiltersProducts from "../Components/MensFiltersProducts/MensFiltersPr
 import MensCountFilters from "../Components/MensCountFilters/MensCountFilters";
 import { useSelector } from "react-redux";
 import Loader from "react-js-loader";
+import Footer from "../Components/Footer/Footer";
 
 function MensPage() {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
@@ -196,6 +197,7 @@ function MensPage() {
           </div>
         </>
       ) : null}
+      <Footer/>
     </div>
   );
 }

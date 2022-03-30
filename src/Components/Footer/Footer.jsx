@@ -55,6 +55,10 @@ function Footer() {
     } else {
       setEmailError("");
     }
+    if(e.target.value) {
+      setBtnSubscribe(false);
+      setInputSubscribeFooter(false);
+    }
   };
 
   useEffect(() => {
@@ -71,7 +75,13 @@ function Footer() {
       setInputSubscribeFooter(!inputSubscribeFooter);
       setBtnSubscribe(!btnSubscribe)
     }
-  }, [status])
+  }, [status]);
+
+  useEffect(() => {
+    setBtnSubscribe(false);
+    setInputSubscribeFooter(false);
+  }, []);
+
 
   const postEmailSubscribe = () => {
     dispath(postSubscribeFooter(valueSubscribe));
