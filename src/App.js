@@ -16,6 +16,8 @@ import ShopCart from "./Components/ShopCart/ShopCart";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./redux/products/productsSlice";
 
+
+
 function App() {
   const dispatch = useDispatch();
   const [showLink, setShowLink] = useState(false);
@@ -32,6 +34,7 @@ function App() {
   const openCloseComments = () => {
     setComments(!comments);
   };
+
 
 
   useEffect(() => {

@@ -87,6 +87,10 @@ function Footer() {
     dispath(postSubscribeFooter(valueSubscribe));
   };
 
+  setTimeout(() => {
+    setInputSubscribeFooter(false);
+  }, 2500)
+
   return (
     <footer className="footer" data-test-id="footer">
       <div className="footer-block__error-res">

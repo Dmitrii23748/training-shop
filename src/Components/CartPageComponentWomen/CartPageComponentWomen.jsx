@@ -33,12 +33,13 @@ function CartPageComponentWomen({
   comments,
   setComments,
   openCloseComments,
-  womensMainPageProducts
+  womensMainPageProducts,
 }) {
   // const PRODUCTS = useSelector((state) => state.products.allProducts);
   // const womensMainPageProducts = PRODUCTS.women;
 
   const dispatch = useDispatch();
+
 
   const [sizeStateWomens, setSizeStateWomens] = useState(0);
   const handleUpdateSizeWomen = (index) => {
@@ -50,6 +51,9 @@ function CartPageComponentWomen({
     setcolorStateWomens(index);
   };
 
+  const cartWomensReviewsRedux = useSelector(
+    (state) => state.comments.womensRewiews
+  );
 
 
 
@@ -70,10 +74,6 @@ function CartPageComponentWomen({
   const cartWomenPrice = objProductWomens[`${routeId}`].price;
   const cartWomenReviews = objProductWomens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartWomenImages, "color");
-
-  const cartWomensReviewsRedux = useSelector(
-    (state) => state.comments.womensRewiews
-  );
 
   useEffect(() => {
     dispatch(copyRewiewsWomens(cartWomenReviews));

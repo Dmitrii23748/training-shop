@@ -71,6 +71,10 @@ function Subscribe() {
     dispath(postSubscribe(valueSubscribe));
   };
 
+  setTimeout(() => {
+    setInputSubscribe(false);
+  }, 2500)
+
   return (
     <section className="subscribe">
       <div className="container">
