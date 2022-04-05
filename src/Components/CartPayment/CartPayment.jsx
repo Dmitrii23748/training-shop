@@ -152,3 +152,5 @@ CartPayment.propTypes = {
   checkedPaypal: PropTypes.string.isRequired,
   setCheckedPaypal: PropTypes.func.isRequired
 }
+
+
