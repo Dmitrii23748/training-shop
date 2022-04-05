@@ -71,9 +71,13 @@ function Subscribe() {
     dispath(postSubscribe(valueSubscribe));
   };
 
-  setTimeout(() => {
-    setInputSubscribe(false);
-  }, 2500)
+  useEffect(() => {
+    setTimeout(() => {
+      setInputSubscribe(false);
+    }, 2500)
+  }, [inputSubscribe])
+
+  
 
   return (
     <section className="subscribe">

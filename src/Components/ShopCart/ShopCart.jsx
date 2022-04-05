@@ -100,7 +100,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     Payment
                   </button>
                 </div>
-                <div className="container-cart">
+                <div className="container-cart container-cart-item-in-cart">
                   <div
                     className={
                       itemCartMain
