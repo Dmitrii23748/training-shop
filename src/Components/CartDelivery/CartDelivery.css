@@ -139,3 +139,12 @@
 .real-checkbox-delivery:checked + .castom-checkbox-delivery::after {
     transform: scale(1);
 }
+
+.error-delivery {
+  font-size: 12px;
+  color: rgb(244, 22, 22);
+}
+
+.delivery-info__input-error {
+  border: 1px solid rgb(241, 16, 16);
+}
