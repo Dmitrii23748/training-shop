@@ -22,6 +22,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
 
   const [checkedPaypal, setCheckedPaypal] = useState("visa");
 
+  const [validDelivery, setValidDelivery] = useState(false);
+
   return (
     <section
       className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none"}
@@ -113,7 +115,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     {itemCartDelivery &&
                     itemCartMain === false &&
                     itemCartPayment === false ? (
-                      <CartDelivery />
+                      <CartDelivery  setValidDelivery={setValidDelivery}  validDelivery={validDelivery}/>
                     ) : null}
                   </div>
 
@@ -158,7 +160,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     </div>
                   ) : null
                 }
-                {
+               
+               {
                   /* показать кнопки у delivery  */
                   itemCartDelivery &&
                   itemCartMain === false &&
@@ -172,10 +175,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                       </div>
                       <div className="cart-footer__btn-further">
                         <button
+                        disabled={!validDelivery}
                           className="btn-further"
                           onClick={() => {
-                            setItemCartDelivery(false);
-                            setitemCartPayment(true);
+                              setitemCartPayment(true);
+                              setItemCartDelivery(false);
                           }}
                         >
                           further
@@ -195,6 +199,9 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     </div>
                   ) : null
                 }
+
+
+
                 { 
                 /* показать кнопки у Item */
                 itemCartMain ? (
