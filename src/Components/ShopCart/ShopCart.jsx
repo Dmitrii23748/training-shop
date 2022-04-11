@@ -20,9 +20,33 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
   const [itemCartDelivery, setItemCartDelivery] = useState(false);
   const [itemCartPayment, setitemCartPayment] = useState(false);
 
-  const [checkedPaypal, setCheckedPaypal] = useState("visa");
+  const [checkedDelivery, setCheckedDelivery] = useState("choose");
 
+  const [checkedPayment, setCheckedPayment] = useState("visa");
+
+  // валидация Delivery
   const [validDelivery, setValidDelivery] = useState(false);
+  const [validateClick, setValidateClick] = useState(true);
+
+  const [validDeliveryExpress, setvalidDeliveryExpress] = useState(false)
+  const [validDeliveryStore, setvalidDeliveryStore] = useState(false);
+
+  const [agree, setAgree] = useState(false);
+  const angreeHandler = () => {
+    setAgree(!agree);
+  };
+
+  // валидация Paypal
+  const [validPaypal, setValidPaypal] = useState(false);
+  const [validatePaypalClick, setValidatePaypalClick] = useState(true);
+
+  // валидация Visa
+  const [validVisa, setValidVisa] = useState(false);
+  const [validVisaClick, setValidVisaClick] = useState(true);
+
+  // валидация MasterCard
+  const [validMasterCard, setValidMasterCard] = useState(false);
+  const [validMasterCardClick, setValidMasterCardClick] = useState(true);
 
   return (
     <section
@@ -45,7 +69,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                   setItemCartDelivery(false);
                   setitemCartPayment(false);
                   setItemCartMain(true);
-                  setCheckedPaypal("visa")
+                  setCheckedPayment("visa");
+                  setAgree(false);
+                  setValidatePaypalClick(true);
+                  setValidVisaClick(true);
+                  setValidMasterCardClick(true);
                 }}
               >
                 <img className="cart__close-btn" src={cartClose} alt="close" />
@@ -107,26 +135,53 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
 
                   <div
                     className={
-                      itemCartDelivery
+                      itemCartDelivery &&
+                      itemCartMain === false &&
+                      itemCartPayment === false
                         ? "delivery-main__block"
                         : "delivery-main__block delivery-main__block-none"
                     }
                   >
-                    {itemCartDelivery &&
-                    itemCartMain === false &&
-                    itemCartPayment === false ? (
-                      <CartDelivery  setValidDelivery={setValidDelivery}  validDelivery={validDelivery}/>
-                    ) : null}
+                    {showCart && (
+                      <CartDelivery
+                        setValidDelivery={setValidDelivery}
+                        validateClick={validateClick}
+                        setValidateClick={setValidateClick}
+                        setvalidDeliveryExpress={setvalidDeliveryExpress}
+                        setvalidDeliveryStore={setvalidDeliveryStore}
+                        agree={agree}
+                        angreeHandler={angreeHandler}
+                        checkedDelivery={checkedDelivery}
+                        setCheckedDelivery={setCheckedDelivery}
+                      />
+                    )}
                   </div>
 
-                  {itemCartPayment &&
-                  itemCartMain === false &&
-                  itemCartDelivery === false ? (
-                    <CartPayment
-                      checkedPaypal={checkedPaypal}
-                      setCheckedPaypal={setCheckedPaypal}
-                    />
-                  ) : null}
+                  <div
+                    className={
+                      itemCartPayment &&
+                      itemCartMain === false &&
+                      itemCartDelivery === false
+                        ? "payment-block"
+                        : "payment-block payment-block-none"
+                    }
+                  >
+                    {showCart && (
+                      <CartPayment
+                        checkedPayment={checkedPayment}
+                        setCheckedPayment={setCheckedPayment}
+                        validatePaypalClick={validatePaypalClick}
+                        setValidatePaypalClick={setValidatePaypalClick}
+                        setValidPaypal={setValidPaypal}
+                        setValidVisa={setValidVisa}
+                        validVisaClick={validVisaClick}
+                        setValidVisaClick={setValidVisaClick}
+                        setValidMasterCard={setValidMasterCard}
+                        validMasterCardClick={validMasterCardClick}
+                        setValidMasterCardClick={setValidMasterCardClick}
+                      />
+                    )}
+                  </div>
                 </div>
                 {
                   /* показать кнопки у payment  */
@@ -141,10 +196,65 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                         </span>
                       </div>
                       <div className="cart-footer__btn-further">
-                        <button
-                          className="btn-further">
-                          Check Out
-                        </button>
+                        {checkedPayment === "paypal" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (!validPaypal) {
+                                setValidatePaypalClick(false);
+                                console.log("валидации paypal нет ");
+                              } else {
+                                console.log("валидация paypal есть");
+                              }
+                            }}
+                          >
+                            Check Out
+                          </button>
+                        )}
+                        {checkedPayment === "visa" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (!validVisa) {
+                                setValidVisaClick(false);
+                                console.log("валидации visa нет");
+                              } else {
+                                console.log("валидация visa есть");
+                              }
+                            }}
+                          >
+                            Check Out
+                          </button>
+                        )}
+                        {checkedPayment === "mastercart" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (!validMasterCard) {
+                                setValidMasterCardClick(false);
+                                console.log("валидации mastercard нет");
+                              } else {
+                                console.log("валидации mastercard есть");
+                              }
+                            }}
+                          >
+                            Check Out
+                          </button>
+                        )}
+
+                        {checkedPayment === "cash" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              // if (!validPayment) {
+                              //   setValidatePaymentClick(false);
+                              //   console.log('cash');
+                              // }
+                            }}
+                          >
+                            Ready
+                          </button>
+                        )}
                       </div>
                       <div className="cart-footer__btn-view">
                         <button
@@ -160,8 +270,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     </div>
                   ) : null
                 }
-               
-               {
+
+                {
                   /* показать кнопки у delivery  */
                   itemCartDelivery &&
                   itemCartMain === false &&
@@ -174,16 +284,54 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                         </span>
                       </div>
                       <div className="cart-footer__btn-further">
-                        <button
-                        disabled={!validDelivery}
-                          className="btn-further"
-                          onClick={() => {
-                              setitemCartPayment(true);
-                              setItemCartDelivery(false);
-                          }}
-                        >
-                          further
-                        </button>
+                        {checkedDelivery === "choose" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (validDelivery) {
+                                setitemCartPayment(true);
+                                setItemCartDelivery(false);
+                              } else {
+                                setAgree(false);
+                                setValidateClick(false);
+                              }
+                            }}
+                          >
+                            further
+                          </button>
+                        )}
+                        {checkedDelivery === "express" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (validDeliveryExpress) {
+                                setitemCartPayment(true);
+                                setItemCartDelivery(false);
+                              } else {
+                                setAgree(false);
+                                setValidateClick(false);
+                              }
+                            }}
+                          >
+                            further
+                          </button>
+                        )}
+                         {checkedDelivery === "store" && (
+                          <button
+                            className="btn-further"
+                            onClick={() => {
+                              if (validDeliveryStore) {
+                                setitemCartPayment(true);
+                                setItemCartDelivery(false);
+                              } else {
+                                setAgree(false);
+                                setValidateClick(false);
+                              }
+                            }}
+                          >
+                            further
+                          </button>
+                        )}
                       </div>
                       <div className="cart-footer__btn-view">
                         <button
@@ -200,39 +348,38 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                   ) : null
                 }
 
-
-
-                { 
-                /* показать кнопки у Item */
-                itemCartMain ? (
-                  <div className="cart-footer__btn">
-                    <div className="cart-footer__price">
-                      <div className="cart-footer__price-title">Total</div>
-                      <span className="cart-footer__price-number">
-                        $ {Number(totalPrice).toFixed(2)}
-                      </span>
+                {
+                  /* показать кнопки у Item */
+                  itemCartMain ? (
+                    <div className="cart-footer__btn">
+                      <div className="cart-footer__price">
+                        <div className="cart-footer__price-title">Total</div>
+                        <span className="cart-footer__price-number">
+                          $ {Number(totalPrice).toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="cart-footer__btn-further">
+                        <button
+                          className="btn-further"
+                          onClick={() => {
+                            setItemCartDelivery(true);
+                            setItemCartMain(false);
+                          }}
+                        >
+                          further
+                        </button>
+                      </div>
+                      <div className="cart-footer__btn-view">
+                        <button
+                          className="btn-view"
+                          onClick={() => setShowCart(false)}
+                        >
+                          view cart
+                        </button>
+                      </div>
                     </div>
-                    <div className="cart-footer__btn-further">
-                      <button
-                        className="btn-further"
-                        onClick={() => {
-                          setItemCartDelivery(true);
-                          setItemCartMain(false);
-                        }}
-                      >
-                        further
-                      </button>
-                    </div>
-                    <div className="cart-footer__btn-view">
-                      <button
-                        className="btn-view"
-                        onClick={() => setShowCart(false)}
-                      >
-                        view cart
-                      </button>
-                    </div>
-                  </div>
-                ) : null}
+                  ) : null
+                }
               </>
             ) : (
               <>
