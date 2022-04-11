@@ -184,7 +184,11 @@
 }
 
 .delivery-main__block.delivery-main__block-none {
-  height: 0;
+  display: none;
+}
+
+.payment-block.payment-block-none {
+  display: none;
 }
 
 .container-cart-block {
