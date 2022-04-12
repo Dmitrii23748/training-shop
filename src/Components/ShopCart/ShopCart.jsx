@@ -1,20 +1,76 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./ShopCart.css";
 import cartClose from "../../img/cart-component/cart-close.svg";
 import CartItem from "../CartItem/CartItem";
 import CartDelivery from "../CartDelivery/CartDelivery";
 import CartPayment from "../CartPayment/CartPayment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteItemFromCartWomens,
+  deleteItemFromCart,
+} from "../../redux/cart/reducer";
+import {
+  setOrderProducts,
+  setOrderTotalPrice,
+  setOrderDeliveryMethod,
+  setOrderPaymentMethod,
+  setOrderPhone,
+  setOrderEmail,
+  setOrderCountry,
+  setOrderCashEmail,
+  setOrderCity,
+  setOrderStreet,
+  setOrderHouse,
+  setOrderApartament,
+  setOrderPostcode,
+  setOrderStoreadress,
+  setOrderCard,
+  setOrderCardDate,
+  setOrderCardCvv,
+  setOrderMessage,
+} from "../../redux/order/orderCartSlice";
+import { postOrderProducts } from "../../redux/order/orderCartSlice";
 
 function ShopCart({ showCart, handleShowCart, setShowCart }) {
+  const dispatch = useDispatch();
+
   const productsMens = useSelector((state) => state.cart.itemsInCart);
   const productsWomens = useSelector((state) => state.cart.itemsInCartWomens);
   const productsMensAndWomens = [...productsMens, ...productsWomens];
 
+  const allProductsOrderComponents = useSelector(
+    (state) => state.order.allOrderProducts
+  );
+
+  // ответ от сервера по заказу
+  const message = useSelector((state) => state.order.messageOrder);
+
+  // заказ
+  const postProductsRedux = productsMensAndWomens.map((prod) => {
+    return {
+      name: prod.name,
+      size: prod.size,
+      color: prod.color,
+      quantity: prod.countProd,
+    };
+  });
+
+  const cleanCart = () => {
+    productsMensAndWomens.forEach((prod) => {
+      dispatch(deleteItemFromCart(prod.id));
+      dispatch(deleteItemFromCartWomens(prod.id));
+    });
+  };
+
   const totalPrice = productsMensAndWomens.reduce((acc, prod) => {
     return (acc += prod.price * prod.countProd);
   }, 0);
+
+  useEffect(() => {
+    dispatch(setOrderTotalPrice(Number(totalPrice).toFixed(2)));
+  }, [totalPrice]);
 
   const [itemCartMain, setItemCartMain] = useState(true);
   const [itemCartDelivery, setItemCartDelivery] = useState(false);
@@ -28,7 +84,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
   const [validDelivery, setValidDelivery] = useState(false);
   const [validateClick, setValidateClick] = useState(true);
 
-  const [validDeliveryExpress, setvalidDeliveryExpress] = useState(false)
+  const [validDeliveryExpress, setvalidDeliveryExpress] = useState(false);
   const [validDeliveryStore, setvalidDeliveryStore] = useState(false);
 
   const [agree, setAgree] = useState(false);
@@ -48,6 +104,9 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
   const [validMasterCard, setValidMasterCard] = useState(false);
   const [validMasterCardClick, setValidMasterCardClick] = useState(true);
 
+  // удачный или нет заказ
+  const [orderOk, setOrderOk] = useState(false);
+
   return (
     <section
       className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none"}
@@ -62,22 +121,69 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
           <div className="container-cart">
             <div className="cart-block-title__flex">
               <h3 className="cart-title">Shopping Cart</h3>
-              <button
-                className="cart__btn-close"
-                onClick={() => {
-                  handleShowCart();
-                  setItemCartDelivery(false);
-                  setitemCartPayment(false);
-                  setItemCartMain(true);
-                  setCheckedPayment("visa");
-                  setAgree(false);
-                  setValidatePaypalClick(true);
-                  setValidVisaClick(true);
-                  setValidMasterCardClick(true);
-                }}
-              >
-                <img className="cart__close-btn" src={cartClose} alt="close" />
-              </button>
+              {orderOk && message === "success" ? (
+                <button
+                  className="cart__btn-close"
+                  onClick={() => {
+                    handleShowCart();
+                    setItemCartDelivery(false);
+                    setitemCartPayment(false);
+                    setItemCartMain(true);
+                    setCheckedPayment("visa");
+                    setAgree(false);
+                    setValidatePaypalClick(true);
+                    setValidVisaClick(true);
+                    setValidMasterCardClick(true);
+                    setOrderOk(false);
+                    cleanCart();
+
+                    dispatch(setOrderDeliveryMethod(""));
+                    dispatch(setOrderPaymentMethod(""));
+                    dispatch(setOrderPhone(""));
+                    dispatch(setOrderEmail(""));
+                    dispatch(setOrderCountry(""));
+                    dispatch(setOrderCashEmail(""));
+                    dispatch(setOrderCity(""));
+                    dispatch(setOrderStreet(""));
+                    dispatch(setOrderHouse(""));
+                    dispatch(setOrderApartament(""));
+                    dispatch(setOrderPostcode(""));
+                    dispatch(setOrderStoreadress(""));
+                    dispatch(setOrderCard(""));
+                    dispatch(setOrderCardDate(""));
+                    dispatch(setOrderCardCvv(""));
+
+                    dispatch(setOrderMessage(""));
+                  }}
+                >
+                  <img
+                    className="cart__close-btn"
+                    src={cartClose}
+                    alt="close"
+                  />
+                </button>
+              ) : (
+                <button
+                  className="cart__btn-close"
+                  onClick={() => {
+                    handleShowCart();
+                    setItemCartDelivery(false);
+                    setitemCartPayment(false);
+                    setItemCartMain(true);
+                    setCheckedPayment("visa");
+                    setAgree(false);
+                    setValidatePaypalClick(true);
+                    setValidVisaClick(true);
+                    setValidMasterCardClick(true);
+                  }}
+                >
+                  <img
+                    className="cart__close-btn"
+                    src={cartClose}
+                    alt="close"
+                  />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -86,7 +192,13 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
           <div className="container-cart container-cart-block">
             {productsMensAndWomens.length > 0 ? (
               <>
-                <div className="cart-block__btn">
+                <div
+                  className={
+                    orderOk
+                      ? "cart-block__btn cart-block__btn-none"
+                      : "cart-block__btn"
+                  }
+                >
                   <button
                     className={
                       itemCartMain
@@ -115,7 +227,13 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     Payment
                   </button>
                 </div>
-                <div className="container-cart container-cart-item-in-cart">
+                <div
+                  className={
+                    orderOk
+                      ? "container-cart container-cart-item-in-cart cart-block__btn-none"
+                      : "container-cart container-cart-item-in-cart"
+                  }
+                >
                   <div
                     className={
                       itemCartMain
@@ -204,6 +322,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                                 setValidatePaypalClick(false);
                                 console.log("валидации paypal нет ");
                               } else {
+                                setOrderOk(true);
+                                setitemCartPayment(false);
+                                dispatch(
+                                  postOrderProducts(allProductsOrderComponents)
+                                );
                                 console.log("валидация paypal есть");
                               }
                             }}
@@ -219,6 +342,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                                 setValidVisaClick(false);
                                 console.log("валидации visa нет");
                               } else {
+                                setOrderOk(true);
+                                setitemCartPayment(false);
+                                dispatch(
+                                  postOrderProducts(allProductsOrderComponents)
+                                );
                                 console.log("валидация visa есть");
                               }
                             }}
@@ -234,6 +362,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                                 setValidMasterCardClick(false);
                                 console.log("валидации mastercard нет");
                               } else {
+                                setOrderOk(true);
+                                setitemCartPayment(false);
+                                dispatch(
+                                  postOrderProducts(allProductsOrderComponents)
+                                );
                                 console.log("валидации mastercard есть");
                               }
                             }}
@@ -246,10 +379,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                           <button
                             className="btn-further"
                             onClick={() => {
-                              // if (!validPayment) {
-                              //   setValidatePaymentClick(false);
-                              //   console.log('cash');
-                              // }
+                              setOrderOk(true);
+                              setitemCartPayment(false);
+                              dispatch(
+                                postOrderProducts(allProductsOrderComponents)
+                              );
                             }}
                           >
                             Ready
@@ -316,7 +450,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                             further
                           </button>
                         )}
-                         {checkedDelivery === "store" && (
+                        {checkedDelivery === "store" && (
                           <button
                             className="btn-further"
                             onClick={() => {
@@ -364,6 +498,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                           onClick={() => {
                             setItemCartDelivery(true);
                             setItemCartMain(false);
+                            dispatch(setOrderProducts(postProductsRedux));
                           }}
                         >
                           further
@@ -400,6 +535,65 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                 </div>
               </>
             )}
+            {orderOk && message === "success" && (
+              <div className="no-products__block">
+                <div className="cart-footer__btn-further cart-footer__btn-further-ordergood">
+                  <div className="not-cart-products__title-block not-cart-products__title-block-ordergood">
+                    <h2 className="not-cart-products__title not-cart-products__title-ordergood">
+                      Thank you
+                      <br /> for your order
+                    </h2>
+                    <p className="text-order-good">
+                      Information about your order will appear in your e-mail.
+                    </p>
+                    <p className="text-order-good">
+                      Our manager will call you back.
+                    </p>
+                  </div>
+
+                  <button
+                    className="btn-further"
+                    onClick={() => {
+                      handleShowCart();
+                      setItemCartDelivery(false);
+                      setitemCartPayment(false);
+                      setItemCartMain(true);
+                      setCheckedPayment("visa");
+                      setAgree(false);
+                      setValidatePaypalClick(true);
+                      setValidVisaClick(true);
+                      setValidMasterCardClick(true);
+                      setOrderOk(false);
+                      cleanCart();
+
+                      dispatch(setOrderDeliveryMethod(""));
+                      dispatch(setOrderPaymentMethod(""));
+                      dispatch(setOrderPhone(""));
+                      dispatch(setOrderEmail(""));
+                      dispatch(setOrderCountry(""));
+                      dispatch(setOrderCashEmail(""));
+                      dispatch(setOrderCity(""));
+                      dispatch(setOrderStreet(""));
+                      dispatch(setOrderHouse(""));
+                      dispatch(setOrderApartament(""));
+                      dispatch(setOrderPostcode(""));
+                      dispatch(setOrderStoreadress(""));
+                      dispatch(setOrderCard(""));
+                      dispatch(setOrderCardDate(""));
+                      dispatch(setOrderCardCvv(""));
+
+                      dispatch(setOrderMessage(""));
+                    }}
+                  >
+                    back to shopping
+                  </button>
+                </div>
+              </div>
+            )}
+            {(message === "request-error" ||
+              message === "underfunded" ||
+              message === "bank-error" ||
+              message === "timeout") && <h1>NNNNNNNNNooooooooooooooooooo</h1>}
           </div>
         </div>
       </div>
@@ -412,4 +606,5 @@ export default ShopCart;
 ShopCart.propTypes = {
   handleShowCart: PropTypes.func.isRequired,
   setShowCart: PropTypes.func.isRequired,
+  showCart: PropTypes.bool.isRequired,
 };

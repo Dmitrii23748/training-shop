@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./CartItem.css";
 import deleteCart from "../../img/cart-component/cart-img.svg";
 import plus from "../../img/cart-component/plus.svg";
@@ -80,3 +81,7 @@ let couteProd = prod.countProd * prod.price
 }
 
 export default CartItem;
+
+CartItem.propTypes = {
+  prod: PropTypes.object.isRequired
+};

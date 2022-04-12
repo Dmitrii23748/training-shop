@@ -6,11 +6,11 @@ import "./CartPayment.css";
 import paypal from "../../img/cart-component/paypal-cart.png";
 import visa from "../../img/cart-component/visa-cart.png";
 import mastercart from "../../img/cart-component/mastercard-cart.png";
-// import eyes from "../../img/cart-component/eyeslash.svg";
-// import eyescopy from "../../img/cart-component/eyeslash-copy.svg";
-// import MaskInput from "react-maskinput";
 import VisaComponent from "./VisaComponent/VisaComponent";
 import MasterCardComponent from "./MasterCardComponent/MasterCardComponent";
+import { useDispatch } from "react-redux";
+import { setOrderPaymentMethod, setOrderCashEmail} from "../../redux/order/orderCartSlice";
+
 
 function CartPayment({
   checkedPayment,
@@ -26,14 +26,8 @@ function CartPayment({
   validMasterCardClick,
   setValidMasterCardClick
 }) {
-  // const [eyesState, setEyesState] = useState(false);
 
-  // const handleEyes = () => {
-  //   setEyesState(true);
-  // };
-  // const handleEyesBlur = () => {
-  //   setEyesState(false);
-  // };
+  const dispatch = useDispatch();
 
   const handleChangePaypal = (e) => {
     setCheckedPayment(e.target.value);
@@ -48,6 +42,7 @@ function CartPayment({
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
+    dispatch(setOrderCashEmail(e.target.value))
     const re =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!String(e.target.value).toLowerCase().match(re)) {
@@ -75,6 +70,16 @@ function CartPayment({
     }
   }, [emailError]);
 
+
+  useEffect(() => {
+    if(checkedPayment === 'paypal') {
+      dispatch(setOrderPaymentMethod('PayPal'))
+    } else if(checkedPayment === 'visa' || checkedPayment === 'mastercart') {
+      dispatch(setOrderPaymentMethod('Card'))
+    } else if(checkedPayment === 'cash') {
+      dispatch(setOrderPaymentMethod('Cash'))
+    }
+  }, [checkedPayment])
 
   return (
     <div className="payment">
@@ -203,7 +208,19 @@ function CartPayment({
 
 export default CartPayment;
 
+
+
 CartPayment.propTypes = {
   checkedPayment: PropTypes.string.isRequired,
   setCheckedPayment: PropTypes.func.isRequired,
+  validatePaypalClick: PropTypes.bool.isRequired,
+  setValidatePaypalClick: PropTypes.func.isRequired,
+  setValidPaypal: PropTypes.func.isRequired,
+  setValidVisa: PropTypes.func.isRequired,
+  setValidVisaClick: PropTypes.func.isRequired,
+  validVisaClick: PropTypes.bool.isRequired,
+  setValidMasterCard: PropTypes.func.isRequired,
+  validMasterCardClick: PropTypes.bool.isRequired,
+  setValidMasterCardClick: PropTypes.func.isRequired
+
 };

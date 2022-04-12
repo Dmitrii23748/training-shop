@@ -1,11 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
+import PropTypes from "prop-types";
 import eyes from "../../../img/cart-component/eyeslash.svg";
 import eyescopy from "../../../img/cart-component/eyeslash-copy.svg";
 import { useState, useEffect } from "react";
 import MaskInput from "react-maskinput";
+import { useDispatch } from "react-redux";
+import { setOrderCard, setOrderCardDate, setOrderCardCvv } from "../../../redux/order/orderCartSlice";
 
 function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
+  const dispatch = useDispatch()
+
   const [eyesState, setEyesState] = useState(false);
 
   const [cardVisa, setCardVisa] = useState("");
@@ -32,6 +36,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
 
   const visaCardNumberHandler = (e) => {
     setCardVisa(e.target.value);
+    dispatch(setOrderCard(e.target.value))
     const re = e.target.value.replace(/\D/g, "").substr(0, 16);
     if (re.length > 0 && re.length < 16) {
       setCardVisaError("Введите 16 цифр");
@@ -46,6 +51,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
   const visaCardDateHandler = (e) => {
     const date = e.target.value.replace(/\D/g, "").substr(0, 4);
     setCardVisaDate(e.target.value);
+    dispatch(setOrderCardDate(e.target.value))
     if (date.length > 0 && date.length < 4) {
       setCardVisaDateError("введите 4 цифры");
     } else if (date.length === 0) {
@@ -59,6 +65,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
     // const numberCvv = e.target.value.replace(/\D/g, "");
     // console.log(numberCvv);
     setNumber(e.target.value);
+    dispatch(setOrderCardCvv(e.target.value))
     if(e.target.value.length > 0 && e.target.value.length < 3) {
       setNumberError('Меньше 3 цифр не вводить')
     } else if (e.target.value.length === 0) {
@@ -212,3 +219,11 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
 }
 
 export default VisaComponent;
+
+
+VisaComponent.propTypes = {
+  setValidVisa: PropTypes.func.isRequired,
+  setValidVisaClick: PropTypes.func.isRequired,
+  validVisaClick: PropTypes.bool.isRequired
+};
+

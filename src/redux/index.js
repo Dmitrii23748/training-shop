@@ -6,6 +6,7 @@ import subscribeFooterSlice from "./subscribeFooter/subscribeFooterSlice";
 import commetsSlice from "./commets/commetsSlice";
 import countrySlice from "./country/countrySlice";
 import cityCartSlice from "./cityCart/cityCartSlice";
+import orderCartSlice from "./order/orderCartSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         subscribeFooter: subscribeFooterSlice,
         comments: commetsSlice,
         country: countrySlice,
-        cityCart: cityCartSlice
+        cityCart: cityCartSlice,
+        order: orderCartSlice
     }
 })
