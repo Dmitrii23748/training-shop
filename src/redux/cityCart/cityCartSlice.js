@@ -5,14 +5,12 @@ export const postCity = createAsyncThunk(
     'cityCart/postCity',
     async (city, {rejectWithValue, dispatch}) => {
         try {
-            // const cityData = {...city}
             const res = await axios.post('https://training.cleverland.by/shop/search/cities', city);
             if(res.status !== 200) {
                 throw new Error("ошибка отправки city")
             }
             dispatch(addCityRedux(res.data))
             // console.log(res.data);
-            // return res.data
             
         } catch (error) {
             return rejectWithValue(error.message)
@@ -29,8 +27,8 @@ const cityCartSlice = createSlice({
             country: ''
         },
         cities: [],
-        status: null,
-        error: null
+        statusCity: null,
+        errorCity: null
     },
     reducers:{
         setCityRedux: (state, action) => {
@@ -45,15 +43,15 @@ const cityCartSlice = createSlice({
     },
     extraReducers: {
         [postCity.pending] : (state) => {
-            state.status = 'loading';
-            state.error = null
+            state.statusCity = 'loading';
+            state.errorCity = null
         },
         [postCity.fulfilled] : (state, action) => {
-            state.status = 'resolved';
+            state.statusCity = 'resolved';
         }, 
         [postCity.rejected] : (state, action) => {
-            state.status = 'rejected';
-            state.error = action.payload
+            state.statusCity = 'rejected';
+            state.errorCity = action.payload
         }
     }
 

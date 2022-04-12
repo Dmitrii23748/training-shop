@@ -41,5 +41,7 @@ export default CartMens;
 CartMens.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  discount: PropTypes.string
 }
