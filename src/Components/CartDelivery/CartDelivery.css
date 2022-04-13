@@ -85,9 +85,9 @@
   line-height: 18px;
   color: #9c9c9c;
 }
-.delivery-info__input:focus::placeholder {
+/* .delivery-info__input:focus::placeholder {
   color: #121212;
-}
+} */
 .delivery-info__input-adress {
   margin-bottom: 8px;
 }
