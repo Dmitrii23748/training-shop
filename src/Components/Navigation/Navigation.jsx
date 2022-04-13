@@ -15,7 +15,7 @@ import shop from "../../img/icon-nav/shop.svg";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function Navigation({ showLink, handleShowLink, handleShowCart }) {
+function Navigation({ showLink, handleShowLink, handleShowCart, setUpdate, update }) {
   const productsMens = useSelector((state) => state.cart.itemsInCart);
   const productsWomens = useSelector((state) => state.cart.itemsInCartWomens);
   const productsMensAndWomens = [...productsMens, ...productsWomens];
@@ -166,7 +166,12 @@ function Navigation({ showLink, handleShowLink, handleShowCart }) {
                   <li className="nav-down__icons-item">
                     <img src={user} alt="user" />
                   </li>
-                  <li className="nav-down__icons-item nav-down__icons_shop" onClick={handleShowCart} data-test-id='cart-button'>
+                  <li className="nav-down__icons-item nav-down__icons_shop" 
+                  onClick={() => {
+                    handleShowCart();
+                    
+                  }} 
+                  data-test-id='cart-button'>
                     <img src={shop} alt="shop" />
                     <span className="icons-shop__span">{productsMensAndWomens.length}</span>
                   </li>

@@ -26,6 +26,8 @@ function CartDelivery({
   angreeHandler,
   checkedDelivery,
   setCheckedDelivery,
+  update,
+  setUpdate
 }) {
   const dispatch = useDispatch();
 
@@ -99,6 +101,7 @@ function CartDelivery({
   }
 
   const phoneHandler = (e) => {
+    // setUpdate(true)
     setPhone(e.target.value);
     const numberPhone = createNumberPhoneOrder(e.target.value);
     dispatch(setOrderPhone(numberPhone))
@@ -333,7 +336,22 @@ function CartDelivery({
   }, [countryStoreError, countryStoreError, phoneError, emailError, agree]);
 
 
- 
+ useEffect(() => {
+  if(update === false) {
+    setPhone('');
+
+    setEmail('');
+    setCountry('');
+    setCity('');
+    setStreet('');
+    setHouse('');
+    setApartament('');
+    setPostcode('');
+    setCountryStore('');
+    setAdressStore('');
+    // setValidateClick(true)
+  }
+ }, [update])
 
   const filtersCIties = citiesComponentRedux.filter((cityItem) => {
     return cityItem.city.toLowerCase().includes(adressStore.toLowerCase());
@@ -433,10 +451,10 @@ function CartDelivery({
                   showMask
                   maskChar="_"
                 />
-                {phoneDirty && phoneError && validateClick && (
+                {phoneDirty && phoneError && validateClick  && (
                   <p className="error-delivery">{phoneError}</p>
                 )}
-                {validateClick === false && phoneError ? (
+                {(validateClick === false && phoneError) ? (
                   <p className="error-delivery">{phoneError}</p>
                 ) : null}
               </div>
