@@ -85,6 +85,10 @@
   line-height: 18px;
   color: #9c9c9c;
 }
+
+.delivery-info__input:focus::-webkit-input-placeholder {
+  color: transparent
+}
 /* .delivery-info__input:focus::placeholder {
   color: #121212;
 } */
