@@ -10,6 +10,7 @@ export const postOrderProducts = createAsyncThunk(
         throw new Error("ошибка отправки city");
       }
       dispatch(setOrderMessage(res.data.message))
+      // dispatch(setOrderMessage('bank-error'))
     //   console.log(res.data.message);
     } catch (error) {
       return rejectWithValue(error.message);
@@ -41,8 +42,8 @@ const orderCartSlice = createSlice({
     },
     messageOrder: "",
 
-    status: null,
-    error: null,
+    statusOrder: null,
+    errorOrder: null,
   },
   reducers: {
     setOrderProducts: (state, action) => {
@@ -102,16 +103,16 @@ const orderCartSlice = createSlice({
   },
   extraReducers: {
     [postOrderProducts.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
+      state.statusOrder = "loading";
+      state.errorOrder = null;
     },
-    [postOrderProducts.fulfilled]: (state, action) => {
-      state.status = "resolved";
-      state.allProducts = action.payload;
+    [postOrderProducts.fulfilled]: (state) => {
+      state.statusOrder = "resolved";
+  
     },
     [postOrderProducts.rejected]: (state, action) => {
-      state.status = "rejected";
-      state.error = action.payload;
+      state.statusOrder = "rejected";
+      state.errorOrder = action.payload;
     },
   },
 });

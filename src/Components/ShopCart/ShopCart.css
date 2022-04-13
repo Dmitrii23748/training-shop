@@ -235,6 +235,22 @@
   margin-bottom: 0;
 }
 
+.error-none {
+  display: none;
+}
+
+.btn-further-error__back-cart {
+  margin-top: 15px;
+  background-color: #f8f8f8;
+  color: #121212;
+  transition: all .3s ease-in-out;
+}
+
+.btn-further-error__back-cart:hover {
+  color: #fff;
+  background-color: #857c7c;
+}
+
 @media screen and (max-width: 416px) {
   .cart {
     width: 418px;

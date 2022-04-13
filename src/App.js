@@ -30,6 +30,8 @@ function App() {
     setShowCart(!showCart);
   };
 
+  
+
   const [comments, setComments] = useState(false);
   const openCloseComments = () => {
     setComments(!comments);
@@ -52,12 +54,16 @@ function App() {
         showCart={showCart}
         handleShowCart={handleShowCart}
         setShowCart={setShowCart}
+
+      
       />
 
       <Navigation
         showLink={showLink}
         handleShowLink={handleShowLink}
         handleShowCart={handleShowCart}
+
+      
       />
       <div className="wrapper" onClick={() => setShowLink(false)}>
         <Routes>

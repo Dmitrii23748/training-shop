@@ -33,7 +33,7 @@ import {
 } from "../../redux/order/orderCartSlice";
 import { postOrderProducts } from "../../redux/order/orderCartSlice";
 
-function ShopCart({ showCart, handleShowCart, setShowCart }) {
+function ShopCart({ showCart, handleShowCart, setShowCart}) {
   const dispatch = useDispatch();
 
   const productsMens = useSelector((state) => state.cart.itemsInCart);
@@ -46,6 +46,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
 
   // ответ от сервера по заказу
   const message = useSelector((state) => state.order.messageOrder);
+
+  const { statusOrder } = useSelector((state) => state.order);
 
   // заказ
   const postProductsRedux = productsMensAndWomens.map((prod) => {
@@ -107,6 +109,10 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
   // удачный или нет заказ
   const [orderOk, setOrderOk] = useState(false);
 
+  // обновление
+  const [update, setUpdate] = useState(true);
+
+
   return (
     <section
       className={showCart ? "cart-wrapper" : "cart-wrapper cart-wrapper-none"}
@@ -121,11 +127,14 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
           <div className="container-cart">
             <div className="cart-block-title__flex">
               <h3 className="cart-title">Shopping Cart</h3>
-              {orderOk && message === "success" ? (
+              {orderOk &&
+              message === "success" &&
+              statusOrder === "resolved" ? (
                 <button
-                  className="cart__btn-close"
+                  className="cart__btn-close ok"
                   onClick={() => {
                     handleShowCart();
+
                     setItemCartDelivery(false);
                     setitemCartPayment(false);
                     setItemCartMain(true);
@@ -167,6 +176,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                   className="cart__btn-close"
                   onClick={() => {
                     handleShowCart();
+
                     setItemCartDelivery(false);
                     setitemCartPayment(false);
                     setItemCartMain(true);
@@ -175,6 +185,26 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                     setValidatePaypalClick(true);
                     setValidVisaClick(true);
                     setValidMasterCardClick(true);
+                    setOrderOk(false);
+                    // cleanCart();
+
+                    dispatch(setOrderDeliveryMethod(""));
+                    dispatch(setOrderPaymentMethod(""));
+                    dispatch(setOrderPhone(""));
+                    dispatch(setOrderEmail(""));
+                    dispatch(setOrderCountry(""));
+                    dispatch(setOrderCashEmail(""));
+                    dispatch(setOrderCity(""));
+                    dispatch(setOrderStreet(""));
+                    dispatch(setOrderHouse(""));
+                    dispatch(setOrderApartament(""));
+                    dispatch(setOrderPostcode(""));
+                    dispatch(setOrderStoreadress(""));
+                    dispatch(setOrderCard(""));
+                    dispatch(setOrderCardDate(""));
+                    dispatch(setOrderCardCvv(""));
+
+                    dispatch(setOrderMessage(""));
                   }}
                 >
                   <img
@@ -260,7 +290,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                         : "delivery-main__block delivery-main__block-none"
                     }
                   >
-                    {showCart && (
+                    {(showCart || update === false) && (
                       <CartDelivery
                         setValidDelivery={setValidDelivery}
                         validateClick={validateClick}
@@ -271,6 +301,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                         angreeHandler={angreeHandler}
                         checkedDelivery={checkedDelivery}
                         setCheckedDelivery={setCheckedDelivery}
+                        update={update}
+                        setUpdate={setUpdate}
                       />
                     )}
                   </div>
@@ -428,6 +460,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                               } else {
                                 setAgree(false);
                                 setValidateClick(false);
+                                // setUpdate(false)
                               }
                             }}
                           >
@@ -499,6 +532,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                             setItemCartDelivery(true);
                             setItemCartMain(false);
                             dispatch(setOrderProducts(postProductsRedux));
+                            // setUpdate(true)
                           }}
                         >
                           further
@@ -590,10 +624,85 @@ function ShopCart({ showCart, handleShowCart, setShowCart }) {
                 </div>
               </div>
             )}
-            {(message === "request-error" ||
-              message === "underfunded" ||
-              message === "bank-error" ||
-              message === "timeout") && <h1>NNNNNNNNNooooooooooooooooooo</h1>}
+            {orderOk &&
+              (message === "request-error" ||
+                message === "underfunded" ||
+                message === "bank-error" ||
+                message === "timeout") && (
+                <div className="no-products__block">
+                  <div className="cart-footer__btn-further cart-footer__btn-further-ordergood">
+                    <div className="not-cart-products__title-block not-cart-products__title-block-ordergood">
+                      <h2 className="not-cart-products__title not-cart-products__title-ordergood">
+                        Sorry,
+                        <br /> your payment
+                        <br />
+                        has not been <br />
+                        processed
+                      </h2>
+                      <p className="text-order-good">{message}</p>
+                    </div>
+
+                    <div className="block-error-btn">
+                      <button
+                        className="btn-further"
+                        onClick={() => {
+                          setItemCartDelivery(false);
+                          setitemCartPayment(true);
+
+                          setAgree(false);
+                          setValidatePaypalClick(true);
+                          setValidVisaClick(true);
+                          setValidMasterCardClick(true);
+                          setOrderOk(false);
+
+                          dispatch(setOrderMessage(""));
+                        }}
+                      >
+                        back to payment
+                      </button>
+                      <button
+                        className="btn-further btn-further-error__back-cart"
+                        onClick={() => {
+                          // handleShowCart();
+                          setUpdate(false)
+
+                          setItemCartDelivery(false);
+                          setitemCartPayment(false);
+                          setItemCartMain(true);
+
+                          setCheckedPayment("visa");
+                          setAgree(false);
+                          setValidatePaypalClick(true);
+                          setValidVisaClick(true);
+                          setValidMasterCardClick(true);
+                          setOrderOk(false);
+                          // cleanCart();
+
+                          dispatch(setOrderDeliveryMethod(""));
+                          dispatch(setOrderPaymentMethod(""));
+                          dispatch(setOrderPhone(""));
+                          dispatch(setOrderEmail(""));
+                          dispatch(setOrderCountry(""));
+                          dispatch(setOrderCashEmail(""));
+                          dispatch(setOrderCity(""));
+                          dispatch(setOrderStreet(""));
+                          dispatch(setOrderHouse(""));
+                          dispatch(setOrderApartament(""));
+                          dispatch(setOrderPostcode(""));
+                          dispatch(setOrderStoreadress(""));
+                          dispatch(setOrderCard(""));
+                          dispatch(setOrderCardDate(""));
+                          dispatch(setOrderCardCvv(""));
+
+                          dispatch(setOrderMessage(""));
+                        }}
+                      >
+                        VIEW CART
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       </div>
