@@ -201,7 +201,7 @@ function CartDelivery({
     }
   };
 
-  const [countryStore, setCountryStore] = useState("Country");
+  const [countryStore, setCountryStore] = useState("");
   const [countryStoreDirty, setCountryStoreDirty] = useState(false);
   const [countryStoreError, setCountryStoreError] = useState("Выберите страну");
 
@@ -550,7 +550,7 @@ function CartDelivery({
                   onChange={adressStoreHandler}
                   onBlur={(e) => blurHandler(e)}
                   onClick={clickInputCities}
-                  readOnly={countryStore === "Country" && "readOnly"}
+                  disabled={countryStore === "" && "disabled"}
                   name="storeAddress"
                 />
                 {errorCity && (
