@@ -63,4 +63,8 @@
   display: none;
 }
 
+.castom-radio {
+  text-transform: capitalize;
+}
+
 
