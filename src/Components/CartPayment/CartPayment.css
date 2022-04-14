@@ -2,6 +2,7 @@
 
 .payment {
   height: 50vh;
+  padding: 0 5px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
