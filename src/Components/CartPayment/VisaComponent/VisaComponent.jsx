@@ -87,7 +87,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
       ) {
         setCardVisaError("");
       }
-    } else if (e.target.name === "visaCardDate") {
+    } else if (e.target.name === "cardDate") {
       setCardVisaDateDirty(true);
       const year = String(new Date().getFullYear()).slice(2, 4);
       const firstTwoNumber = e.target.value.slice(0, 2);
@@ -171,7 +171,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
               mask="00/00"
               maskChar="_"
               showMask
-              name="visaCardDate"
+              name="cardDate"
               value={cardVisaDate}
               onChange={(e) => visaCardDateHandler(e)}
               onBlur={(e) => blurVisaHandler(e)}
