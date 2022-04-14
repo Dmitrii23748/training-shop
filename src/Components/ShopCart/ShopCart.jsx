@@ -102,10 +102,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
   const [validVisa, setValidVisa] = useState(false);
   const [validVisaClick, setValidVisaClick] = useState(true);
 
-  // валидация MasterCard
-  const [validMasterCard, setValidMasterCard] = useState(false);
-  console.log(validMasterCard);
-  const [validMasterCardClick, setValidMasterCardClick] = useState(true);
+
 
   // удачный или нет заказ
   const [orderOk, setOrderOk] = useState(false);
@@ -143,7 +140,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                     setAgree(false);
                     setValidatePaypalClick(true);
                     setValidVisaClick(true);
-                    setValidMasterCardClick(true);
+                  
                     setOrderOk(false);
                     cleanCart();
 
@@ -185,8 +182,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                     setAgree(false);
                     setValidatePaypalClick(true);
                     setValidVisaClick(true);
-                    setValidMasterCardClick(true);
-                    setOrderOk(false);
+                   
                     // cleanCart();
 
                     dispatch(setOrderDeliveryMethod(""));
@@ -327,9 +323,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                         setValidVisa={setValidVisa}
                         validVisaClick={validVisaClick}
                         setValidVisaClick={setValidVisaClick}
-                        setValidMasterCard={setValidMasterCard}
-                        validMasterCardClick={validMasterCardClick}
-                        setValidMasterCardClick={setValidMasterCardClick}
+                      
                       />
                     )}
                   </div>
@@ -387,27 +381,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                             Check Out
                           </button>
                         )}
-                        {/* {checkedPayment === "mastercart" && (
-                          <button
-                            className="btn-further"
-                            onClick={() => {
-                              if (!validMasterCard) {
-                                setValidMasterCardClick(false);
-                                console.log("валидации mastercard нет");
-                              } else {
-                                setOrderOk(true);
-                                setitemCartPayment(false);
-                                dispatch(
-                                  postOrderProducts(allProductsOrderComponents)
-                                );
-                                console.log("валидации mastercard есть");
-                              }
-                            }}
-                          >
-                            Check Out
-                          </button>
-                        )} */}
-
                         {checkedPayment === "cash" && (
                           <button
                             className="btn-further"
@@ -597,7 +570,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                       setAgree(false);
                       setValidatePaypalClick(true);
                       setValidVisaClick(true);
-                      setValidMasterCardClick(true);
+                   
                       setOrderOk(false);
                       cleanCart();
 
@@ -653,7 +626,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                           setAgree(false);
                           setValidatePaypalClick(true);
                           setValidVisaClick(true);
-                          setValidMasterCardClick(true);
+                        
                           setOrderOk(false);
 
                           dispatch(setOrderMessage(""));
@@ -675,7 +648,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                           setAgree(false);
                           setValidatePaypalClick(true);
                           setValidVisaClick(true);
-                          setValidMasterCardClick(true);
+                         
                           setOrderOk(false);
                           // cleanCart();
 

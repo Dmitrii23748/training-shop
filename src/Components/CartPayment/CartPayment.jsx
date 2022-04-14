@@ -20,11 +20,7 @@ function CartPayment({
   setValidPaypal,
   setValidVisa,
   validVisaClick,
-  setValidVisaClick,
-
-  setValidMasterCard,
-  validMasterCardClick,
-  setValidMasterCardClick
+  setValidVisaClick
 }) {
 
   const dispatch = useDispatch();
@@ -193,13 +189,6 @@ function CartPayment({
           />
           
         ) : null}
-        {/* {checkedPayment === "mastercart" ? (
-         <MasterCardComponent
-            setValidMasterCardClick={setValidMasterCardClick}
-            setValidMasterCard={setValidMasterCard}
-            validMasterCardClick={validMasterCardClick}
-         />
-        ) : null} */}
       </form>
       {checkedPayment === "cash" ? null : null}
     </div>
@@ -218,9 +207,6 @@ CartPayment.propTypes = {
   setValidPaypal: PropTypes.func.isRequired,
   setValidVisa: PropTypes.func.isRequired,
   setValidVisaClick: PropTypes.func.isRequired,
-  validVisaClick: PropTypes.bool.isRequired,
-  setValidMasterCard: PropTypes.func.isRequired,
-  validMasterCardClick: PropTypes.bool.isRequired,
-  setValidMasterCardClick: PropTypes.func.isRequired
+  validVisaClick: PropTypes.bool.isRequired
 
 };
