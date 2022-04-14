@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-escape */
 import PropTypes from "prop-types";
+import './CartDelivery.css';
 import React, { useEffect, useState } from "react";
 import "./CartDelivery.css";
 import MaskInput from "react-maskinput";
@@ -47,7 +48,6 @@ function CartDelivery({
   // заказ и др.
   useEffect(() => {
     if (checkedDelivery === "store") {
-      // dispatch(getAllCountry());
       dispatch(setOrderDeliveryMethod("Store pickup"));
     } else if (checkedDelivery === "choose") {
       dispatch(setOrderDeliveryMethod("Pickup from post offices"));
@@ -262,9 +262,12 @@ function CartDelivery({
     setCountryStore(e.target.value);
     dispatch(setCountryRedux(e.target.value));
     dispatch(setOrderCountry(e.target.value));
-    if (e.target.value === "Country" && validateClick === false) {
+    if (e.target.value === "" && validateClick === false) {
       setCountryStoreError("Выберите страну");
-    } else {
+    } else if(e.target.value.length === 0) {
+      setPlaceholderCountry(true)
+    }
+     else {
       setCountryStoreError("");
     }
   };
@@ -393,6 +396,12 @@ function CartDelivery({
     }
   }, [checkedDelivery])
 
+  const [placeholderCountry, setPlaceholderCountry] = useState(true);
+
+  // const togglePlaceholder = () => {
+  //   setPlaceholderCountry(!placeholderCountry)
+  // }
+
   return (
     <>
       <div className="delivery">
@@ -500,10 +509,14 @@ function CartDelivery({
 
          
 
-          <div className="delivery-info__item">
+          <div className="delivery-info__item delivery-info__item-select">
             {checkedDelivery === "store" ? (
               <>
                 <label className="delivery-info__title">adress of store</label>
+                {
+                  placeholderCountry && countryStore === '' ?  <p className="country-placeholder">Country</p> : null
+                }
+                
                 <select
                   value={countryStore}
                   onChange={(e) => countryStoreHandler(e)}
@@ -515,6 +528,7 @@ function CartDelivery({
                       : "delivery-info__input select-country"
                   }
                   name="countryStore"
+                  
                 >
                   <option></option>
                   {arrayCountry &&
