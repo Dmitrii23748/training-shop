@@ -22,7 +22,7 @@ function Subscribe() {
   const [btnSubscribe, setBtnSubscribe ] = useState(false)
 
   const blurEmail = (e) => {
-    if (e.target.name === "email") {
+    if (e.target.name === "emailMainSubscribe") {
       setEmailDirty(true);
       setBtnSubscribe(false);
       if (valueSubscribe === "") {
@@ -95,7 +95,7 @@ function Subscribe() {
             <input
               className="subscribe-block__input"
               type="text"
-              name="email"
+              name="emailMainSubscribe"
               placeholder="Enter your email"
               value={valueSubscribe}
               onBlur={(e) => blurEmail(e)}

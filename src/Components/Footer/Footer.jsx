@@ -38,7 +38,7 @@ function Footer() {
   const [btnSubscribe, setBtnSubscribe ] = useState(false)
 
   const blurEmail = (e) => {
-    if (e.target.name === "email") {
+    if (e.target.name === "emailSubscribeFooter") {
       setEmailDirty(true);
       if (valueSubscribe === "") {
         setEmailError("Email не может быть пустым");
@@ -109,7 +109,7 @@ function Footer() {
                 className="footer-contact__input"
                 type="text"
                 placeholder="Enter your email"
-                name="email"
+                name="emailSubscribeFooter"
                 value={valueSubscribe}
                 onBlur={(e) => blurEmail(e)}
                 onChange={(e) => handleChangeSubscribe(e)}
