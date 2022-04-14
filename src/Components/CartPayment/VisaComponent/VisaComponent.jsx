@@ -116,7 +116,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
       } else if (LastTwoNumber < year || months.some(even) === false) {
         setCardVisaDateError("Введите верный месяц или год");
       }
-    } else if (e.target.name === "numberPass") {
+    } else if (e.target.name === "cardCVV") {
       setNumberDirty(true)
       if(e.target.value.length > 0 && e.target.value.length < 3 && validVisaClick === false) {
         setNumberError("");
@@ -194,7 +194,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
                 placeholder="CVV"
                 value={number}
                 onChange={(e) => changeNumber(e) }
-                name="numberPass"
+                name="cardCVV"
               />
             <div className="eyes-block" onClick={handleClickEyes}>
               {eyesState ? (

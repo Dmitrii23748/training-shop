@@ -155,7 +155,7 @@ function CartPayment({
                 value="cash"
               />
               <span className="castom-radio"></span>
-              cash
+              Cash
             </label>
           </li>
         </ul>
