@@ -47,7 +47,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
   // ответ от сервера по заказу
   const message = useSelector((state) => state.order.messageOrder);
 
-  const { statusOrder } = useSelector((state) => state.order);
+  const { statusOrder,  errorOrder } = useSelector((state) => state.order);
 
   // заказ
   const postProductsRedux = productsMensAndWomens.map((prod) => {
@@ -602,7 +602,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
               (message === "request-error" ||
                 message === "underfunded" ||
                 message === "bank-error" ||
-                message === "timeout") && (
+                message === "timeout" || errorOrder) && (
                 <div className="no-products__block">
                   <div className="cart-footer__btn-further cart-footer__btn-further-ordergood">
                     <div className="not-cart-products__title-block not-cart-products__title-block-ordergood">
