@@ -78,7 +78,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
   };
 
   const blurVisaHandler = (e) => {
-    if (e.target.name === "visaCardNumber") {
+    if (e.target.name === "card") {
       setCardVisaDirty(true);
       if (
         e.target.value.length > 0 &&
@@ -152,7 +152,7 @@ function VisaComponent({ setValidVisa, validVisaClick, setValidVisaClick }) {
           onChange={(e) => visaCardNumberHandler(e)}
           onBlur={(e) => blurVisaHandler(e)}
           value={cardVisa}
-          name="visaCardNumber"
+          name="card"
         />
         {cardVisaDirty && cardVisaError && validVisaClick && (
           <p className="error-delivery">{cardVisaError}</p>
