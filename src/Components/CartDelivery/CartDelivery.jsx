@@ -47,7 +47,7 @@ function CartDelivery({
   // заказ и др.
   useEffect(() => {
     if (checkedDelivery === "store") {
-      dispatch(getAllCountry());
+      // dispatch(getAllCountry());
       dispatch(setOrderDeliveryMethod("Store pickup"));
     } else if (checkedDelivery === "choose") {
       dispatch(setOrderDeliveryMethod("Pickup from post offices"));
@@ -56,7 +56,7 @@ function CartDelivery({
     }
   }, [checkedDelivery]);
 
-  const arrayCountry = useSelector((state) => state.country.allCountry);
+
 
   const countryObjComponent = useSelector((state) => state.cityCart.cityObj);
   const citiesComponentRedux = useSelector((state) => state.cityCart.cities);
@@ -247,10 +247,10 @@ function CartDelivery({
       }
     } else if (e.target.name === "countryStore") {
       setCountryStoreDirty(true);
-      if (countryStore === "Country") {
+      if (countryStore === "") {
         setCountryStoreError("Выберите страну");
       }
-    } else if (e.target.name === "adressStore") {
+    } else if (e.target.name === "storeAddress") {
       setCityStoreDirty(true);
       if (adressStore === "") {
         setCityStoreError("Выберите город");
@@ -277,6 +277,10 @@ function CartDelivery({
       setCityStoreError("");
     }
   };
+
+ 
+
+  const arrayCountry = useSelector((state) => state.country.allCountry);
 
   useEffect(() => {
     if (
@@ -358,7 +362,6 @@ function CartDelivery({
       setPostcode("");
       setCountryStore("");
       setAdressStore("");
-      // setValidateClick(true)
     }
   }, [update]);
 
@@ -383,6 +386,12 @@ function CartDelivery({
       dispatch(postCity(countryObjComponent));
     }
   }, [adressStore.length]);
+
+  useEffect(() => {
+    if(checkedDelivery === "store") {
+      dispatch(getAllCountry())
+    }
+  }, [checkedDelivery])
 
   return (
     <>
@@ -489,112 +498,11 @@ function CartDelivery({
             ) : null}
           </div>
 
-          {checkedDelivery === "choose" ? (
-            <>
-              {/* <div className="delivery-info__item">
-                <label className="delivery-info__title">phone</label>
-                <MaskInput
-                  type="tel"
-                  className={
-                    (phoneDirty && phoneError) ||
-                    (validateClick === false && phoneError)
-                      ? "delivery-info__input delivery-info__input-error"
-                      : "delivery-info__input"
-                  }
-                  placeholder="+375 (_ _) _ _ _ _ _ _ _ "
-                  name="phone"
-                  value={phone}
-                  onBlur={(e) => blurHandler(e)}
-                  onChange={(e) => phoneHandler(e)}
-                  mask="+375 (00) 000 00 00"
-                  showMask
-                  maskChar="_"
-                />
-                {phoneDirty && phoneError && validateClick  && (
-                  <p className="error-delivery">{phoneError}</p>
-                )}
-                {(validateClick === false && phoneError) ? (
-                  <p className="error-delivery">{phoneError}</p>
-                ) : null}
-              </div>
-              <div className="delivery-info__item">
-                <label className="delivery-info__title">e-mail</label>
-                <input
-                  type="email"
-                  className={
-                    (emailDirty && emailError) ||
-                    (validateClick === false && emailError)
-                      ? "delivery-info__input delivery-info__input-error"
-                      : "delivery-info__input"
-                  }
-                  placeholder="e-mail"
-                  name="email"
-                  value={email}
-                  onBlur={(e) => blurHandler(e)}
-                  onChange={(e) => emailHandler(e)}
-                />
-                {emailDirty && emailError && validateClick && (
-                  <p className="error-delivery">{emailError}</p>
-                )}
-                {validateClick === false && emailError ? (
-                  <p className="error-delivery">{emailError}</p>
-                ) : null}
-              </div> */}
-            </>
-          ) : null}
+         
 
           <div className="delivery-info__item">
             {checkedDelivery === "store" ? (
               <>
-                {/* <div className="delivery-info__item">
-                  <label className="delivery-info__title">phone</label>
-                  <MaskInput
-                    type="tel"
-                    className={
-                      (phoneDirty && phoneError) ||
-                      (validateClick === false && phoneError)
-                        ? "delivery-info__input delivery-info__input-error"
-                        : "delivery-info__input"
-                    }
-                    placeholder="+375 (_ _) _ _ _ _ _ _ _ "
-                    name="phone"
-                    value={phone}
-                    onBlur={(e) => blurHandler(e)}
-                    onChange={(e) => phoneHandler(e)}
-                    mask="+375 (00) 000 00 00"
-                    showMask
-                    maskChar="_"
-                  />
-                  {phoneDirty && phoneError && validateClick && (
-                    <p className="error-delivery">{phoneError}</p>
-                  )}
-                  {validateClick === false && phoneError ? (
-                    <p className="error-delivery">{phoneError}</p>
-                  ) : null}
-                </div>
-                <div className="delivery-info__item">
-                  <label className="delivery-info__title">e-mail</label>
-                  <input
-                    type="email"
-                    className={
-                      (emailDirty && emailError) ||
-                      (validateClick === false && emailError)
-                        ? "delivery-info__input delivery-info__input-error"
-                        : "delivery-info__input"
-                    }
-                    placeholder="e-mail"
-                    name="email"
-                    value={email}
-                    onBlur={(e) => blurHandler(e)}
-                    onChange={(e) => emailHandler(e)}
-                  />
-                  {emailDirty && emailError && validateClick && (
-                    <p className="error-delivery">{emailError}</p>
-                  )}
-                  {validateClick === false && emailError ? (
-                    <p className="error-delivery">{emailError}</p>
-                  ) : null}
-                </div> */}
                 <label className="delivery-info__title">adress of store</label>
                 <select
                   value={countryStore}
@@ -608,7 +516,7 @@ function CartDelivery({
                   }
                   name="countryStore"
                 >
-                  <option>Country</option>
+                  <option></option>
                   {arrayCountry &&
                     status === "resolved" &&
                     arrayCountry.map((item) => {
@@ -643,7 +551,7 @@ function CartDelivery({
                   onBlur={(e) => blurHandler(e)}
                   onClick={clickInputCities}
                   readOnly={countryStore === "Country" && "readOnly"}
-                  name="adressStore"
+                  name="storeAddress"
                 />
                 {errorCity && (
                   <p className="error-delivery">Ошибка получения данных</p>
@@ -675,59 +583,7 @@ function CartDelivery({
               </>
             ) : (
               <>
-                {checkedDelivery === "express" && (
-                  <>
-                    {/* <div className="delivery-info__item">
-                      <label className="delivery-info__title">phone</label>
-                      <MaskInput
-                        type="tel"
-                        className={
-                          (phoneDirty && phoneError) ||
-                          (validateClick === false && phoneError)
-                            ? "delivery-info__input delivery-info__input-error"
-                            : "delivery-info__input"
-                        }
-                        placeholder="+375 (_ _) _ _ _ _ _ _ _ "
-                        name="phone"
-                        value={phone}
-                        onBlur={(e) => blurHandler(e)}
-                        onChange={(e) => phoneHandler(e)}
-                        mask="+375 (00) 000 00 00"
-                        showMask
-                        maskChar="_"
-                      />
-                      {phoneDirty && phoneError && validateClick && (
-                        <p className="error-delivery">{phoneError}</p>
-                      )}
-                      {validateClick === false && phoneError ? (
-                        <p className="error-delivery">{phoneError}</p>
-                      ) : null}
-                    </div>
-                    <div className="delivery-info__item">
-                      <label className="delivery-info__title">e-mail</label>
-                      <input
-                        type="email"
-                        className={
-                          (emailDirty && emailError) ||
-                          (validateClick === false && emailError)
-                            ? "delivery-info__input delivery-info__input-error"
-                            : "delivery-info__input"
-                        }
-                        placeholder="e-mail"
-                        name="email"
-                        value={email}
-                        onBlur={(e) => blurHandler(e)}
-                        onChange={(e) => emailHandler(e)}
-                      />
-                      {emailDirty && emailError && validateClick && (
-                        <p className="error-delivery">{emailError}</p>
-                      )}
-                      {validateClick === false && emailError ? (
-                        <p className="error-delivery">{emailError}</p>
-                      ) : null}
-                    </div> */}
-                  </>
-                )}
+                
 
                 <label className="delivery-info__title">adress</label>
                 <input
