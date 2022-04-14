@@ -246,10 +246,11 @@ function CartDelivery({
         setPostcodeError("Поле должно быть заполнено");
       }
     } else if (e.target.name === "countryStore") {
-      setPlaceholderCountry(true)
+    
       setCountryStoreDirty(true);
       if (countryStore === "") {
         setCountryStoreError("Выберите страну");
+        setPlaceholderCountry(true)
       }
     } else if (e.target.name === "storeAddress") {
       setCityStoreDirty(true);
@@ -266,9 +267,9 @@ function CartDelivery({
     if (e.target.value === "" && validateClick === false) {
       setCountryStoreError("Выберите страну");
     } 
-    else if(e.target.value === "") {
-      setPlaceholderCountry(true)
-    }
+    // else if(e.target.value.length === 0 ) {
+    //   setPlaceholderCountry(true)
+    // }
     else {
       setCountryStoreError("");
       setPlaceholderCountry(false)
@@ -403,9 +404,6 @@ function CartDelivery({
 
   const togglePlaceholder = () => {
     setPlaceholderCountry(false)
-    // if(countryStore.length === 0) {
-    //   setPlaceholderCountry(true)
-    // }
      }
 
   return (
@@ -520,7 +518,7 @@ function CartDelivery({
               <>
                 <label className="delivery-info__title">adress of store</label>
                 {
-                  placeholderCountry && countryStore === '' ?  <p className="country-placeholder">Country</p> : null
+                  placeholderCountry ? <p className="country-placeholder">Country</p> : null
                 }
                 
                 <select
