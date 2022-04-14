@@ -179,3 +179,17 @@
   background: #eee8e8;
   cursor: pointer;
 }
+
+.delivery-info__item-select {
+  position: relative;
+}
+
+.country-placeholder {
+  position: absolute;
+  top: 42px;
+  left: 13px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #9c9c9c;
+}
