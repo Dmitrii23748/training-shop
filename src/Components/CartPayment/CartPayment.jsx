@@ -7,7 +7,7 @@ import paypal from "../../img/cart-component/paypal-cart.png";
 import visa from "../../img/cart-component/visa-cart.png";
 import mastercart from "../../img/cart-component/mastercard-cart.png";
 import VisaComponent from "./VisaComponent/VisaComponent";
-import MasterCardComponent from "./MasterCardComponent/MasterCardComponent";
+// import MasterCardComponent from "./MasterCardComponent/MasterCardComponent";
 import { useDispatch } from "react-redux";
 import { setOrderPaymentMethod, setOrderCashEmail} from "../../redux/order/orderCartSlice";
 
@@ -184,7 +184,7 @@ function CartPayment({
             ) : null}
           </div>
         ) : null}
-        {checkedPayment === "visa" ? (
+        {checkedPayment === "visa" || checkedPayment === "mastercart" ? (
           
           <VisaComponent 
             setValidVisa={setValidVisa}
@@ -193,13 +193,13 @@ function CartPayment({
           />
           
         ) : null}
-        {checkedPayment === "mastercart" ? (
+        {/* {checkedPayment === "mastercart" ? (
          <MasterCardComponent
             setValidMasterCardClick={setValidMasterCardClick}
             setValidMasterCard={setValidMasterCard}
             validMasterCardClick={validMasterCardClick}
          />
-        ) : null}
+        ) : null} */}
       </form>
       {checkedPayment === "cash" ? null : null}
     </div>

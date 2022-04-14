@@ -104,6 +104,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
 
   // валидация MasterCard
   const [validMasterCard, setValidMasterCard] = useState(false);
+  console.log(validMasterCard);
   const [validMasterCardClick, setValidMasterCardClick] = useState(true);
 
   // удачный или нет заказ
@@ -366,7 +367,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                             Check Out
                           </button>
                         )}
-                        {checkedPayment === "visa" && (
+                        {(checkedPayment === "visa" || checkedPayment === "mastercart") && (
                           <button
                             className="btn-further"
                             onClick={() => {
@@ -386,7 +387,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                             Check Out
                           </button>
                         )}
-                        {checkedPayment === "mastercart" && (
+                        {/* {checkedPayment === "mastercart" && (
                           <button
                             className="btn-further"
                             onClick={() => {
@@ -405,7 +406,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                           >
                             Check Out
                           </button>
-                        )}
+                        )} */}
 
                         {checkedPayment === "cash" && (
                           <button
