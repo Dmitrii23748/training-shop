@@ -12,9 +12,18 @@ import {
   setCountryRedux,
 } from "../../redux/cityCart/cityCartSlice";
 import { postCity } from "../../redux/cityCart/cityCartSlice";
-import { setOrderDeliveryMethod, setOrderPhone, setOrderEmail, setOrderCountry,
-  setOrderCity, setOrderStreet, setOrderHouse, setOrderApartament, setOrderPostcode, setOrderStoreadress
- } from "../../redux/order/orderCartSlice";
+import {
+  setOrderDeliveryMethod,
+  setOrderPhone,
+  setOrderEmail,
+  setOrderCountry,
+  setOrderCity,
+  setOrderStreet,
+  setOrderHouse,
+  setOrderApartament,
+  setOrderPostcode,
+  setOrderStoreadress,
+} from "../../redux/order/orderCartSlice";
 
 function CartDelivery({
   setValidDelivery,
@@ -27,7 +36,7 @@ function CartDelivery({
   checkedDelivery,
   setCheckedDelivery,
   update,
-  setUpdate
+  setUpdate,
 }) {
   const dispatch = useDispatch();
 
@@ -35,16 +44,15 @@ function CartDelivery({
     setCheckedDelivery(e.target.value);
   };
 
-
-    // заказ и др.
+  // заказ и др.
   useEffect(() => {
     if (checkedDelivery === "store") {
       dispatch(getAllCountry());
-      dispatch(setOrderDeliveryMethod('Store pickup'))
+      dispatch(setOrderDeliveryMethod("Store pickup"));
     } else if (checkedDelivery === "choose") {
-      dispatch(setOrderDeliveryMethod('Pickup from post offices'))
+      dispatch(setOrderDeliveryMethod("Pickup from post offices"));
     } else if (checkedDelivery === "express") {
-      dispatch(setOrderDeliveryMethod('Express delivery'))
+      dispatch(setOrderDeliveryMethod("Express delivery"));
     }
   }, [checkedDelivery]);
 
@@ -91,20 +99,22 @@ function CartDelivery({
 
   // номер телефона для заказа
   const createNumberPhoneOrder = (numberValue) => {
-    const arrPh = numberValue.split('');
+    const arrPh = numberValue.split("");
     const numberArr = arrPh.map((item) => {
-      return Number(item)
-    })
-    const newArrPh = numberArr.filter(item => typeof item === "number" && item !== 0 && !!item);
-    const numberPhone = `${arrPh[0]}${newArrPh.join('')}`;
+      return Number(item);
+    });
+    const newArrPh = numberArr.filter(
+      (item) => typeof item === "number" && item !== 0 && !!item
+    );
+    const numberPhone = `${arrPh[0]}${newArrPh.join("")}`;
     return numberPhone;
-  }
+  };
 
   const phoneHandler = (e) => {
     // setUpdate(true)
     setPhone(e.target.value);
     const numberPhone = createNumberPhoneOrder(e.target.value);
-    dispatch(setOrderPhone(numberPhone))
+    dispatch(setOrderPhone(numberPhone));
     const re = /(\+?375 \((25|29|33|34)\) ([0-9]{3}( [0-9]{2}){2}))/;
     if (!String(e.target.value).toLowerCase().match(re)) {
       setPhoneError("Некорректный номер телефона");
@@ -115,7 +125,7 @@ function CartDelivery({
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
-    dispatch(setOrderEmail(e.target.value))
+    dispatch(setOrderEmail(e.target.value));
     const re =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!String(e.target.value).toLowerCase().match(re)) {
@@ -126,7 +136,7 @@ function CartDelivery({
   };
   const countryHandler = (e) => {
     setCountry(e.target.value);
-    dispatch(setOrderCountry(e.target.value))
+    dispatch(setOrderCountry(e.target.value));
     if (e.target.value === "" && validateClick === false) {
       setCountryError("Поле должно быть заполнено");
     } else if (e.target.value.length === 0) {
@@ -137,7 +147,7 @@ function CartDelivery({
   };
   const cityHandler = (e) => {
     setCity(e.target.value);
-    dispatch(setOrderCity(e.target.value))
+    dispatch(setOrderCity(e.target.value));
     if (e.target.value === "" && validateClick === false) {
       setCityError("Поле должно быть заполнено");
     } else if (e.target.value.length === 0) {
@@ -149,7 +159,7 @@ function CartDelivery({
 
   const streetHandler = (e) => {
     setStreet(e.target.value);
-    dispatch(setOrderStreet(e.target.value))
+    dispatch(setOrderStreet(e.target.value));
     if (e.target.value === "" && validateClick === false) {
       setStreetError("Поле должно быть заполнено");
     } else if (e.target.value.length === 0) {
@@ -161,7 +171,7 @@ function CartDelivery({
 
   const houseHandler = (e) => {
     setHouse(e.target.value);
-    dispatch(setOrderHouse(e.target.value))
+    dispatch(setOrderHouse(e.target.value));
     if (e.target.value === "" && validateClick === false) {
       setHouseError("Поле должно быть заполнено");
     } else if (e.target.value.length === 0) {
@@ -173,12 +183,12 @@ function CartDelivery({
 
   const handlerChangeApartament = (e) => {
     setApartament(e.target.value);
-    dispatch(setOrderApartament(e.target.value))
-  }
+    dispatch(setOrderApartament(e.target.value));
+  };
 
   const postcodeHandler = (e) => {
     setPostcode(e.target.value);
-    dispatch(setOrderPostcode(e.target.value.slice(3)))
+    dispatch(setOrderPostcode(e.target.value.slice(3)));
     if (e.target.value.length > 4 && e.target.value.length < 9) {
       setPostcodeError("Введите 6 цифр");
       if (e.target.value === "" && validateClick === false) {
@@ -251,7 +261,7 @@ function CartDelivery({
   const countryStoreHandler = (e) => {
     setCountryStore(e.target.value);
     dispatch(setCountryRedux(e.target.value));
-    dispatch(setOrderCountry(e.target.value))
+    dispatch(setOrderCountry(e.target.value));
     if (e.target.value === "Country" && validateClick === false) {
       setCountryStoreError("Выберите страну");
     } else {
@@ -335,23 +345,22 @@ function CartDelivery({
     }
   }, [countryStoreError, countryStoreError, phoneError, emailError, agree]);
 
+  useEffect(() => {
+    if (update === false) {
+      setPhone("");
 
- useEffect(() => {
-  if(update === false) {
-    setPhone('');
-
-    setEmail('');
-    setCountry('');
-    setCity('');
-    setStreet('');
-    setHouse('');
-    setApartament('');
-    setPostcode('');
-    setCountryStore('');
-    setAdressStore('');
-    // setValidateClick(true)
-  }
- }, [update])
+      setEmail("");
+      setCountry("");
+      setCity("");
+      setStreet("");
+      setHouse("");
+      setApartament("");
+      setPostcode("");
+      setCountryStore("");
+      setAdressStore("");
+      // setValidateClick(true)
+    }
+  }, [update]);
 
   const filtersCIties = citiesComponentRedux.filter((cityItem) => {
     return cityItem.city.toLowerCase().includes(adressStore.toLowerCase());
@@ -361,7 +370,7 @@ function CartDelivery({
 
   const itemClickHandler = (e) => {
     setAdressStore(e.target.textContent);
-    dispatch(setOrderStoreadress(e.target.textContent))
+    dispatch(setOrderStoreadress(e.target.textContent));
     setIsOpenCities(false);
   };
 
@@ -430,9 +439,59 @@ function CartDelivery({
             </li>
           </ul>
 
+          <div className="delivery-info__item">
+            <label className="delivery-info__title">phone</label>
+            <MaskInput
+              type="tel"
+              className={
+                (phoneDirty && phoneError) ||
+                (validateClick === false && phoneError)
+                  ? "delivery-info__input delivery-info__input-error"
+                  : "delivery-info__input"
+              }
+              placeholder="+375 (_ _) _ _ _ _ _ _ _ "
+              name="phone"
+              value={phone}
+              onBlur={(e) => blurHandler(e)}
+              onChange={(e) => phoneHandler(e)}
+              mask="+375 (00) 000 00 00"
+              showMask
+              maskChar="_"
+            />
+            {phoneDirty && phoneError && validateClick && (
+              <p className="error-delivery">{phoneError}</p>
+            )}
+            {validateClick === false && phoneError ? (
+              <p className="error-delivery">{phoneError}</p>
+            ) : null}
+          </div>
+          <div className="delivery-info__item">
+            <label className="delivery-info__title">e-mail</label>
+            <input
+              type="email"
+              className={
+                (emailDirty && emailError) ||
+                (validateClick === false && emailError)
+                  ? "delivery-info__input delivery-info__input-error"
+                  : "delivery-info__input"
+              }
+              placeholder="e-mail"
+              name="email"
+              value={email}
+              onBlur={(e) => blurHandler(e)}
+              onChange={(e) => emailHandler(e)}
+            />
+            {emailDirty && emailError && validateClick && (
+              <p className="error-delivery">{emailError}</p>
+            )}
+            {validateClick === false && emailError ? (
+              <p className="error-delivery">{emailError}</p>
+            ) : null}
+          </div>
+
           {checkedDelivery === "choose" ? (
             <>
-              <div className="delivery-info__item">
+              {/* <div className="delivery-info__item">
                 <label className="delivery-info__title">phone</label>
                 <MaskInput
                   type="tel"
@@ -480,14 +539,14 @@ function CartDelivery({
                 {validateClick === false && emailError ? (
                   <p className="error-delivery">{emailError}</p>
                 ) : null}
-              </div>
+              </div> */}
             </>
           ) : null}
 
           <div className="delivery-info__item">
             {checkedDelivery === "store" ? (
               <>
-                <div className="delivery-info__item">
+                {/* <div className="delivery-info__item">
                   <label className="delivery-info__title">phone</label>
                   <MaskInput
                     type="tel"
@@ -535,7 +594,7 @@ function CartDelivery({
                   {validateClick === false && emailError ? (
                     <p className="error-delivery">{emailError}</p>
                   ) : null}
-                </div>
+                </div> */}
                 <label className="delivery-info__title">adress of store</label>
                 <select
                   value={countryStore}
@@ -618,7 +677,7 @@ function CartDelivery({
               <>
                 {checkedDelivery === "express" && (
                   <>
-                    <div className="delivery-info__item">
+                    {/* <div className="delivery-info__item">
                       <label className="delivery-info__title">phone</label>
                       <MaskInput
                         type="tel"
@@ -666,7 +725,7 @@ function CartDelivery({
                       {validateClick === false && emailError ? (
                         <p className="error-delivery">{emailError}</p>
                       ) : null}
-                    </div>
+                    </div> */}
                   </>
                 )}
 
@@ -824,9 +883,6 @@ function CartDelivery({
 
 export default CartDelivery;
 
-
-
-
 CartDelivery.propTypes = {
   setValidDelivery: PropTypes.func.isRequired,
   setvalidDeliveryExpress: PropTypes.func.isRequired,
@@ -836,5 +892,5 @@ CartDelivery.propTypes = {
   agree: PropTypes.bool.isRequired,
   angreeHandler: PropTypes.func.isRequired,
   checkedDelivery: PropTypes.string.isRequired,
-  setCheckedDelivery: PropTypes.func.isRequired
+  setCheckedDelivery: PropTypes.func.isRequired,
 };
