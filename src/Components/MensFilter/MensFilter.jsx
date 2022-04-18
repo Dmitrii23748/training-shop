@@ -1,15 +1,14 @@
-import React from "react";
 import PropTypes from "prop-types";
-import "./MensFilter.css";
+import { Link } from "react-router-dom";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import filter from "../../img/filter-icons/filter.svg";
-import closeFilter from '../../img/filter-icons/close-filter.svg';
+import closeFilter from "../../img/filter-icons/close-filter.svg";
 import burgerFilter from "../../img/filter-icons/burger-filter.svg";
 import squaresFilter from "../../img/filter-icons/squares-filter.svg";
-import { Link } from "react-router-dom";
+import "./MensFilter.css";
 
-function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
+function MensFilter({ closeOpenFilterMen, handleCloseOpenFilterMen }) {
   return (
     <section className="mens-header">
       <div className="mens-header__title-div">
@@ -17,7 +16,10 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
           <div className="mens-header__title">
             <div className="mens-header__title-link">
               <div className="mens-header__title-item">
-                <Link to='/' className="mens-header__title-text mens-header__home-link">
+                <Link
+                  to="/"
+                  className="mens-header__title-text mens-header__home-link"
+                >
                   Home
                 </Link>
                 <img
@@ -47,16 +49,29 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
       <div className="mens-header__filters-block">
         <div className="container">
           <div className="mens-header__filters">
-            <div className="mens-header__filters-item" data-test-id='filter-button' onClick={handleCloseOpenFilterMen}>
-              <img className="mens-header__filters-filter"
-                src={closeOpenFilterMen ? closeFilter : filter} alt="filter"
-                
-                />
+            <div
+              className="mens-header__filters-item"
+              data-test-id="filter-button"
+              onClick={handleCloseOpenFilterMen}
+            >
+              <img
+                className="mens-header__filters-filter"
+                src={closeOpenFilterMen ? closeFilter : filter}
+                alt="filter"
+              />
               <p className="mens-header__filters-text">Filter</p>
             </div>
             <div className="mens-header__filters-item">
-              <img className="mens-header__filters-burgerFilter" src={burgerFilter} alt="burgerFilter" />
-              <img className="mens-header__filters-squaresFilter" src={squaresFilter} alt="squaresFilter" />
+              <img
+                className="mens-header__filters-burgerFilter"
+                src={burgerFilter}
+                alt="burgerFilter"
+              />
+              <img
+                className="mens-header__filters-squaresFilter"
+                src={squaresFilter}
+                alt="squaresFilter"
+              />
             </div>
           </div>
         </div>
@@ -67,8 +82,7 @@ function MensFilter({closeOpenFilterMen, handleCloseOpenFilterMen}) {
 
 export default MensFilter;
 
-
 MensFilter.propTypes = {
   closeOpenFilterMen: PropTypes.bool.isRequired,
-  handleCloseOpenFilterMen: PropTypes.func.isRequired
-}
+  handleCloseOpenFilterMen: PropTypes.func.isRequired,
+};

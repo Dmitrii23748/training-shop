@@ -62,6 +62,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
+  position: relative;
 }
 
 .delivery-info__title {
@@ -84,8 +85,9 @@
   line-height: 18px;
   color: #9c9c9c;
 }
-.delivery-info__input:focus::placeholder {
-  color: #121212;
+
+.delivery-info__input:focus::-webkit-input-placeholder {
+  color: transparent;
 }
 .delivery-info__input-adress {
   margin-bottom: 8px;
@@ -99,12 +101,13 @@
 
 .delivery-info__input-house,
 .delivery-info__input-apartment {
-  width: 166px;
+  width: 100%;
+  max-width: 154px;
 }
 
 .checkbox-iagree {
-    margin-top: 23px;
-    margin-bottom: 32px;
+  margin-top: 22px;
+  margin-bottom: 32px;
 }
 
 .real-checkbox-delivery {
@@ -129,13 +132,61 @@
   border: 1px solid #e6e6e6;
 }
 .castom-checkbox-delivery::after {
-    position: absolute;
-    content: url('../../img/filter-icons/icons8.svg');
-    top: -7px;
-    left: -1px;
-    transform: scale(0);
+  position: absolute;
+  content: url("../../img/filter-icons/icons8.svg");
+  top: -7px;
+  left: -1px;
+  transform: scale(0);
 }
 
 .real-checkbox-delivery:checked + .castom-checkbox-delivery::after {
-    transform: scale(1);
+  transform: scale(1);
+}
+
+.error-delivery {
+  font-size: 12px;
+  color: rgb(244, 22, 22);
+}
+
+.delivery-info__input-error {
+  border: 1px solid rgb(241, 16, 16);
+}
+
+.select-country {
+  margin-bottom: 10px;
+}
+
+.autocomplite {
+  position: absolute;
+  bottom: -81px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 3;
+  max-height: 100px;
+  height: auto;
+  overflow: auto;
+}
+
+.autocomplit__item {
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.autocomplit__item:hover {
+  background: #eee8e8;
+  cursor: pointer;
+}
+
+.delivery-info__item-select {
+  position: relative;
+}
+
+.country-placeholder {
+  position: absolute;
+  top: 42px;
+  left: 13px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #9c9c9c;
 }

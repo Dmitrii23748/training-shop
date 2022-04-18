@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from "react";
-import "./Footer.css";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "react-js-loader";
+import { setSubscribeFooter } from "../../redux/subscribeFooter/subscribeFooterSlice";
+import { postSubscribeFooter } from "../../redux/thunks";
+import { reEmail } from "../../data/root";
 import facebook from "../../img/icon-footer/footer-facebook.svg";
 import instagram from "../../img/icon-footer/footer-instagram.svg";
 import pinterest from "../../img/icon-footer/footer-pinterest.svg";
@@ -17,11 +21,7 @@ import visa from "../../img/icon-footer/pay-visa.svg";
 import mastercart from "../../img/icon-footer/pay-mastercart.svg";
 import discover from "../../img/icon-footer/pay-discover.svg";
 import american from "../../img/icon-footer/pay-americanexpress.svg";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setSubscribeFooter } from "../../redux/subscribeFooter/subscribeFooterSlice";
-import { postSubscribeFooter } from "../../redux/subscribeFooter/subscribeFooterSlice";
-import Loader from "react-js-loader";
+import "./Footer.css";
 
 function Footer() {
   const dispath = useDispatch();
@@ -34,11 +34,11 @@ function Footer() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
-  const [inputSubscribeFooter, setInputSubscribeFooter ] = useState(false);
-  const [btnSubscribe, setBtnSubscribe ] = useState(false)
+  const [inputSubscribeFooter, setInputSubscribeFooter] = useState(false);
+  const [btnSubscribe, setBtnSubscribe] = useState(false);
 
   const blurEmail = (e) => {
-    if (e.target.name === "email") {
+    if (e.target.name === "emailSubscribeFooter") {
       setEmailDirty(true);
       if (valueSubscribe === "") {
         setEmailError("Email не может быть пустым");
@@ -48,18 +48,24 @@ function Footer() {
 
   const handleChangeSubscribe = (e) => {
     dispath(setSubscribeFooter(e.target.value));
-    const re =
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!String(e.target.value).toLowerCase().match(re)) {
+    if (!String(e.target.value).toLowerCase().match(reEmail)) {
       setEmailError("Введён не корректный email");
     } else {
       setEmailError("");
     }
-    if(e.target.value) {
+    if (e.target.value) {
       setBtnSubscribe(false);
       setInputSubscribeFooter(false);
     }
   };
+
+  const postEmailSubscribe = () => {
+    dispath(postSubscribeFooter(valueSubscribe));
+  };
+
+  setTimeout(() => {
+    setInputSubscribeFooter(false);
+  }, 2500);
 
   useEffect(() => {
     if (emailError) {
@@ -70,10 +76,10 @@ function Footer() {
   }, [emailError]);
 
   useEffect(() => {
-    if( status === 'resolved') {
-      dispath(setSubscribeFooter(''));
+    if (status === "resolved") {
+      dispath(setSubscribeFooter(""));
       setInputSubscribeFooter(!inputSubscribeFooter);
-      setBtnSubscribe(!btnSubscribe)
+      setBtnSubscribe(!btnSubscribe);
     }
   }, [status]);
 
@@ -81,15 +87,6 @@ function Footer() {
     setBtnSubscribe(false);
     setInputSubscribeFooter(false);
   }, []);
-
-
-  const postEmailSubscribe = () => {
-    dispath(postSubscribeFooter(valueSubscribe));
-  };
-
-  setTimeout(() => {
-    setInputSubscribeFooter(false);
-  }, 2500)
 
   return (
     <footer className="footer" data-test-id="footer">
@@ -109,7 +106,7 @@ function Footer() {
                 className="footer-contact__input"
                 type="text"
                 placeholder="Enter your email"
-                name="email"
+                name="emailSubscribeFooter"
                 value={valueSubscribe}
                 onBlur={(e) => blurEmail(e)}
                 onChange={(e) => handleChangeSubscribe(e)}
@@ -118,21 +115,17 @@ function Footer() {
               <button
                 className="footer-contact__btn footer-contact__btn-dis"
                 type="button"
-                disabled={!formValid || btnSubscribe }
+                disabled={!formValid || btnSubscribe}
                 onClick={postEmailSubscribe}
                 data-test-id="footer-subscribe-mail-button"
               >
                 Join Us
               </button>
               {status === "loading" && (
-              <div className="loader-subscribe-footer" data-test-id="loader">
-                <Loader
-                  type="spinner-default"
-                  bgColor={"#fff"}
-                  size={30}
-                />
-              </div>
-            )}
+                <div className="loader-subscribe-footer" data-test-id="loader">
+                  <Loader type="spinner-default" bgColor={"#fff"} size={30} />
+                </div>
+              )}
             </div>
             <ul className="footer-contact__list footer-contact__item-block">
               <li className="footer-contact__item">

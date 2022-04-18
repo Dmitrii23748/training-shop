@@ -1,7 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import "./CartPageComponentWomen.css";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
+import Comments from "../Comments/Comments";
+import ButtonCartWomen from "../ButtonCartWomen/ButtonCartWomen";
+import { createUniqueCartColor } from "../../data/root";
+import { copyRewiewsWomens } from "../../redux/commets/commetsSlice";
+import { getAllProducts } from "../../redux/thunks";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import StarsCart from "../StarsCart/StarsCart";
@@ -14,19 +22,11 @@ import mail from "../../img/cart/mail-cart.svg";
 import starbigyellow from "../../img/stars/big-star.svg";
 import starbiggrey from "../../img/stars/big-grey.svg";
 import write from "../../img/cart/write.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
-import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { createUniqueCartColor } from "../../data/root";
-import { Link } from "react-router-dom";
-import ButtonCartWomen from "../ButtonCartWomen/ButtonCartWomen";
-import { useSelector, useDispatch } from "react-redux";
-import Comments from "../Comments/Comments";
-import { copyRewiewsWomens } from "../../redux/commets/commetsSlice";
-import { getAllProducts } from "../../redux/products/productsSlice";
+import "swiper/css";
+import "./CartPageComponentWomen.css";
 
 function CartPageComponentWomen({
   routeId,
@@ -35,11 +35,11 @@ function CartPageComponentWomen({
   openCloseComments,
   womensMainPageProducts,
 }) {
-  // const PRODUCTS = useSelector((state) => state.products.allProducts);
-  // const womensMainPageProducts = PRODUCTS.women;
+  const [firstSwiper, setFirstSwiper] = useState(null);
+  const [secondSwiper, setSecondSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const dispatch = useDispatch();
-
 
   const [sizeStateWomens, setSizeStateWomens] = useState(0);
   const handleUpdateSizeWomen = (index) => {
@@ -55,18 +55,13 @@ function CartPageComponentWomen({
     (state) => state.comments.womensRewiews
   );
 
-
-
-    const objProductWomens = womensMainPageProducts.reduce(
-      (acc, womenProduct) => {
-        acc[womenProduct.id] = womenProduct;
-        return acc;
-      },
-      {}
-    );
-  
-
-
+  const objProductWomens = womensMainPageProducts.reduce(
+    (acc, womenProduct) => {
+      acc[womenProduct.id] = womenProduct;
+      return acc;
+    },
+    {}
+  );
 
   const cartWomenParams = objProductWomens[`${routeId}`];
   const cartWomenImages = objProductWomens[`${routeId}`].images;
@@ -74,10 +69,6 @@ function CartPageComponentWomen({
   const cartWomenPrice = objProductWomens[`${routeId}`].price;
   const cartWomenReviews = objProductWomens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartWomenImages, "color");
-
-  useEffect(() => {
-    dispatch(copyRewiewsWomens(cartWomenReviews));
-  }, [dispatch]);
 
   let newArrColorWomens = [...cartWomenImages]
     .sort(function (a, b) {
@@ -100,9 +91,9 @@ function CartPageComponentWomen({
     countProd: 1,
   };
 
-  const [firstSwiper, setFirstSwiper] = useState(null);
-  const [secondSwiper, setSecondSwiper] = useState(null);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  useEffect(() => {
+    dispatch(copyRewiewsWomens(cartWomenReviews));
+  }, [dispatch]);
 
   return (
     <section className="cart-page" data-test-id={`product-page-women`}>
@@ -154,10 +145,9 @@ function CartPageComponentWomen({
               <div className="womens-cart-h__star">
                 <StarsCart cartRating={cartWomenParams.rating} />
 
-                  <p className="womens-cart-h__star-text">
-                    {cartWomensReviewsRedux.length} Reviews
-                  </p>
-
+                <p className="womens-cart-h__star-text">
+                  {cartWomensReviewsRedux.length} Reviews
+                </p>
               </div>
 
               <div className="womens-cart-h__code">
@@ -309,10 +299,6 @@ function CartPageComponentWomen({
                 <h3 className="cart-page__price-item cart-page__price-number">
                   $ {cartWomenPrice}
                 </h3>
-
-                {/* <button className="cart-page__price-item cart-page__price-btn">
-                  Add to card
-                </button> */}
 
                 <ButtonCartWomen cartProductWomen={cartProductWomen} />
 

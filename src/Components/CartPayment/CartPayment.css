@@ -1,3 +1,12 @@
+
+
+.payment {
+  height: 50vh;
+  padding: 0 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .payment-title {
   font-weight: 500;
   font-size: 14px;
@@ -40,5 +49,22 @@
   cursor: pointer;
 }
 
+.error-payment {
+  font-size: 12px;
+  color: rgb(244, 22, 22);
+}
+
+
+.delivery-info__input-error {
+  border: 1px solid rgb(241, 16, 16);
+}
+
+.input-cvv::-webkit-inner-spin-button {
+  display: none;
+}
+
+.castom-radio {
+  text-transform: capitalize;
+}
 
 

@@ -1,25 +1,77 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import "./CartPayment.css";
+import VisaComponent from "./VisaComponent/VisaComponent";
+import {
+  setOrderPaymentMethod,
+  setOrderCashEmail,
+} from "../../redux/order/order-сart-slice";
+import { reEmail } from "../../data/root";
 import paypal from "../../img/cart-component/paypal-cart.png";
 import visa from "../../img/cart-component/visa-cart.png";
 import mastercart from "../../img/cart-component/mastercard-cart.png";
-import eyes from "../../img/cart-component/eyeslash.svg";
-import eyescopy from "../../img/cart-component/eyeslash-copy.svg";
+import "./CartPayment.css";
 
-function CartPayment({ checkedPaypal, setCheckedPaypal }) {
-  const [eyesState, setEyesState] = useState(false);
-
-  const handleEyes = () => {
-    setEyesState(true);
-  };
-  const handleEyesBlur = () => {
-    setEyesState(false);
-  };
+function CartPayment({
+  checkedPayment,
+  setCheckedPayment,
+  validatePaypalClick,
+  setValidatePaypalClick,
+  setValidPaypal,
+  setValidVisa,
+  validVisaClick,
+  setValidVisaClick,
+}) {
+  const dispatch = useDispatch();
 
   const handleChangePaypal = (e) => {
-    setCheckedPaypal(e.target.value);
+    setCheckedPayment(e.target.value);
   };
+
+  // paypal
+  const [email, setEmail] = useState("");
+  const [emailDirty, setEmailDirty] = useState(false);
+  const [emailError, setEmailError] = useState("Поле должно быть заполнено");
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+    dispatch(setOrderCashEmail(e.target.value));
+    if (!String(e.target.value).toLowerCase().match(reEmail)) {
+      setEmailError("Введён не корректный email");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const blurHandler = (e) => {
+    if (e.target.name === "email") {
+      setEmailDirty(true);
+      if (email === "") {
+        setEmailError("Поле должно быть заполнено");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (emailError) {
+      setValidPaypal(false);
+    } else {
+      setValidPaypal(true);
+      setValidatePaypalClick(true);
+    }
+  }, [emailError]);
+
+  useEffect(() => {
+    if (checkedPayment === "paypal") {
+      dispatch(setOrderPaymentMethod("PayPal"));
+    } else if (checkedPayment === "visa" || checkedPayment === "mastercart") {
+      dispatch(setOrderPaymentMethod("Card"));
+    } else if (checkedPayment === "cash") {
+      dispatch(setOrderPaymentMethod("Cash"));
+    }
+  }, [checkedPayment]);
+
   return (
     <div className="payment">
       <h3 className="payment-title">Method of payments</h3>
@@ -35,7 +87,7 @@ function CartPayment({ checkedPaypal, setCheckedPaypal }) {
                 type="radio"
                 id="one-paypal"
                 name="payment"
-                checked={checkedPaypal === "paypal" ? true : false}
+                checked={checkedPayment === "paypal" ? true : false}
                 onChange={handleChangePaypal}
                 value="paypal"
               />
@@ -53,7 +105,7 @@ function CartPayment({ checkedPaypal, setCheckedPaypal }) {
                 type="radio"
                 id="two-visa"
                 name="payment"
-                checked={checkedPaypal === "visa" ? true : false}
+                checked={checkedPayment === "visa" ? true : false}
                 onChange={handleChangePaypal}
                 value="visa"
               />
@@ -71,7 +123,7 @@ function CartPayment({ checkedPaypal, setCheckedPaypal }) {
                 type="radio"
                 id="three-mastercart"
                 name="payment"
-                checked={checkedPaypal === "mastercart" ? true : false}
+                checked={checkedPayment === "mastercart" ? true : false}
                 onChange={handleChangePaypal}
                 value="mastercart"
               />
@@ -89,66 +141,62 @@ function CartPayment({ checkedPaypal, setCheckedPaypal }) {
                 type="radio"
                 id="four-cash"
                 name="payment"
-                checked={checkedPaypal === "cash" ? true : false}
+                checked={checkedPayment === "cash" ? true : false}
                 onChange={handleChangePaypal}
                 value="cash"
               />
               <span className="castom-radio"></span>
-              cash
+              Cash
             </label>
           </li>
         </ul>
-        {checkedPaypal === "visa" ? (
-          <>
-            <div className="delivery-info__item">
-              <span className="delivery-info__title">Card</span>
-              <input
-                type="text"
-                className="delivery-info__input"
-                placeholder="_ _ _ _   _ _ _ _   _ _ _ _   _ _ _ _"
-              />
-            </div>
-            <div className="input-house input-house__paypal">
-              <input
-                type="text"
-                className="delivery-info__input delivery-info__input-house"
-                placeholder="YY/MM"
-              />
-              <input
-                type="text"
-                className="delivery-info__input delivery-info__input-apartment paypal-info__input-apartment"
-                placeholder="CVV"
-                onFocus={handleEyes}
-                onBlur={handleEyesBlur}
-              />
-              {eyesState ? (
-                <img className="paypal-eyas" src={eyescopy} alt="eyescopy" />
-              ) : (
-                <img className="paypal-eyas" src={eyes} alt="eyas" />
-              )}
-            </div>
-          </>
-        ) : null}
-        {checkedPaypal === "paypal" ? (
+        {checkedPayment === "paypal" ? (
           <div className="delivery-info__item">
             <span className="delivery-info__title">E-mail</span>
             <input
               type="email"
-              className="delivery-info__input"
+              className={
+                (emailDirty && emailError) ||
+                (validatePaypalClick === false && emailError)
+                  ? "delivery-info__input delivery-info__input-error"
+                  : "delivery-info__input"
+              }
               placeholder="e-mail"
+              name="email"
+              value={email}
+              onBlur={(e) => blurHandler(e)}
+              onChange={(e) => emailHandler(e)}
             />
+            {emailDirty && emailError && validatePaypalClick && (
+              <p className="error-payment">{emailError}</p>
+            )}
+            {validatePaypalClick === false && emailError ? (
+              <p className="error-payment">{emailError}</p>
+            ) : null}
           </div>
         ) : null}
+        {checkedPayment === "visa" || checkedPayment === "mastercart" ? (
+          <VisaComponent
+            setValidVisa={setValidVisa}
+            validVisaClick={validVisaClick}
+            setValidVisaClick={setValidVisaClick}
+          />
+        ) : null}
       </form>
-      {checkedPaypal === "cash" ? null : null}
+      {checkedPayment === "cash" ? null : null}
     </div>
   );
 }
 
 export default CartPayment;
 
-
 CartPayment.propTypes = {
-  checkedPaypal: PropTypes.string.isRequired,
-  setCheckedPaypal: PropTypes.func.isRequired
-}
+  checkedPayment: PropTypes.string.isRequired,
+  setCheckedPayment: PropTypes.func.isRequired,
+  validatePaypalClick: PropTypes.bool.isRequired,
+  setValidatePaypalClick: PropTypes.func.isRequired,
+  setValidPaypal: PropTypes.func.isRequired,
+  setValidVisa: PropTypes.func.isRequired,
+  setValidVisaClick: PropTypes.func.isRequired,
+  validVisaClick: PropTypes.bool.isRequired,
+};
