@@ -5,12 +5,12 @@ import "./CheckBox.css";
 function CheckBox(props) {
   const inputRef = useRef(null);
   const handleChange = () => {
-      if(props.onChange) {
-        props.onChange(inputRef.current);
-      }
-  } 
+    if (props.onChange) {
+      props.onChange(inputRef.current);
+    }
+  };
   return (
-    <label className="custom-checkbox-label real-label" htmlFor={props.label} >
+    <label className="custom-checkbox-label real-label" htmlFor={props.label}>
       <input
         data-test-id={`filter-${props.paramsArrProp}-${props.itemParams}`}
         className="real-checkbox"

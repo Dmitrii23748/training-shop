@@ -1,21 +1,21 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { getAllProducts } from "../thunks";
 
-export const getAllProducts = createAsyncThunk(
-    'products/getAllProducts',
-    async (_, {rejectWithValue}) => {
-        try {
-            const res = await axios.get('https://training.cleverland.by/shop/products');
-            if(res.status !== 200) {
-                throw new Error("ошибка")
-            }
-            return res.data
+// export const getAllProducts = createAsyncThunk(
+//     'products/getAllProducts',
+//     async (_, {rejectWithValue}) => {
+//         try {
+//             const res = await axios.get('https://training.cleverland.by/shop/products');
+//             if(res.status !== 200) {
+//                 throw new Error("ошибка")
+//             }
+//             return res.data
             
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-)
+//         } catch (error) {
+//             return rejectWithValue(error.message)
+//         }
+//     }
+// )
 
 
 const productsSlice = createSlice({

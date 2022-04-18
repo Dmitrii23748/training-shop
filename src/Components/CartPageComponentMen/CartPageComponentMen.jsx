@@ -1,7 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./CartPageComponentMen.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
+import ButtonCart from "../ButtonCart/ButtonCart";
+import Comments from "../Comments/Comments";
+import { createUniqueCartColor } from "../../data/root";
+import { copyMensRewiews } from "../../redux/commets/commetsSlice";
+import { getAllProducts } from "../../redux/thunks";
 import headerArrow from "../../img/filter-icons/arrow-link.svg";
 import share from "../../img/filter-icons/share.svg";
 import StarsCart from "../StarsCart/StarsCart";
@@ -14,23 +22,24 @@ import mail from "../../img/cart/mail-cart.svg";
 import starbigyellow from "../../img/stars/big-star.svg";
 import starbiggrey from "../../img/stars/big-grey.svg";
 import write from "../../img/cart/write.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { createUniqueCartColor } from "../../data/root";
-import { Link } from "react-router-dom";
-import ButtonCart from "../ButtonCart/ButtonCart";
-import { useSelector, useDispatch } from "react-redux";
-import Comments from "../Comments/Comments";
-import { copyMensRewiews } from "../../redux/commets/commetsSlice";
-import { getAllProducts } from "../../redux/products/productsSlice";
+import "./CartPageComponentMen.css";
 
-function CartPageComponentMen({ routeId, comments, setComments, openCloseComments }) {
+function CartPageComponentMen({
+  routeId,
+  comments,
+  setComments,
+  openCloseComments,
+}) {
   const PRODUCTS = useSelector((state) => state.products.allProducts);
   const mensMainPageProducts = PRODUCTS.men;
+
+  const [firstSwiper, setFirstSwiper] = useState(null);
+  const [secondSwiper, setSecondSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -44,7 +53,6 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
     setcolorStateMens(index);
   };
 
-
   const objProductMens = mensMainPageProducts.reduce((acc, menProduct) => {
     acc[menProduct.id] = menProduct;
     return acc;
@@ -57,12 +65,9 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
   const cartMenReviews = objProductMens[`${routeId}`].reviews;
   const arrCartColor = createUniqueCartColor(cartMenImages, "color");
 
-  const cartMenReviewsRedux = useSelector(state => state.comments.mensRewiews);
-
-  useEffect(() => {
-    dispatch(copyMensRewiews(cartMenReviews))
-  },[]);
-
+  const cartMenReviewsRedux = useSelector(
+    (state) => state.comments.mensRewiews
+  );
 
   // получение уникального цвета и картинки для него
   let newArrColorMens = [...cartMenImages]
@@ -86,9 +91,9 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
     countProd: 1,
   };
 
-  const [firstSwiper, setFirstSwiper] = useState(null);
-  const [secondSwiper, setSecondSwiper] = useState(null);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  useEffect(() => {
+    dispatch(copyMensRewiews(cartMenReviews));
+  }, []);
 
   return (
     <section className="cart-page" data-test-id={`product-page-men`}>
@@ -521,10 +526,12 @@ function CartPageComponentMen({ routeId, comments, setComments, openCloseComment
             >
               {mensMainPageProducts &&
                 mensMainPageProducts.map((item, index) => {
-                  
                   return (
                     <SwiperSlide key={index}>
-                      <Link to={`/men/${item.id}`}  onClick={() => dispatch(getAllProducts())}>
+                      <Link
+                        to={`/men/${item.id}`}
+                        onClick={() => dispatch(getAllProducts())}
+                      >
                         <div className="womens-cart womens-cart-slider">
                           <div href="womens" className="men-cart__link">
                             <img
@@ -574,5 +581,5 @@ CartPageComponentMen.propTypes = {
   routeId: PropTypes.string.isRequired,
   comments: PropTypes.bool.isRequired,
   setComments: PropTypes.func.isRequired,
-  openCloseComments: PropTypes.func.isRequired
+  openCloseComments: PropTypes.func.isRequired,
 };

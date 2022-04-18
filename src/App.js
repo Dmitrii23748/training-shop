@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
 import MainPage from "./Pages/MainPage";
@@ -14,9 +13,8 @@ import BlogPage from "./Pages/BlogPage";
 import ContactPage from "./Pages/ContactPage";
 import ShopCart from "./Components/ShopCart/ShopCart";
 import { useDispatch } from "react-redux";
-import { getAllProducts } from "./redux/products/productsSlice";
-
-
+import { getAllProducts } from "./redux/thunks";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,14 +28,10 @@ function App() {
     setShowCart(!showCart);
   };
 
-  
-
   const [comments, setComments] = useState(false);
   const openCloseComments = () => {
     setComments(!comments);
   };
-
-
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -54,25 +48,16 @@ function App() {
         showCart={showCart}
         handleShowCart={handleShowCart}
         setShowCart={setShowCart}
-
-      
       />
 
       <Navigation
         showLink={showLink}
         handleShowLink={handleShowLink}
         handleShowCart={handleShowCart}
-
-      
       />
       <div className="wrapper" onClick={() => setShowLink(false)}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <MainPage />
-            }
-          />
+          <Route path="/" element={<MainPage />} />
           <Route path="/women" element={<WomensPage />} />
           <Route
             path="/women/:routeId"

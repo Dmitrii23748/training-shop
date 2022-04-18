@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import "./Comments.css";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "react-js-loader";
 import PropTypes from "prop-types";
 import { Formik } from "formik";
 import * as yup from "yup";
 import ReactStars from "react-rating-stars-component";
-import { useDispatch, useSelector } from "react-redux";
-import { setRating, postComments, setResolved } from "../../redux/commets/commetsSlice";
-import Loader from "react-js-loader";
+import {
+  setRating,
+  setResolved,
+} from "../../redux/commets/commetsSlice";
+import { postComments } from "../../redux/commets/commetsSlice";
+import "./Comments.css";
 
 function Comments({ id, setComments }) {
   const dispatch = useDispatch();
@@ -28,16 +32,18 @@ function Comments({ id, setComments }) {
       setComments(true);
     } else if (status === "resolved") {
       setComments(false);
-      dispatch(setResolved(null))
+      dispatch(setResolved(null));
     } else if (status === "rejected") {
       setComments(true);
     }
-    
   }, [status]);
-  
 
   return (
-    <div className="comments-block" onClick={(e) => e.stopPropagation()} data-test-id="review-modal">
+    <div
+      className="comments-block"
+      onClick={(e) => e.stopPropagation()}
+      data-test-id="review-modal"
+    >
       <h1>Write a review</h1>
       <div className="comments-stars-block">
         <ReactStars
@@ -138,8 +144,7 @@ function Comments({ id, setComments }) {
 
 export default Comments;
 
-
 Comments.propTypes = {
   id: PropTypes.string.isRequired,
-  setComments: PropTypes.func.isRequired
+  setComments: PropTypes.func.isRequired,
 };

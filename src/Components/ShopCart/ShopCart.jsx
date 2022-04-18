@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "./ShopCart.css";
-import cartClose from "../../img/cart-component/cart-close.svg";
 import CartItem from "../CartItem/CartItem";
 import CartDelivery from "../CartDelivery/CartDelivery";
 import CartPayment from "../CartPayment/CartPayment";
@@ -30,10 +28,12 @@ import {
   setOrderCardDate,
   setOrderCardCvv,
   setOrderMessage,
-} from "../../redux/order/orderCartSlice";
-import { postOrderProducts } from "../../redux/order/orderCartSlice";
+} from "../../redux/order/order-сart-slice";
+import { postOrderProducts } from "../../redux/order/order-сart-slice";
+import cartClose from "../../img/cart-component/cart-close.svg";
+import "./ShopCart.css";
 
-function ShopCart({ showCart, handleShowCart, setShowCart}) {
+function ShopCart({ showCart, handleShowCart, setShowCart }) {
   const dispatch = useDispatch();
 
   const productsMens = useSelector((state) => state.cart.itemsInCart);
@@ -47,7 +47,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
   // ответ от сервера по заказу
   const message = useSelector((state) => state.order.messageOrder);
 
-  const { statusOrder,  errorOrder } = useSelector((state) => state.order);
+  const { statusOrder, errorOrder } = useSelector((state) => state.order);
 
   // заказ
   const postProductsRedux = productsMensAndWomens.map((prod) => {
@@ -102,14 +102,11 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
   const [validVisa, setValidVisa] = useState(false);
   const [validVisaClick, setValidVisaClick] = useState(true);
 
-
-
   // удачный или нет заказ
   const [orderOk, setOrderOk] = useState(false);
 
   // обновление
   const [update, setUpdate] = useState(true);
-
 
   return (
     <section
@@ -140,7 +137,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                     setAgree(false);
                     setValidatePaypalClick(true);
                     setValidVisaClick(true);
-                  
+
                     setOrderOk(false);
                     cleanCart();
 
@@ -182,7 +179,7 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                     setAgree(false);
                     setValidatePaypalClick(true);
                     setValidVisaClick(true);
-                   
+
                     // cleanCart();
 
                     dispatch(setOrderDeliveryMethod(""));
@@ -323,7 +320,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                         setValidVisa={setValidVisa}
                         validVisaClick={validVisaClick}
                         setValidVisaClick={setValidVisaClick}
-                      
                       />
                     )}
                   </div>
@@ -347,34 +343,31 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                             onClick={() => {
                               if (!validPaypal) {
                                 setValidatePaypalClick(false);
-                                console.log("валидации paypal нет ");
                               } else {
                                 setOrderOk(true);
                                 setitemCartPayment(false);
                                 dispatch(
                                   postOrderProducts(allProductsOrderComponents)
                                 );
-                                console.log("валидация paypal есть");
                               }
                             }}
                           >
                             Check Out
                           </button>
                         )}
-                        {(checkedPayment === "visa" || checkedPayment === "mastercart") && (
+                        {(checkedPayment === "visa" ||
+                          checkedPayment === "mastercart") && (
                           <button
                             className="btn-further"
                             onClick={() => {
                               if (!validVisa) {
                                 setValidVisaClick(false);
-                                console.log("валидации visa нет");
                               } else {
                                 setOrderOk(true);
                                 setitemCartPayment(false);
                                 dispatch(
                                   postOrderProducts(allProductsOrderComponents)
                                 );
-                                console.log("валидация visa есть");
                               }
                             }}
                           >
@@ -434,7 +427,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                               } else {
                                 setAgree(false);
                                 setValidateClick(false);
-                                // setUpdate(false)
                               }
                             }}
                           >
@@ -506,7 +498,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                             setItemCartDelivery(true);
                             setItemCartMain(false);
                             dispatch(setOrderProducts(postProductsRedux));
-                            // setUpdate(true)
                           }}
                         >
                           further
@@ -570,10 +561,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                       setAgree(false);
                       setValidatePaypalClick(true);
                       setValidVisaClick(true);
-                   
                       setOrderOk(false);
                       cleanCart();
-
                       dispatch(setOrderDeliveryMethod(""));
                       dispatch(setOrderPaymentMethod(""));
                       dispatch(setOrderPhone(""));
@@ -589,7 +578,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                       dispatch(setOrderCard(""));
                       dispatch(setOrderCardDate(""));
                       dispatch(setOrderCardCvv(""));
-
                       dispatch(setOrderMessage(""));
                     }}
                   >
@@ -602,7 +590,8 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
               (message === "request-error" ||
                 message === "underfunded" ||
                 message === "bank-error" ||
-                message === "timeout" || errorOrder) && (
+                message === "timeout" ||
+                errorOrder) && (
                 <div className="no-products__block">
                   <div className="cart-footer__btn-further cart-footer__btn-further-ordergood">
                     <div className="not-cart-products__title-block not-cart-products__title-block-ordergood">
@@ -622,13 +611,10 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                         onClick={() => {
                           setItemCartDelivery(false);
                           setitemCartPayment(true);
-
                           setAgree(false);
                           setValidatePaypalClick(true);
                           setValidVisaClick(true);
-                        
                           setOrderOk(false);
-
                           dispatch(setOrderMessage(""));
                         }}
                       >
@@ -637,21 +623,16 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                       <button
                         className="btn-further btn-further-error__back-cart"
                         onClick={() => {
-                          // handleShowCart();
-                          setUpdate(false)
-
+                          setUpdate(false);
                           setItemCartDelivery(false);
                           setitemCartPayment(false);
                           setItemCartMain(true);
-
                           setCheckedPayment("visa");
                           setAgree(false);
                           setValidatePaypalClick(true);
                           setValidVisaClick(true);
-                         
                           setOrderOk(false);
-                          // cleanCart();
-
+      
                           dispatch(setOrderDeliveryMethod(""));
                           dispatch(setOrderPaymentMethod(""));
                           dispatch(setOrderPhone(""));
@@ -667,7 +648,6 @@ function ShopCart({ showCart, handleShowCart, setShowCart}) {
                           dispatch(setOrderCard(""));
                           dispatch(setOrderCardDate(""));
                           dispatch(setOrderCardCvv(""));
-
                           dispatch(setOrderMessage(""));
                         }}
                       >

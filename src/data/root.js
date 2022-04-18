@@ -1,4 +1,9 @@
+/* eslint-disable no-useless-escape */
 
+
+
+export const reEmail =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+export const rePhone = /(\+?375 \((25|29|33|34)\) ([0-9]{3}( [0-9]{2}){2}))/;
 
 export function createUniqueSizesArray(arr) {
   const arraySizes = arr.map((item) => {

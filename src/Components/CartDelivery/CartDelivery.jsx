@@ -1,18 +1,15 @@
-/* eslint-disable valid-typeof */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-useless-escape */
-import PropTypes from "prop-types";
-import './CartDelivery.css';
 import React, { useEffect, useState } from "react";
-import "./CartDelivery.css";
 import MaskInput from "react-maskinput";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { postCity } from "../../redux/cityCart/city-сart-slice";
 import { getAllCountry } from "../../redux/country/countrySlice";
 import {
   setCityRedux,
   setCountryRedux,
-} from "../../redux/cityCart/cityCartSlice";
-import { postCity } from "../../redux/cityCart/cityCartSlice";
+} from "../../redux/cityCart/city-сart-slice";
+
 import {
   setOrderDeliveryMethod,
   setOrderPhone,
@@ -24,7 +21,9 @@ import {
   setOrderApartament,
   setOrderPostcode,
   setOrderStoreadress,
-} from "../../redux/order/orderCartSlice";
+} from "../../redux/order/order-сart-slice";
+import { reEmail, rePhone } from "../../data/root";
+import "./CartDelivery.css";
 
 function CartDelivery({
   setValidDelivery,
@@ -37,29 +36,23 @@ function CartDelivery({
   checkedDelivery,
   setCheckedDelivery,
   update,
-  setUpdate,
 }) {
+
+  const nameCheckBox = {
+    choose: "choose",
+    store: "store",
+    express: "express"
+
+  }
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setCheckedDelivery(e.target.value);
   };
 
-  // заказ и др.
-  useEffect(() => {
-    if (checkedDelivery === "store") {
-      dispatch(setOrderDeliveryMethod("Store pickup"));
-    } else if (checkedDelivery === "choose") {
-      dispatch(setOrderDeliveryMethod("Pickup from post offices"));
-    } else if (checkedDelivery === "express") {
-      dispatch(setOrderDeliveryMethod("Express delivery"));
-    }
-  }, [checkedDelivery]);
 
-
-
-  const countryObjComponent = useSelector((state) => state.cityCart.cityObj);
-  const citiesComponentRedux = useSelector((state) => state.cityCart.cities);
+  const { cityObj } = useSelector((state) => state.cityCart);
+  const { cities } = useSelector((state) => state.cityCart);
   const { status, error } = useSelector((state) => state.country);
   const { statusCity, errorCity } = useSelector((state) => state.cityCart);
 
@@ -100,9 +93,7 @@ function CartDelivery({
   // номер телефона для заказа
   const createNumberPhoneOrder = (numberValue) => {
     const arrPh = numberValue.split("");
-    const numberArr = arrPh.map((item) => {
-      return Number(item);
-    });
+    const numberArr = arrPh.map((item) => Number(item));
     const newArrPh = numberArr.filter(
       (item) => typeof item === "number" && item !== 0 && !!item
     );
@@ -110,13 +101,12 @@ function CartDelivery({
     return numberPhone;
   };
 
+
   const phoneHandler = (e) => {
-    // setUpdate(true)
     setPhone(e.target.value);
     const numberPhone = createNumberPhoneOrder(e.target.value);
     dispatch(setOrderPhone(numberPhone));
-    const re = /(\+?375 \((25|29|33|34)\) ([0-9]{3}( [0-9]{2}){2}))/;
-    if (!String(e.target.value).toLowerCase().match(re)) {
+    if (!String(e.target.value).toLowerCase().match(rePhone)) {
       setPhoneError("Некорректный номер телефона");
     } else {
       setPhoneError("");
@@ -126,9 +116,7 @@ function CartDelivery({
   const emailHandler = (e) => {
     setEmail(e.target.value);
     dispatch(setOrderEmail(e.target.value));
-    const re =
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!String(e.target.value).toLowerCase().match(re)) {
+    if (!String(e.target.value).toLowerCase().match(reEmail)) {
       setEmailError("Введён не корректный email");
     } else {
       setEmailError("");
@@ -137,7 +125,7 @@ function CartDelivery({
   const countryHandler = (e) => {
     setCountry(e.target.value);
     dispatch(setOrderCountry(e.target.value));
-    if (e.target.value === "" && validateClick === false) {
+    if (!e.target.value === "" && validateClick === false) {
       setCountryError("Поле должно быть заполнено");
     } else if (e.target.value.length === 0) {
       setCountryError("Поле должно быть заполнено");
@@ -246,11 +234,10 @@ function CartDelivery({
         setPostcodeError("Поле должно быть заполнено");
       }
     } else if (e.target.name === "countryStore") {
-    
       setCountryStoreDirty(true);
       if (countryStore === "") {
         setCountryStoreError("Выберите страну");
-        setPlaceholderCountry(true)
+        setPlaceholderCountry(true);
       }
     } else if (e.target.name === "storeAddress") {
       setCityStoreDirty(true);
@@ -266,13 +253,9 @@ function CartDelivery({
     dispatch(setOrderCountry(e.target.value));
     if (e.target.value === "" && validateClick === false) {
       setCountryStoreError("Выберите страну");
-    } 
-    // else if(e.target.value.length === 0 ) {
-    //   setPlaceholderCountry(true)
-    // }
-    else {
+    } else {
       setCountryStoreError("");
-      setPlaceholderCountry(false)
+      setPlaceholderCountry(false);
     }
   };
   const adressStoreHandler = (e) => {
@@ -285,9 +268,47 @@ function CartDelivery({
     }
   };
 
- 
-
   const arrayCountry = useSelector((state) => state.country.allCountry);
+
+  const filtersCIties = cities.filter((cityItem) => {
+    return cityItem.city.toLowerCase().includes(adressStore.toLowerCase());
+  });
+
+  const [isOpenCities, setIsOpenCities] = useState(true);
+
+  const itemClickHandler = (e) => {
+    setAdressStore(e.target.textContent);
+    dispatch(setOrderStoreadress(e.target.textContent));
+    setIsOpenCities(false);
+  };
+
+  const clickInputCities = () => {
+    setIsOpenCities(true);
+  };
+
+  const [placeholderCountry, setPlaceholderCountry] = useState(true);
+
+  const togglePlaceholder = () => {
+    setPlaceholderCountry(false);
+  };
+
+    // заказ и др.
+    useEffect(() => {
+      switch (checkedDelivery) {
+        case "store":
+          dispatch(setOrderDeliveryMethod("Store pickup"));
+          break;
+        case "choose":
+          dispatch(setOrderDeliveryMethod("Pickup from post offices"));
+          break;
+        case "express":
+          dispatch(setOrderDeliveryMethod("Express delivery"));
+          break;
+        default:
+          break;
+      }
+    }, [checkedDelivery]);
+  
 
   useEffect(() => {
     if (
@@ -372,39 +393,17 @@ function CartDelivery({
     }
   }, [update]);
 
-  const filtersCIties = citiesComponentRedux.filter((cityItem) => {
-    return cityItem.city.toLowerCase().includes(adressStore.toLowerCase());
-  });
-
-  const [isOpenCities, setIsOpenCities] = useState(true);
-
-  const itemClickHandler = (e) => {
-    setAdressStore(e.target.textContent);
-    dispatch(setOrderStoreadress(e.target.textContent));
-    setIsOpenCities(false);
-  };
-
-  const clickInputCities = () => {
-    setIsOpenCities(true);
-  };
-
   useEffect(() => {
     if (adressStore.length > 2) {
-      dispatch(postCity(countryObjComponent));
+      dispatch(postCity(cityObj));
     }
   }, [adressStore.length]);
 
   useEffect(() => {
-    if(checkedDelivery === "store") {
-      dispatch(getAllCountry())
+    if (checkedDelivery === "store") {
+      dispatch(getAllCountry());
     }
-  }, [checkedDelivery])
-
-  const [placeholderCountry, setPlaceholderCountry] = useState(true);
-
-  const togglePlaceholder = () => {
-    setPlaceholderCountry(false)
-     }
+  }, [checkedDelivery]);
 
   return (
     <>
@@ -421,7 +420,7 @@ function CartDelivery({
                   type="radio"
                   id="one-de"
                   name="delivery"
-                  checked={checkedDelivery === "choose" ? true : false}
+                  checked={checkedDelivery === nameCheckBox.choose ? true : false}
                   onChange={handleChange}
                   value="choose"
                 />
@@ -436,7 +435,7 @@ function CartDelivery({
                   type="radio"
                   id="two-de"
                   name="delivery"
-                  checked={checkedDelivery === "express" ? true : false}
+                  checked={checkedDelivery === nameCheckBox.express ? true : false}
                   onChange={handleChange}
                   value="express"
                 />
@@ -451,7 +450,7 @@ function CartDelivery({
                   type="radio"
                   id="three-de"
                   name="delivery"
-                  checked={checkedDelivery === "store" ? true : false}
+                  checked={checkedDelivery === nameCheckBox.store ? true : false}
                   onChange={handleChange}
                   value="store"
                 />
@@ -474,8 +473,8 @@ function CartDelivery({
               placeholder="+375 (_ _) _ _ _ _ _ _ _ "
               name="phone"
               value={phone}
-              onBlur={(e) => blurHandler(e)}
-              onChange={(e) => phoneHandler(e)}
+              onBlur={blurHandler}
+              onChange={phoneHandler}
               mask="+375 (00) 000 00 00"
               showMask
               maskChar="_"
@@ -483,9 +482,9 @@ function CartDelivery({
             {phoneDirty && phoneError && validateClick && (
               <p className="error-delivery">{phoneError}</p>
             )}
-            {validateClick === false && phoneError ? (
+            {validateClick === false && phoneError && (
               <p className="error-delivery">{phoneError}</p>
-            ) : null}
+            )}
           </div>
           <div className="delivery-info__item">
             <label className="delivery-info__title">e-mail</label>
@@ -500,31 +499,29 @@ function CartDelivery({
               placeholder="e-mail"
               name="email"
               value={email}
-              onBlur={(e) => blurHandler(e)}
-              onChange={(e) => emailHandler(e)}
+              onBlur={blurHandler}
+              onChange={emailHandler}
             />
             {emailDirty && emailError && validateClick && (
               <p className="error-delivery">{emailError}</p>
             )}
-            {validateClick === false && emailError ? (
+            {validateClick === false && emailError && (
               <p className="error-delivery">{emailError}</p>
-            ) : null}
+            )}
           </div>
-
-         
 
           <div className="delivery-info__item delivery-info__item-select">
             {checkedDelivery === "store" ? (
               <>
                 <label className="delivery-info__title">adress of store</label>
-                {
-                  placeholderCountry ? <p className="country-placeholder">Country</p> : null
-                }
-                
+                {placeholderCountry && (
+                  <p className="country-placeholder">Country</p>
+                )}
+
                 <select
                   value={countryStore}
-                  onChange={(e) => countryStoreHandler(e)}
-                  onBlur={(e) => blurHandler(e)}
+                  onChange={countryStoreHandler}
+                  onBlur={blurHandler}
                   className={
                     (countryStoreDirty && countryStoreError) ||
                     (validateClick === false && countryStoreError)
@@ -551,9 +548,9 @@ function CartDelivery({
                 {countryStoreDirty && countryStoreError && validateClick && (
                   <p className="error-delivery">{countryStoreError}</p>
                 )}
-                {validateClick === false && countryStoreError ? (
+                {validateClick === false && countryStoreError && (
                   <p className="error-delivery">{countryStoreError}</p>
-                ) : null}
+                )}
 
                 <input
                   type="text"
@@ -577,12 +574,12 @@ function CartDelivery({
                 {cityStoreDirty && cityStoreError && validateClick && (
                   <p className="error-delivery">{cityStoreError}</p>
                 )}
-                {validateClick === false && cityStoreError ? (
+                {validateClick === false && cityStoreError && (
                   <p className="error-delivery">{cityStoreError}</p>
-                ) : null}
+                )}
 
                 <ul className="autocomplite">
-                  {citiesComponentRedux &&
+                  {cities &&
                     adressStore &&
                     isOpenCities &&
                     statusCity === "resolved" &&
@@ -601,8 +598,6 @@ function CartDelivery({
               </>
             ) : (
               <>
-                
-
                 <label className="delivery-info__title">adress</label>
                 <input
                   type="text"
@@ -615,15 +610,15 @@ function CartDelivery({
                   placeholder="Country"
                   name="country"
                   value={country}
-                  onBlur={(e) => blurHandler(e)}
-                  onChange={(e) => countryHandler(e)}
+                  onBlur={blurHandler}
+                  onChange={countryHandler}
                 />
                 {countryDirty && countryError && validateClick && (
                   <p className="error-delivery">{countryError}</p>
                 )}
-                {validateClick === false && countryError ? (
+                {validateClick === false && countryError && (
                   <p className="error-delivery">{countryError}</p>
-                ) : null}
+                )}
                 <input
                   type="text"
                   className={
@@ -635,15 +630,15 @@ function CartDelivery({
                   placeholder="City"
                   name="city"
                   value={city}
-                  onBlur={(e) => blurHandler(e)}
-                  onChange={(e) => cityHandler(e)}
+                  onBlur={blurHandler}
+                  onChange={cityHandler}
                 />
                 {cityDirty && cityError && validateClick && (
                   <p className="error-delivery">{cityError}</p>
                 )}
-                {validateClick === false && cityError ? (
+                {validateClick === false && cityError && (
                   <p className="error-delivery">{cityError}</p>
-                ) : null}
+                )}
                 <input
                   type="text"
                   className={
@@ -655,15 +650,15 @@ function CartDelivery({
                   placeholder="Street"
                   name="street"
                   value={street}
-                  onBlur={(e) => blurHandler(e)}
-                  onChange={(e) => streetHandler(e)}
+                  onBlur={blurHandler}
+                  onChange={streetHandler}
                 />
                 {streetDirty && streetError && validateClick && (
                   <p className="error-delivery">{streetError}</p>
                 )}
-                {validateClick === false && streetError ? (
+                {validateClick === false && streetError && (
                   <p className="error-delivery">{streetError}</p>
-                ) : null}
+                )}
                 <div className="input-house">
                   <input
                     type="text"
@@ -676,23 +671,23 @@ function CartDelivery({
                     placeholder="House"
                     name="house"
                     value={house}
-                    onBlur={(e) => blurHandler(e)}
-                    onChange={(e) => houseHandler(e)}
+                    onBlur={blurHandler}
+                    onChange={houseHandler}
                   />
                   <input
                     type="text"
                     className="delivery-info__input delivery-info__input-apartment"
                     placeholder="Apartment"
-                    onChange={(e) => handlerChangeApartament(e)}
+                    onChange={handlerChangeApartament}
                     value={apartament}
                   />
                 </div>
                 {houseDirty && houseError && validateClick && (
                   <p className="error-delivery">{houseError}</p>
                 )}
-                {validateClick === false && houseError ? (
+                {validateClick === false && houseError && (
                   <p className="error-delivery">{houseError}</p>
-                ) : null}
+                )}
               </>
             )}
           </div>
@@ -712,15 +707,15 @@ function CartDelivery({
                 mask="BY 000000"
                 name="postcode"
                 value={postcode}
-                onBlur={(e) => blurHandler(e)}
-                onChange={(e) => postcodeHandler(e)}
+                onBlur={blurHandler}
+                onChange={postcodeHandler}
               />
               {postcodeDirty && postcodeError && validateClick && (
                 <p className="error-delivery">{postcodeError}</p>
               )}
-              {validateClick === false && postcodeError ? (
+              {validateClick === false && postcodeError && (
                 <p className="error-delivery">{postcodeError}</p>
-              ) : null}
+              )}
             </div>
           )}
           <div className="checkbox-iagree">
@@ -743,11 +738,11 @@ function CartDelivery({
               ></span>
               I agree to the processing of my personal information
             </label>
-            {validateClick === false && agree === false ? (
+            {validateClick === false && agree === false && (
               <p className="error-delivery">
                 Вы должны согласиться на обработку личной информации
               </p>
-            ) : null}
+            )}
           </div>
         </form>
       </div>

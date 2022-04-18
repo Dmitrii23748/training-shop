@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { postCity } from "../thunks";
 import axios from "axios";
+
 
 export const postCity = createAsyncThunk(
     'cityCart/postCity',
@@ -10,13 +12,12 @@ export const postCity = createAsyncThunk(
                 throw new Error("ошибка отправки city")
             }
             dispatch(addCityRedux(res.data))
-            // console.log(res.data);
             
         } catch (error) {
             return rejectWithValue(error.message)
         }
     }
-)
+);
 
 
 const cityCartSlice = createSlice({
