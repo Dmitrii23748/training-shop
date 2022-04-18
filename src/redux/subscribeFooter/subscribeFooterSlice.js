@@ -1,24 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { postSubscribeFooter } from "../thunks";
 
-export const postSubscribeFooter = createAsyncThunk(
-    'subscribeFooter/postSubscribeFooter',
-    async (email, {rejectWithValue}) => {
-        try {
-            const mailData = {
-                "mail": email
-            }
-            const res = await axios.post('https://training.cleverland.by/shop/email', mailData);
-            if(res.status !== 200) {
-                throw new Error("ошибка отправки email")
-            }
-            return res.data
-            
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-)
 
 
 const subscribeFooterSlice = createSlice({

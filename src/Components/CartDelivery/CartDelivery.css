@@ -87,11 +87,8 @@
 }
 
 .delivery-info__input:focus::-webkit-input-placeholder {
-  color: transparent
+  color: transparent;
 }
-/* .delivery-info__input:focus::placeholder {
-  color: #121212;
-} */
 .delivery-info__input-adress {
   margin-bottom: 8px;
 }
@@ -104,11 +101,12 @@
 
 .delivery-info__input-house,
 .delivery-info__input-apartment {
-  width: 155px;
+  width: 100%;
+  max-width: 154px;
 }
 
 .checkbox-iagree {
-  margin-top: 23px;
+  margin-top: 22px;
   margin-bottom: 32px;
 }
 
@@ -158,7 +156,6 @@
   margin-bottom: 10px;
 }
 
-
 .autocomplite {
   position: absolute;
   bottom: -81px;
@@ -173,7 +170,7 @@
 
 .autocomplit__item {
   padding: 10px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .autocomplit__item:hover {
   background: #eee8e8;

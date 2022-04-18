@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getAllProducts } from "../products/productsSlice";
-
+import { getAllProducts } from "../thunks";
 
 export const postComments = createAsyncThunk(
   "comments/postComments",
@@ -18,14 +17,13 @@ export const postComments = createAsyncThunk(
       dispatch(addNewRewiews(commentsData));
       dispatch(addNewRewiewsWomens(commentsData));
       dispatch(setRating(1));
-      dispatch(getAllProducts())
+      dispatch(getAllProducts());
       return res.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-
 
 const commentsSlice = createSlice({
   name: "comments",

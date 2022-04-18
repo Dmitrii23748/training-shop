@@ -5,8 +5,8 @@ import subscribeSlice from "./subscribe/subscribeSlice";
 import subscribeFooterSlice from "./subscribeFooter/subscribeFooterSlice";
 import commetsSlice from "./commets/commetsSlice";
 import countrySlice from "./country/countrySlice";
-import cityCartSlice from "./cityCart/cityCartSlice";
-import orderCartSlice from "./order/orderCartSlice";
+import cityCartSlice from "./cityCart/city-сart-slice";
+import orderCartSlice from "./order/order-сart-slice";
 
 export const store = configureStore({
     reducer: {

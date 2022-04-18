@@ -1,16 +1,17 @@
-/* eslint-disable no-useless-escape */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import "./CartPayment.css";
+import VisaComponent from "./VisaComponent/VisaComponent";
+import {
+  setOrderPaymentMethod,
+  setOrderCashEmail,
+} from "../../redux/order/order-сart-slice";
+import { reEmail } from "../../data/root";
 import paypal from "../../img/cart-component/paypal-cart.png";
 import visa from "../../img/cart-component/visa-cart.png";
 import mastercart from "../../img/cart-component/mastercard-cart.png";
-import VisaComponent from "./VisaComponent/VisaComponent";
-// import MasterCardComponent from "./MasterCardComponent/MasterCardComponent";
-import { useDispatch } from "react-redux";
-import { setOrderPaymentMethod, setOrderCashEmail} from "../../redux/order/orderCartSlice";
-
+import "./CartPayment.css";
 
 function CartPayment({
   checkedPayment,
@@ -20,28 +21,23 @@ function CartPayment({
   setValidPaypal,
   setValidVisa,
   validVisaClick,
-  setValidVisaClick
+  setValidVisaClick,
 }) {
-
   const dispatch = useDispatch();
 
   const handleChangePaypal = (e) => {
     setCheckedPayment(e.target.value);
   };
 
-
   // paypal
   const [email, setEmail] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
   const [emailError, setEmailError] = useState("Поле должно быть заполнено");
 
-
   const emailHandler = (e) => {
     setEmail(e.target.value);
-    dispatch(setOrderCashEmail(e.target.value))
-    const re =
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!String(e.target.value).toLowerCase().match(re)) {
+    dispatch(setOrderCashEmail(e.target.value));
+    if (!String(e.target.value).toLowerCase().match(reEmail)) {
       setEmailError("Введён не корректный email");
     } else {
       setEmailError("");
@@ -66,16 +62,15 @@ function CartPayment({
     }
   }, [emailError]);
 
-
   useEffect(() => {
-    if(checkedPayment === 'paypal') {
-      dispatch(setOrderPaymentMethod('PayPal'))
-    } else if(checkedPayment === 'visa' || checkedPayment === 'mastercart') {
-      dispatch(setOrderPaymentMethod('Card'))
-    } else if(checkedPayment === 'cash') {
-      dispatch(setOrderPaymentMethod('Cash'))
+    if (checkedPayment === "paypal") {
+      dispatch(setOrderPaymentMethod("PayPal"));
+    } else if (checkedPayment === "visa" || checkedPayment === "mastercart") {
+      dispatch(setOrderPaymentMethod("Card"));
+    } else if (checkedPayment === "cash") {
+      dispatch(setOrderPaymentMethod("Cash"));
     }
-  }, [checkedPayment])
+  }, [checkedPayment]);
 
   return (
     <div className="payment">
@@ -181,13 +176,11 @@ function CartPayment({
           </div>
         ) : null}
         {checkedPayment === "visa" || checkedPayment === "mastercart" ? (
-          
-          <VisaComponent 
+          <VisaComponent
             setValidVisa={setValidVisa}
             validVisaClick={validVisaClick}
             setValidVisaClick={setValidVisaClick}
           />
-          
         ) : null}
       </form>
       {checkedPayment === "cash" ? null : null}
@@ -197,8 +190,6 @@ function CartPayment({
 
 export default CartPayment;
 
-
-
 CartPayment.propTypes = {
   checkedPayment: PropTypes.string.isRequired,
   setCheckedPayment: PropTypes.func.isRequired,
@@ -207,6 +198,5 @@ CartPayment.propTypes = {
   setValidPaypal: PropTypes.func.isRequired,
   setValidVisa: PropTypes.func.isRequired,
   setValidVisaClick: PropTypes.func.isRequired,
-  validVisaClick: PropTypes.bool.isRequired
-
+  validVisaClick: PropTypes.bool.isRequired,
 };

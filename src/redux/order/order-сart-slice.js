@@ -1,17 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+// import { postOrderProducts } from "../thunks";
 
 export const postOrderProducts = createAsyncThunk(
   "order/postOrderProducts",
   async (orderProducts, { rejectWithValue, dispatch }) => {
     try {
-      const res = await axios.post("https://training.cleverland.by/shop/cart", orderProducts );
+      const res = await axios.post(
+        "https://training.cleverland.by/shop/cart",
+        orderProducts
+      );
       if (res.status !== 200) {
         throw new Error("ошибка отправки city");
       }
-      dispatch(setOrderMessage(res.data.message))
-      // dispatch(setOrderMessage('bank-error'))
-    //   console.log(res.data.message);
+      dispatch(setOrderMessage(res.data.message));
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -98,8 +100,8 @@ const orderCartSlice = createSlice({
       state.allOrderProducts.cardCVV = action.payload;
     },
     setOrderMessage: (state, action) => {
-        state.messageOrder = action.payload;
-      },
+      state.messageOrder = action.payload;
+    },
   },
   extraReducers: {
     [postOrderProducts.pending]: (state) => {
@@ -108,7 +110,6 @@ const orderCartSlice = createSlice({
     },
     [postOrderProducts.fulfilled]: (state) => {
       state.statusOrder = "resolved";
-  
     },
     [postOrderProducts.rejected]: (state, action) => {
       state.statusOrder = "rejected";
@@ -135,6 +136,6 @@ export const {
   setOrderCard,
   setOrderCardDate,
   setOrderCardCvv,
-  setOrderMessage
+  setOrderMessage,
 } = orderCartSlice.actions;
 export default orderCartSlice.reducer;

@@ -1,14 +1,17 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./CartWomens.css";
 import Stars from "../Stars/Stars";
+import "./CartWomens.css";
 
-function CartWomens({routeId, id, name, price, sale, discount, img, rating }) {
+function CartWomens({ routeId, id, name, price, sale, discount, img, rating }) {
   return (
     <>
-      <div className="women-cart" >
-        <Link to={`/women/${routeId}`} className="women-cart__link" data-test-id={`clothes-card-women`}>
+      <div className="women-cart">
+        <Link
+          to={`/women/${routeId}`}
+          className="women-cart__link"
+          data-test-id={`clothes-card-women`}
+        >
           <img
             className="womens-cart__img"
             src={`https://training.cleverland.by/shop/${img}`}
@@ -20,9 +23,7 @@ function CartWomens({routeId, id, name, price, sale, discount, img, rating }) {
               <span className="womens-cart__stars-text">$ {price}</span>
               {sale ? (
                 <span className="womens-cart__stars-sale">$ {sale}</span>
-              ) : (
-                null
-              )}
+              ) : null}
             </div>
             <Stars rating={rating} />
           </div>
@@ -30,15 +31,12 @@ function CartWomens({routeId, id, name, price, sale, discount, img, rating }) {
             <div className="womens-percent">
               <p className="womens-percent__text">{discount}</p>
             </div>
-          ) : (
-            null
-          )}
+          ) : null}
         </Link>
       </div>
     </>
   );
 }
-
 
 CartWomens.propTypes = {
   id: PropTypes.number.isRequired,
@@ -47,11 +45,7 @@ CartWomens.propTypes = {
   sale: PropTypes.string,
   discount: PropTypes.string,
   routeId: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-}
+  rating: PropTypes.number.isRequired,
+};
 
 export default CartWomens;
-
-
-
-

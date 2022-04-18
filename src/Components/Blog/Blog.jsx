@@ -1,17 +1,17 @@
-import React from "react";
-import "./Blog.css";
 import blog1 from "../../img/blog/blog-1.jpg";
 import blog2 from "../../img/blog/blog-2.jpg";
 import blog3 from "../../img/blog/blog-3.jpg";
+import "./Blog.css";
 
 function Blog() {
   return (
-    <>
       <section className="blog">
         <div className="container">
           <div className="blog__title-link">
             <h2 className="blog-title">LATEST FROM BLOG</h2>
-            <a className="blog-link" href="#blog">SEE ALL</a>
+            <a className="blog-link" href="#blog">
+              SEE ALL
+            </a>
           </div>
           <div className="blog-block">
             <div className="blog-block__item">
@@ -47,7 +47,6 @@ function Blog() {
           </div>
         </div>
       </section>
-    </>
   );
 }
 

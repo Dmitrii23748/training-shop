@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-useless-escape */
 import React, { useEffect, useState } from "react";
-import "./Subscribe.css";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "react-js-loader";
 import women from "../../img/subscribe/women.png";
 import men from "../../img/subscribe/men.png";
-import { useDispatch, useSelector } from "react-redux";
 import { setSubscribe } from "../../redux/subscribe/subscribeSlice";
-import { postSubscribe } from "../../redux/subscribe/subscribeSlice";
-import Loader from "react-js-loader";
+import { postSubscribe } from "../../redux/thunks";
+import { reEmail } from "../../data/root";
+import "./Subscribe.css";
 
 function Subscribe() {
   const dispath = useDispatch();
@@ -18,8 +18,8 @@ function Subscribe() {
   const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [formValid, setFormValid] = useState(false);
 
-  const [inputSubscribe, setInputSubscribe ] = useState(false)
-  const [btnSubscribe, setBtnSubscribe ] = useState(false)
+  const [inputSubscribe, setInputSubscribe] = useState(false);
+  const [btnSubscribe, setBtnSubscribe] = useState(false);
 
   const blurEmail = (e) => {
     if (e.target.name === "emailMainSubscribe") {
@@ -33,9 +33,7 @@ function Subscribe() {
 
   const handleChangeSubscribe = (e) => {
     dispath(setSubscribe(e.target.value));
-    const re =
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!String(e.target.value).toLowerCase().match(re)) {
+    if (!String(e.target.value).toLowerCase().match(reEmail)) {
       setEmailError("Введён не корректный email");
     } else {
       setEmailError("");
@@ -44,6 +42,10 @@ function Subscribe() {
       setBtnSubscribe(false);
       setInputSubscribe(false);
     }
+  };
+
+  const postEmailSubscribe = () => {
+    dispath(postSubscribe(valueSubscribe));
   };
 
   useEffect(() => {
@@ -67,17 +69,11 @@ function Subscribe() {
     setInputSubscribe(false);
   }, []);
 
-  const postEmailSubscribe = () => {
-    dispath(postSubscribe(valueSubscribe));
-  };
-
   useEffect(() => {
     setTimeout(() => {
       setInputSubscribe(false);
-    }, 2500)
-  }, [inputSubscribe])
-
-  
+    }, 2500);
+  }, [inputSubscribe]);
 
   return (
     <section className="subscribe">

@@ -1,8 +1,8 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import "./MensCountFilters.css";
 import PropTypes from "prop-types";
 import { priceCheckBoxMens } from "../../data/root";
+import "./MensCountFilters.css";
 
 function MensCountFilters({
   productsMens,
